@@ -1,7 +1,7 @@
 {
   "name": "heroku-privatelinks-cli",
   "description": "Heroku PrivateLinks CLI",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Brett Goulder @brettgoulder",
   "bugs": "https://github.com/brettgoulder/heroku-privatelinks-cli/issues",
   "dependencies": {
@@ -44,7 +44,7 @@
   "license": "MIT",
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "oclif-example",
+    "bin": "heroku",
     "devPlugins": [
       "@oclif/plugin-help"
     ]

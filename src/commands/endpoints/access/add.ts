@@ -1,15 +1,15 @@
 import Command, {flags} from '@heroku-cli/command'
 
-import getHost from '../../../lib/get-host'
+import getHost from '../../../lib/host'
 
 const SHOGUN_URL = `https://${getHost()}/private-link/v0/databases`
 
-export default class PrivateLinksAccessAdd extends Command {
-  static description = 'get information on the status of your Private Link'
+export default class EndpointsAccessAdd extends Command {
+  static description = 'add an account to your whitelist'
 
   static args = [
-    {name: 'database'},
-    {name: 'aws_ids'}
+    {name: 'database', require: true},
+    {name: 'account_ids'}
   ]
 
   static flags = {
@@ -17,12 +17,12 @@ export default class PrivateLinksAccessAdd extends Command {
   }
 
   static examples = [
-    '$ heroku privatelinks:access:add 123456',
-    '$ heroku privatelinks:access:add 123456,7891011',
+    '$ heroku endpoints:access:add 123456',
+    '$ heroku endpoints:access:add 123456,7891011',
   ]
 
   async run() {
-    const {args} = this.parse(PrivateLinksAccessAdd)
+    const {args} = this.parse(EndpointsAccessAdd)
 
     let defaultOptions = {
       headers: {

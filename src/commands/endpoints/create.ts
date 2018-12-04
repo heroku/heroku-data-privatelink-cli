@@ -1,16 +1,16 @@
 import Command, {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import getHost from '../../lib/get-host'
+import getHost from '../../lib/host'
 
 const SHOGUN_URL = `https://${getHost()}/private-link/v0/databases`
 
-export default class PrivateLinksCreate extends Command {
-  static description = 'get information on the status of your Private Link'
+export default class EndpointsCreate extends Command {
+  static description = 'create a Private Link for your database'
 
   static args = [
-    {name: 'database'},
-    {name: 'aws_ids'}
+    {name: 'database', required: true},
+    {name: 'account_ids'}
   ]
 
   static flags = {
@@ -18,11 +18,11 @@ export default class PrivateLinksCreate extends Command {
   }
 
   static examples = [
-    '$ heroku privatelinks:create',
+    '$ heroku endpoints:create',
   ]
 
   async run() {
-    const {args} = this.parse(PrivateLinksCreate)
+    const {args} = this.parse(EndpointsCreate)
 
     let defaultOptions = {
       headers: {

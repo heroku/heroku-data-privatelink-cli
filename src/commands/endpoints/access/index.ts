@@ -1,12 +1,12 @@
 import Command, {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import getHost from '../../../lib/get-host'
+import getHost from '../../../lib/host'
 
 const SHOGUN_URL = `https://${getHost()}/private-link/v0/databases`
 
-export default class PrivateLinksAccessIndex extends Command {
-  static description = 'get information on the status of your Private Link'
+export default class EndpointsAccessIndex extends Command {
+  static description = 'list all whitelisted accounts for your Private Link'
 
   static args = [
     {name: 'database'},
@@ -17,12 +17,12 @@ export default class PrivateLinksAccessIndex extends Command {
   }
 
   static examples = [
-    '$ heroku privatelinks:access',
-    '$ heroku privatelinks:access postgresql-rigid-37567',
+    '$ heroku endpoints:access',
+    '$ heroku endpoints:access postgresql-rigid-37567',
   ]
 
   async run() {
-    const {args} = this.parse(PrivateLinksAccessIndex)
+    const {args} = this.parse(EndpointsAccessIndex)
 
     let defaultOptions = {
       headers: {
@@ -35,7 +35,7 @@ export default class PrivateLinksAccessIndex extends Command {
     if (whitelisted_accounts.length > 0) {
       cli.table(whitelisted_accounts, {
         columns: [
-          {key: 'arn', label: 'Amazon Resource Name'},
+          {key: 'arn', label: 'ARN'},
           {key: 'status', label: 'Status'},
         ]
       })

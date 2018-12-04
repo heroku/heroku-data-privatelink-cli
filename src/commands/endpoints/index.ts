@@ -1,12 +1,12 @@
 import Command, {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import getHost from '../../lib/get-host'
+import getHost from '../../lib/host'
 
 const SHOGUN_URL = `https://${getHost()}/private-link/v0/databases`
 
-export default class PrivateLinksIndex extends Command {
-  static description = 'lists all your Private Links'
+export default class EndpointsIndex extends Command {
+  static description = 'list all your Private Links'
 
   static args = [
     {name: 'database'}
@@ -16,12 +16,14 @@ export default class PrivateLinksIndex extends Command {
     app: flags.app({required: true})
   }
 
+  static aliases = ['pg:endpoints', 'kafka:endpoints', 'redis:endpoints']
+
   static examples = [
-    '$ heroku privatelinks',
+    '$ heroku endpoints',
   ]
 
   async run() {
-    const {args} = this.parse(PrivateLinksIndex)
+    const {args} = this.parse(EndpointsIndex)
 
     const defaultOptions = {
       headers: {
@@ -29,10 +31,11 @@ export default class PrivateLinksIndex extends Command {
       }
     }
 
-    const {body: {connections}} = await this.heroku.get<any>(`${SHOGUN_URL}/${args.database}`, defaultOptions)
+    const {body: res} = await this.heroku.get<any>(`${SHOGUN_URL}/${args.database}`, defaultOptions)
 
-    if (connections.length > 0) {
-      cli.table(connections, {
+    if (res.connections.length > 0) {
+      cli.log(res.service_name)
+      cli.table(res.connections, {
         columns: [
           {key: 'endpoint_id', label: 'ID'},
           {key: 'owner_arn', label: 'Owner ARN'},

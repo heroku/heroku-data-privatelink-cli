@@ -1,12 +1,12 @@
 import Command, {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import getHost from '../../lib/get-host'
+import getHost from '../../lib/host'
 
 const SHOGUN_URL = `https://${getHost()}/private-link/v0/databases`
 
-export default class PrivateLinksInfo extends Command {
-  static description = 'get information on the status of your Private Link'
+export default class EndpointsDestroy extends Command {
+  static description = 'destroy a Private Link for your database'
 
   static args = [
     {name: 'database'}
@@ -17,11 +17,11 @@ export default class PrivateLinksInfo extends Command {
   }
 
   static examples = [
-    '$ heroku privatelinks',
+    '$ heroku endpoints:destroy',
   ]
 
   async run() {
-    const {args} = this.parse(PrivateLinksInfo)
+    const {args} = this.parse(EndpointsDestroy)
 
     const defaultOptions = {
       headers: {
@@ -29,8 +29,8 @@ export default class PrivateLinksInfo extends Command {
       }
     }
 
-    const {body: connections} = await this.heroku.get<any>(`${SHOGUN_URL}/${args.database}`, defaultOptions)
+    const res = await this.heroku.delete<any>(`${SHOGUN_URL}/${args.database}`, defaultOptions)
 
-    cli.table(connections)
+    cli.styledJSON(res)
   }
 }

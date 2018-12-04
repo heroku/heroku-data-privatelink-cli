@@ -1,6 +1,6 @@
 {
   "name": "heroku-privatelinks-cli",
-  "description": "Heroku PrivateLinks CLI",
+  "description": "heroku endpoints CLI",
   "version": "0.0.1",
   "author": "Brett Goulder @brettgoulder",
   "bugs": "https://github.com/brettgoulder/heroku-privatelinks-cli/issues",

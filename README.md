@@ -1,7 +1,7 @@
 heroku-privatelinks-cli
 =======================
 
-Heroku PrivateLinks CLI
+heroku endpoints CLI
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/heroku-privatelinks-cli.svg)](https://npmjs.org/package/heroku-privatelinks-cli)
@@ -28,132 +28,137 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`heroku privatelinks [DATABASE]`](#heroku-privatelinks-database)
-* [`heroku privatelinks:access [DATABASE]`](#heroku-privatelinksaccess-database)
-* [`heroku privatelinks:access:add [DATABASE] [AWS_IDS]`](#heroku-privatelinksaccessadd-database-aws-ids)
-* [`heroku privatelinks:access:remove [DATABASE] [AWS_ARN]`](#heroku-privatelinksaccessremove-database-aws-arn)
-* [`heroku privatelinks:create [DATABASE] [AWS_IDS]`](#heroku-privatelinkscreate-database-aws-ids)
-* [`heroku privatelinks:destroy [DATABASE]`](#heroku-privatelinksdestroy-database)
-* [`heroku privatelinks:info [DATABASE]`](#heroku-privatelinksinfo-database)
+* [`heroku endpoints [DATABASE]`](#heroku-endpoints-database)
+* [`heroku endpoints:access [DATABASE]`](#heroku-endpointsaccess-database)
+* [`heroku endpoints:access:add [DATABASE] [ACCOUNT_IDS]`](#heroku-endpointsaccessadd-database-account-ids)
+* [`heroku endpoints:access:remove [DATABASE] [AWS_ARN]`](#heroku-endpointsaccessremove-database-aws-arn)
+* [`heroku endpoints:create DATABASE [ACCOUNT_IDS]`](#heroku-endpointscreate-database-account-ids)
+* [`heroku endpoints:destroy [DATABASE]`](#heroku-endpointsdestroy-database)
+* [`heroku endpoints:info [DATABASE]`](#heroku-endpointsinfo-database)
 
-## `heroku privatelinks [DATABASE]`
+## `heroku endpoints [DATABASE]`
 
-lists all your Private Links
+list all your Private Links
 
 ```
 USAGE
-  $ heroku privatelinks [DATABASE]
+  $ heroku endpoints [DATABASE]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
 
+ALIASES
+  $ heroku pg:endpoints
+  $ heroku kafka:endpoints
+  $ heroku redis:endpoints
+
 EXAMPLE
-  $ heroku privatelinks
+  $ heroku endpoints
 ```
 
-_See code: [src/commands/privatelinks/index.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/privatelinks/index.ts)_
+_See code: [src/commands/endpoints/index.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/endpoints/index.ts)_
 
-## `heroku privatelinks:access [DATABASE]`
+## `heroku endpoints:access [DATABASE]`
 
-get information on the status of your Private Link
+list all whitelisted accounts for your Private Link
 
 ```
 USAGE
-  $ heroku privatelinks:access [DATABASE]
+  $ heroku endpoints:access [DATABASE]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
 
 EXAMPLES
-  $ heroku privatelinks:access
-  $ heroku privatelinks:access postgresql-rigid-37567
+  $ heroku endpoints:access
+  $ heroku endpoints:access postgresql-rigid-37567
 ```
 
-_See code: [src/commands/privatelinks/access/index.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/privatelinks/access/index.ts)_
+_See code: [src/commands/endpoints/access/index.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/endpoints/access/index.ts)_
 
-## `heroku privatelinks:access:add [DATABASE] [AWS_IDS]`
+## `heroku endpoints:access:add [DATABASE] [ACCOUNT_IDS]`
 
-get information on the status of your Private Link
+add an account to your whitelist
 
 ```
 USAGE
-  $ heroku privatelinks:access:add [DATABASE] [AWS_IDS]
+  $ heroku endpoints:access:add [DATABASE] [ACCOUNT_IDS]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
 
 EXAMPLES
-  $ heroku privatelinks:access:add 123456
-  $ heroku privatelinks:access:add 123456,7891011
+  $ heroku endpoints:access:add 123456
+  $ heroku endpoints:access:add 123456,7891011
 ```
 
-_See code: [src/commands/privatelinks/access/add.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/privatelinks/access/add.ts)_
+_See code: [src/commands/endpoints/access/add.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/endpoints/access/add.ts)_
 
-## `heroku privatelinks:access:remove [DATABASE] [AWS_ARN]`
+## `heroku endpoints:access:remove [DATABASE] [AWS_ARN]`
 
-get information on the status of your Private Link
+remove an account from your whitelist
 
 ```
 USAGE
-  $ heroku privatelinks:access:remove [DATABASE] [AWS_ARN]
+  $ heroku endpoints:access:remove [DATABASE] [AWS_ARN]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
 
 EXAMPLE
-  $ heroku privatelinks:access:remove arn:aws:iam::12345678910:root
+  $ heroku endpoints:access:remove arn:aws:iam::12345678910:root
 ```
 
-_See code: [src/commands/privatelinks/access/remove.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/privatelinks/access/remove.ts)_
+_See code: [src/commands/endpoints/access/remove.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/endpoints/access/remove.ts)_
 
-## `heroku privatelinks:create [DATABASE] [AWS_IDS]`
+## `heroku endpoints:create DATABASE [ACCOUNT_IDS]`
 
-get information on the status of your Private Link
+create a Private Link for your database
 
 ```
 USAGE
-  $ heroku privatelinks:create [DATABASE] [AWS_IDS]
+  $ heroku endpoints:create DATABASE [ACCOUNT_IDS]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
 
 EXAMPLE
-  $ heroku privatelinks:create
+  $ heroku endpoints:create
 ```
 
-_See code: [src/commands/privatelinks/create.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/privatelinks/create.ts)_
+_See code: [src/commands/endpoints/create.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/endpoints/create.ts)_
 
-## `heroku privatelinks:destroy [DATABASE]`
+## `heroku endpoints:destroy [DATABASE]`
 
-get information on the status of your Private Link
+destroy a Private Link for your database
 
 ```
 USAGE
-  $ heroku privatelinks:destroy [DATABASE]
+  $ heroku endpoints:destroy [DATABASE]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
 
 EXAMPLE
-  $ heroku privatelinks:destroy
+  $ heroku endpoints:destroy
 ```
 
-_See code: [src/commands/privatelinks/destroy.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/privatelinks/destroy.ts)_
+_See code: [src/commands/endpoints/destroy.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/endpoints/destroy.ts)_
 
-## `heroku privatelinks:info [DATABASE]`
+## `heroku endpoints:info [DATABASE]`
 
-get information on the status of your Private Link
+show information on the status of your Private Link
 
 ```
 USAGE
-  $ heroku privatelinks:info [DATABASE]
+  $ heroku endpoints:info [DATABASE]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
 
 EXAMPLE
-  $ heroku privatelinks
+  $ heroku endpoints
 ```
 
-_See code: [src/commands/privatelinks/info.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/privatelinks/info.ts)_
+_See code: [src/commands/endpoints/info.ts](https://github.com/brettgoulder/heroku-privatelinks-cli/blob/v0.0.1/src/commands/endpoints/info.ts)_
 <!-- commandsstop -->

@@ -1,12 +1,12 @@
 import Command, {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import getHost from '../../../lib/get-host'
+import getHost from '../../../lib/host'
 
 const SHOGUN_URL = `https://${getHost()}/private-link/v0/databases`
 
-export default class PrivateLinksAccessRemove extends Command {
-  static description = 'get information on the status of your Private Link'
+export default class EndpointsAccessRemove extends Command {
+  static description = 'remove an account from your whitelist'
 
   static args = [
     {name: 'database'},
@@ -18,11 +18,11 @@ export default class PrivateLinksAccessRemove extends Command {
   }
 
   static examples = [
-    '$ heroku privatelinks:access:remove arn:aws:iam::12345678910:root',
+    '$ heroku endpoints:access:remove arn:aws:iam::12345678910:root',
   ]
 
   async run() {
-    const {args} = this.parse(PrivateLinksAccessRemove)
+    const {args} = this.parse(EndpointsAccessRemove)
 
     const defaultOptions = {
       headers: {

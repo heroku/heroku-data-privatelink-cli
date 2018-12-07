@@ -1,12 +1,12 @@
 import Command, {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import getHost from '../../../lib/host'
+import host from '../../../lib/host'
 
-const SHOGUN_URL = `https://${getHost()}/private-link/v0/databases`
+const SHOGUN_URL = `https://${host()}/private-link/v0/databases`
 
 export default class EndpointsAccessIndex extends Command {
-  static description = 'list all whitelisted accounts for your Private Link'
+  static description = 'list all accounts for your Trusted VPC Endpoint\'s whitelist'
 
   static args = [
     {name: 'database'},

@@ -1,11 +1,11 @@
 import Command, {flags} from '@heroku-cli/command'
 
-import getHost from '../../../lib/host'
+import host from '../../../lib/host'
 
-const SHOGUN_URL = `https://${getHost()}/private-link/v0/databases`
+const SHOGUN_URL = `https://${host()}/private-link/v0/databases`
 
 export default class EndpointsAccessAdd extends Command {
-  static description = 'add an account to your whitelist'
+  static description = 'add an account to your Trusted VPC Endpoints\'s whitelist'
 
   static args = [
     {name: 'database', require: true},
@@ -33,7 +33,7 @@ export default class EndpointsAccessAdd extends Command {
     await this.heroku.put<any>(`${SHOGUN_URL}/${args.database}/whitelisted_accounts`, {
       ...defaultOptions,
       body: {
-        whitelisted_accounts: [args.aws_arns]
+        whitelisted_accounts: [args.account_ids]
       }
     })
   }

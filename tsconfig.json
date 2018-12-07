@@ -10,6 +10,6 @@
     "composite": true
   },
   "include": [
-    "src/**/*", "test/commands/privatelinks/index.test.ts"
+    "src/**/*", "test/commands/endpoints/index.test.ts"
   ]
 }

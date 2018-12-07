@@ -1,16 +1,16 @@
 import Command, {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import getHost from '../../../lib/host'
+import host from '../../../lib/host'
 
-const SHOGUN_URL = `https://${getHost()}/private-link/v0/databases`
+const SHOGUN_URL = `https://${host()}/private-link/v0/databases`
 
 export default class EndpointsAccessRemove extends Command {
-  static description = 'remove an account from your whitelist'
+  static description = 'remove an account from your Trusted VPC Endpoint\'s whitelist'
 
   static args = [
     {name: 'database'},
-    {name: 'aws_arn'}
+    {name: 'account_ids'}
   ]
 
   static flags = {
@@ -30,7 +30,12 @@ export default class EndpointsAccessRemove extends Command {
       }
     }
 
-    await this.heroku.delete<any>(`${SHOGUN_URL}/${args.database}/whitelisted_accounts/${args.aws_arn}`, defaultOptions)
+    await this.heroku.patch<any>(`${SHOGUN_URL}/${args.database}/whitelisted_accounts`, {
+      ...defaultOptions,
+      body: {
+        whitelisted_accounts: [args.account_ids]
+      }
+    })
     cli.done()
   }
 }

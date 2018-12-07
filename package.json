@@ -1,10 +1,11 @@
 {
-  "name": "heroku-privatelinks-cli",
+  "name": "heroku-endpoints-cli",
   "description": "heroku endpoints CLI",
   "version": "0.0.1",
   "author": "Brett Goulder @brettgoulder",
-  "bugs": "https://github.com/brettgoulder/heroku-privatelinks-cli/issues",
+  "bugs": "https://github.com/brettgoulder/heroku-endpoints-cli/issues",
   "dependencies": {
+    "@heroku-cli/color": "false1.1.14",
     "@heroku-cli/command": "false8.2.2",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
@@ -37,7 +38,7 @@
     "/oclif.manifest.json",
     "/yarn.lock"
   ],
-  "homepage": "https://github.com/brettgoulder/heroku-privatelinks-cli",
+  "homepage": "https://github.com/brettgoulder/heroku-endpoints-cli",
   "keywords": [
     "oclif-plugin"
   ],
@@ -49,7 +50,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "brettgoulder/heroku-privatelinks-cli",
+  "repository": "brettgoulder/heroku-endpoints-cli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "tslint -p test -t stylish",

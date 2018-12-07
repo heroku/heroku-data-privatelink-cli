@@ -1,12 +1,11 @@
 import Command, {flags} from '@heroku-cli/command'
-import {cli} from 'cli-ux'
 
 import host from '../../lib/host'
 
 const SHOGUN_URL = `https://${host()}/private-link/v0/databases`
 
-export default class EndpointssDestroy extends Command {
-  static description = 'destroy a Trusted VPC Endpoint for your database'
+export default class EndpointsWait extends Command {
+  static description = 'wait for your Trusted VPC Endpoint to be provisioned'
 
   static args = [
     {name: 'database'}
@@ -16,12 +15,14 @@ export default class EndpointssDestroy extends Command {
     app: flags.app({required: true})
   }
 
+  static aliases = ['pg:endpoints:wait', 'kafka:endpoints:wait', 'redis:endpoints:wait']
+
   static examples = [
-    '$ heroku endpoints:destroy',
+    '$ heroku endpoints:wait',
   ]
 
   async run() {
-    const {args} = this.parse(EndpointssDestroy)
+    const {args} = this.parse(EndpointssWait)
 
     const defaultOptions = {
       headers: {
@@ -29,8 +30,6 @@ export default class EndpointssDestroy extends Command {
       }
     }
 
-    cli.action.start('Deleting Trusted VPC Endpoint')
-    const res = await this.heroku.delete<any>(`${SHOGUN_URL}/${args.database}`, defaultOptions)
-    cli.styledJSON(res)
+    const {body: res} = await this.heroku.get<any>(`${SHOGUN_URL}/${args.database}`, defaultOptions)
   }
 }

@@ -17,8 +17,8 @@ export default class EndpointsAccessAdd extends Command {
   }
 
   static examples = [
-    '$ heroku endpoints:access:add 123456',
-    '$ heroku endpoints:access:add 123456,7891011',
+    '$ heroku endpoints:access:add postgresql-rigid-37567 123456',
+    '$ heroku endpoints:access:add postgresql-rigid-37567 123456,7891011',
   ]
 
   async run() {

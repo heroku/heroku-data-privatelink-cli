@@ -15,7 +15,6 @@ export default class EndpointsWait extends Command {
     app: flags.app({required: true})
   }
 
-  static aliases = ['pg:endpoints:wait', 'kafka:endpoints:wait', 'redis:endpoints:wait']
 
   static examples = [
     '$ heroku endpoints:wait',

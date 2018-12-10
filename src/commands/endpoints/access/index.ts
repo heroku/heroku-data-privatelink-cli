@@ -17,7 +17,6 @@ export default class EndpointsAccessIndex extends Command {
   }
 
   static examples = [
-    '$ heroku endpoints:access',
     '$ heroku endpoints:access postgresql-rigid-37567',
   ]
 

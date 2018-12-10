@@ -17,8 +17,6 @@ export default class EndpointsIndex extends Command {
     app: flags.app({required: true})
   }
 
-  static aliases = ['pg:endpoints', 'kafka:endpoints', 'redis:endpoints']
-
   static examples = [
     '$ heroku endpoints',
   ]

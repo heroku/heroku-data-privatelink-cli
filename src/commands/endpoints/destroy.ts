@@ -9,7 +9,7 @@ export default class EndpointssDestroy extends Command {
   static description = 'destroy a Trusted VPC Endpoint for your database'
 
   static args = [
-    {name: 'database'}
+    {name: 'database', required: true}
   ]
 
   static flags = {

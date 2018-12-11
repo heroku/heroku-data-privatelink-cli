@@ -8,8 +8,8 @@ export default class EndpointsAccessAdd extends Command {
   static description = 'add an account to your Trusted VPC Endpoints\'s whitelist'
 
   static args = [
-    {name: 'database', require: true},
-    {name: 'account_ids'}
+    {name: 'database', required: true},
+    {name: 'account_ids', required: true}
   ]
 
   static flags = {

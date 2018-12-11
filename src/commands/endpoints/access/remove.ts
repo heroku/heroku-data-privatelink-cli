@@ -9,8 +9,8 @@ export default class EndpointsAccessRemove extends Command {
   static description = 'remove an account from your Trusted VPC Endpoint\'s whitelist'
 
   static args = [
-    {name: 'database'},
-    {name: 'account_ids'}
+    {name: 'database', required: true},
+    {name: 'account_ids', required: true}
   ]
 
   static flags = {

@@ -9,7 +9,7 @@ export default class EndpointsAccessIndex extends Command {
   static description = 'list all accounts for your Trusted VPC Endpoint\'s whitelist'
 
   static args = [
-    {name: 'database'},
+    {name: 'database', required: true},
   ]
 
   static flags = {

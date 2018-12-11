@@ -9,6 +9,7 @@
     "@heroku-cli/command": "8.2.2",
     "@oclif/command": "^1",
     "@oclif/config": "^1",
+    "@oclif/errors": "false1.2.2",
     "cli-ux": "4.9.3",
     "tslib": "^1"
   },

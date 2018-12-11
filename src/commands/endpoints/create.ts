@@ -11,7 +11,7 @@ export default class EndpointsCreate extends Command {
 
   static args = [
     {name: 'database', required: true},
-    {name: 'account_ids'}
+    {name: 'account_ids', required: true}
   ]
 
   static flags = {

@@ -1,5 +1,5 @@
 {
-  "name": "@heroku-cli/plugin-endpoints",
+  "name": "@heroku-cli/plugin-trusted-endpoints",
   "description": "Heroku Trusted VPC Endpoints CLI",
   "version": "0.0.1",
   "author": "Heroku Data UX",

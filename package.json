@@ -1,7 +1,7 @@
 {
   "name": "@heroku-cli/plugin-trusted-endpoints",
   "description": "Heroku Trusted VPC Endpoints CLI",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "author": "Heroku Data UX",
   "bugs": "https://github.com/heroku/heroku-endpoints-cli/issues",
   "dependencies": {
@@ -10,6 +10,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/errors": "false1.2.2",
+    "@types/supports-color": "false5.3.0",
     "cli-ux": "4.9.3",
     "tslib": "^1"
   },

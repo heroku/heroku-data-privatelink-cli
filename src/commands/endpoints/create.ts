@@ -31,7 +31,7 @@ export default class EndpointsCreate extends Command {
       }
     }
 
-    const account_ids = args.account_ids.split(',').map(account => account.trim())
+    const account_ids = args.account_ids.split(',').map((account: any) => account.trim())
 
     cli.action.start('Creating Trusted VPC Endpoint')
 

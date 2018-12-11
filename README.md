@@ -15,11 +15,11 @@ heroku endpoints CLI
 # Usage
 <!-- usage -->
 ```sh-session
-$ npm install -g heroku-endpoints-cli
+$ npm install -g @heroku-cli/plugin-trusted-endpoints
 $ heroku COMMAND
 running command...
 $ heroku (-v|--version|version)
-heroku-endpoints-cli/0.0.1 darwin-x64 node-v10.14.0
+@heroku-cli/plugin-trusted-endpoints/0.1.0 darwin-x64 node-v10.14.0
 $ heroku --help [COMMAND]
 USAGE
   $ heroku COMMAND
@@ -29,12 +29,11 @@ USAGE
 # Commands
 <!-- commands -->
 * [`heroku endpoints [DATABASE]`](#heroku-endpoints-database)
-* [`heroku endpoints:access [DATABASE]`](#heroku-endpointsaccess-database)
-* [`heroku endpoints:access:add [DATABASE] [ACCOUNT_IDS]`](#heroku-endpointsaccessadd-database-account-ids)
-* [`heroku endpoints:access:remove [DATABASE] [ACCOUNT_IDS]`](#heroku-endpointsaccessremove-database-account-ids)
-* [`heroku endpoints:create DATABASE [ACCOUNT_IDS]`](#heroku-endpointscreate-database-account-ids)
-* [`heroku endpoints:destroy [DATABASE]`](#heroku-endpointsdestroy-database)
-* [`heroku endpoints:wait [DATABASE]`](#heroku-endpointswait-database)
+* [`heroku endpoints:access DATABASE`](#heroku-endpointsaccess-database)
+* [`heroku endpoints:access:add DATABASE ACCOUNT_IDS`](#heroku-endpointsaccessadd-database-account-ids)
+* [`heroku endpoints:access:remove DATABASE ACCOUNT_IDS`](#heroku-endpointsaccessremove-database-account-ids)
+* [`heroku endpoints:create DATABASE ACCOUNT_IDS`](#heroku-endpointscreate-database-account-ids)
+* [`heroku endpoints:destroy DATABASE`](#heroku-endpointsdestroy-database)
 
 ## `heroku endpoints [DATABASE]`
 
@@ -47,60 +46,54 @@ USAGE
 OPTIONS
   -a, --app=app  (required) app to run command against
 
-ALIASES
-  $ heroku pg:endpoints
-  $ heroku kafka:endpoints
-  $ heroku redis:endpoints
-
 EXAMPLE
   $ heroku endpoints
 ```
 
-_See code: [src/commands/endpoints/index.ts](https://github.com/brettgoulder/heroku-endpoints-cli/blob/v0.0.1/src/commands/endpoints/index.ts)_
+_See code: [src/commands/endpoints/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.1.0/src/commands/endpoints/index.ts)_
 
-## `heroku endpoints:access [DATABASE]`
+## `heroku endpoints:access DATABASE`
 
 list all accounts for your Trusted VPC Endpoint's whitelist
 
 ```
 USAGE
-  $ heroku endpoints:access [DATABASE]
+  $ heroku endpoints:access DATABASE
 
 OPTIONS
   -a, --app=app  (required) app to run command against
 
-EXAMPLES
-  $ heroku endpoints:access
+EXAMPLE
   $ heroku endpoints:access postgresql-rigid-37567
 ```
 
-_See code: [src/commands/endpoints/access/index.ts](https://github.com/brettgoulder/heroku-endpoints-cli/blob/v0.0.1/src/commands/endpoints/access/index.ts)_
+_See code: [src/commands/endpoints/access/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.1.0/src/commands/endpoints/access/index.ts)_
 
-## `heroku endpoints:access:add [DATABASE] [ACCOUNT_IDS]`
+## `heroku endpoints:access:add DATABASE ACCOUNT_IDS`
 
-add an account to your Trusted VPC Endpoint's whitelist
+add an account to your Trusted VPC Endpoints's whitelist
 
 ```
 USAGE
-  $ heroku endpoints:access:add [DATABASE] [ACCOUNT_IDS]
+  $ heroku endpoints:access:add DATABASE ACCOUNT_IDS
 
 OPTIONS
   -a, --app=app  (required) app to run command against
 
 EXAMPLES
-  $ heroku endpoints:access:add 123456
-  $ heroku endpoints:access:add 123456,7891011
+  $ heroku endpoints:access:add postgresql-rigid-37567 123456
+  $ heroku endpoints:access:add postgresql-rigid-37567 123456,7891011
 ```
 
-_See code: [src/commands/endpoints/access/add.ts](https://github.com/brettgoulder/heroku-endpoints-cli/blob/v0.0.1/src/commands/endpoints/access/add.ts)_
+_See code: [src/commands/endpoints/access/add.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.1.0/src/commands/endpoints/access/add.ts)_
 
-## `heroku endpoints:access:remove [DATABASE] [ACCOUNT_IDS]`
+## `heroku endpoints:access:remove DATABASE ACCOUNT_IDS`
 
 remove an account from your Trusted VPC Endpoint's whitelist
 
 ```
 USAGE
-  $ heroku endpoints:access:remove [DATABASE] [ACCOUNT_IDS]
+  $ heroku endpoints:access:remove DATABASE ACCOUNT_IDS
 
 OPTIONS
   -a, --app=app  (required) app to run command against
@@ -109,15 +102,15 @@ EXAMPLE
   $ heroku endpoints:access:remove arn:aws:iam::12345678910:root
 ```
 
-_See code: [src/commands/endpoints/access/remove.ts](https://github.com/brettgoulder/heroku-endpoints-cli/blob/v0.0.1/src/commands/endpoints/access/remove.ts)_
+_See code: [src/commands/endpoints/access/remove.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.1.0/src/commands/endpoints/access/remove.ts)_
 
-## `heroku endpoints:create DATABASE [ACCOUNT_IDS]`
+## `heroku endpoints:create DATABASE ACCOUNT_IDS`
 
 create a new Trusted VPC Endpoint for your database
 
 ```
 USAGE
-  $ heroku endpoints:create DATABASE [ACCOUNT_IDS]
+  $ heroku endpoints:create DATABASE ACCOUNT_IDS
 
 OPTIONS
   -a, --app=app  (required) app to run command against
@@ -126,15 +119,15 @@ EXAMPLE
   $ heroku endpoints:create
 ```
 
-_See code: [src/commands/endpoints/create.ts](https://github.com/brettgoulder/heroku-endpoints-cli/blob/v0.0.1/src/commands/endpoints/create.ts)_
+_See code: [src/commands/endpoints/create.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.1.0/src/commands/endpoints/create.ts)_
 
-## `heroku endpoints:destroy [DATABASE]`
+## `heroku endpoints:destroy DATABASE`
 
 destroy a Trusted VPC Endpoint for your database
 
 ```
 USAGE
-  $ heroku endpoints:destroy [DATABASE]
+  $ heroku endpoints:destroy DATABASE
 
 OPTIONS
   -a, --app=app  (required) app to run command against
@@ -143,27 +136,5 @@ EXAMPLE
   $ heroku endpoints:destroy
 ```
 
-_See code: [src/commands/endpoints/destroy.ts](https://github.com/brettgoulder/heroku-endpoints-cli/blob/v0.0.1/src/commands/endpoints/destroy.ts)_
-
-## `heroku endpoints:wait [DATABASE]`
-
-wait for your Trusted VPC Endpoint to be provisioned
-
-```
-USAGE
-  $ heroku endpoints:wait [DATABASE]
-
-OPTIONS
-  -a, --app=app  (required) app to run command against
-
-ALIASES
-  $ heroku pg:endpoints:wait
-  $ heroku kafka:endpoints:wait
-  $ heroku redis:endpoints:wait
-
-EXAMPLE
-  $ heroku endpoints:wait
-```
-
-_See code: [src/commands/endpoints/wait.ts](https://github.com/brettgoulder/heroku-endpoints-cli/blob/v0.0.1/src/commands/endpoints/wait.ts)_
+_See code: [src/commands/endpoints/destroy.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.1.0/src/commands/endpoints/destroy.ts)_
 <!-- commandsstop -->

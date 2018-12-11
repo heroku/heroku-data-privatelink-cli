@@ -284,6 +284,11 @@
   resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-5.0.6.tgz#2d362a14209fb6a85dd5d54a595a13c3e355f4d7"
   integrity sha512-qipHQv36qZsFGVXs/RMYuTUXvniBKXVCBBxiIP7WTzEBKjVYELeCXt6W4H8sNnUdd+IULItwQ/C6NmIqJrW4Kw==
 
+"@types/supports-color@false5.3.0":
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/@types/supports-color/-/supports-color-5.3.0.tgz#eb6a52e9531fb3ebcd401cec774d1bdfb571f793"
+  integrity sha512-WxwTXnHTIsk7srax1icjLgX+6w1MUAJbhyCpRP/45paEElsPDQUJZDgr1UpKuL2S3Tb+ZyX9MjWwmcSD4bUoOQ==
+
 ansi-escapes@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.1.0.tgz#f73207bb81207d75fd6c83f125af26eea378ca30"

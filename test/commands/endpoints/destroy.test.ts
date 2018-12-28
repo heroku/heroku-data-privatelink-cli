@@ -1,6 +1,6 @@
 import {expect, test} from '../../test'
 
-describe('endpoints:create', () => {
+describe('endpoints:destroy', () => {
   const privateLinkListResponse = {
     app: {name: 'myapp'},
     addon: {name: 'postgres-123'},

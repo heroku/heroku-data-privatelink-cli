@@ -1,4 +1,5 @@
 import Command, {flags} from '@heroku-cli/command'
+import {cli} from 'cli-ux'
 
 import host from '../../../lib/host'
 
@@ -30,11 +31,13 @@ export default class EndpointsAccessAdd extends Command {
       }
     }
 
+    cli.action.start('Adding account to the whitelist')
     await this.heroku.put<any>(`${SHOGUN_URL}/${args.database}/whitelisted_accounts`, {
       ...defaultOptions,
       body: {
         whitelisted_accounts: [args.account_ids]
       }
     })
+    cli.action.stop()
   }
 }

@@ -1,11 +1,9 @@
-import Command, {flags} from '@heroku-cli/command'
+import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import host from '../../../lib/host'
+import BaseCommand from '../../../base'
 
-const SHOGUN_URL = `https://${host()}/private-link/v0/databases`
-
-export default class EndpointsAccessIndex extends Command {
+export default class EndpointsAccessIndex extends BaseCommand {
   static description = 'list all accounts for your Trusted VPC Endpoint\'s whitelist'
 
   static args = [
@@ -23,13 +21,7 @@ export default class EndpointsAccessIndex extends Command {
   async run() {
     const {args} = this.parse(EndpointsAccessIndex)
 
-    let defaultOptions = {
-      headers: {
-        authorization: `Basic ${Buffer.from(':' + this.heroku.auth).toString('base64')}`
-      }
-    }
-
-    const {body: {whitelisted_accounts}} = await this.heroku.get<any>(`${SHOGUN_URL}/${args.database}`, defaultOptions)
+    const {body: {whitelisted_accounts}} = await this.heroku.get<any>(`/private-link/v0/databases/${args.database}`, this.heroku.defaults)
 
     if (whitelisted_accounts.length > 0) {
       cli.table(whitelisted_accounts, {

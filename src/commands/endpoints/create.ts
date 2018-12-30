@@ -1,12 +1,10 @@
 import color from '@heroku-cli/color'
-import Command, {flags} from '@heroku-cli/command'
+import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import host from '../../lib/host'
+import BaseCommand from '../../base'
 
-const SHOGUN_URL = `https://${host()}/private-link/v0/databases`
-
-export default class EndpointsCreate extends Command {
+export default class EndpointsCreate extends BaseCommand {
   static description = 'create a new Trusted VPC Endpoint for your database'
 
   static args = [
@@ -25,18 +23,12 @@ export default class EndpointsCreate extends Command {
   async run() {
     const {args} = this.parse(EndpointsCreate)
 
-    let defaultOptions = {
-      headers: {
-        authorization: `Basic ${Buffer.from(':' + this.heroku.auth).toString('base64')}`
-      }
-    }
-
     const account_ids = args.account_ids.split(',').map((account: any) => account.trim())
 
     cli.action.start('Creating Trusted VPC Endpoint')
 
-    const {body: res} = await this.heroku.post<any>(`${SHOGUN_URL}/${args.database}`, {
-      ...defaultOptions,
+    const {body: res} = await this.heroku.post<any>(`/private-link/v0/databases/${args.database}`, {
+      ...this.heroku.defaults,
       body: {
         whitelisted_accounts: account_ids
       }

@@ -8,7 +8,7 @@ describe('endpoints:access:remove', () => {
     )
     .stdout()
     .stderr()
-    .command(['endpoints:access:remove', 'postgres-123', 'arn:aws:iam::123456789:root', '--app', 'myapp'])
+    .command(['endpoints:access:remove', 'postgres-123', '--account_ids', 'arn:aws:iam::123456789:root', '--app', 'myapp'])
     .it('removes an account from the whitelist', ctx => {
       expect(ctx.stderr).to.contain('Removing account from the whitelist... done')
     })

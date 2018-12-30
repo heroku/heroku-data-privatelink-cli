@@ -1,6 +1,6 @@
 import {expect, test} from '../../test'
 
-describe('endpoints', () => {
+describe('endpoints:wait', () => {
   const privateLinkListResponse = {
     app: {name: 'myapp'},
     addon: {name: 'postgres-123'},

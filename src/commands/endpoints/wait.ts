@@ -22,7 +22,6 @@ export default class EndpointsWait extends BaseCommand {
     const {args} = this.parse(EndpointsWait)
 
     let status
-
     cli.action.start('Waiting for the Trusted VPC Endpoint to be provisioned')
     while (status !== 'Operational') {
       let {body: res} = await this.heroku.get<any>(`/private-link/v0/databases/${args.database}`, this.heroku.defaults)

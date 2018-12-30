@@ -33,10 +33,12 @@ export default class EndpointsAccessIndex extends Command {
 
     if (whitelisted_accounts.length > 0) {
       cli.table(whitelisted_accounts, {
-        columns: [
-          {key: 'arn', label: 'ARN'},
-          {key: 'status', label: 'Status'},
-        ]
+        arn: {
+          header: 'ARN'
+        },
+        status: {
+          header: 'Status'
+        }
       })
     } else {
       cli.error('There are no whitelisted accounts')

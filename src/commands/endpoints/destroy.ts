@@ -29,8 +29,8 @@ export default class EndpointssDestroy extends Command {
       }
     }
 
-    cli.action.start('Deleting Trusted VPC Endpoint')
-    const res = await this.heroku.delete<any>(`${SHOGUN_URL}/${args.database}`, defaultOptions)
-    cli.styledJSON(res)
+    cli.action.start('Destroying Trusted VPC Endpoint')
+    await this.heroku.delete<any>(`${SHOGUN_URL}/${args.database}`, defaultOptions)
+    cli.action.stop()
   }
 }

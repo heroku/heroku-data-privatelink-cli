@@ -30,12 +30,13 @@ export default class EndpointsAccessRemove extends Command {
       }
     }
 
+    cli.action.start('Removing account from the whitelist')
     await this.heroku.patch<any>(`${SHOGUN_URL}/${args.database}/whitelisted_accounts`, {
       ...defaultOptions,
       body: {
         whitelisted_accounts: [args.account_ids]
       }
     })
-    cli.done()
+    cli.action.stop()
   }
 }

@@ -2,9 +2,6 @@ import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
 import BaseCommand from '../../../base'
-import host from '../../../lib/host'
-
-const SHOGUN_URL = `https://${host()}/private-link/v0/databases`
 
 export default class EndpointsAccessAdd extends BaseCommand {
   static description = 'add an account to your Trusted VPC Endpoints\'s whitelist'
@@ -27,7 +24,7 @@ export default class EndpointsAccessAdd extends BaseCommand {
     const {args} = this.parse(EndpointsAccessAdd)
 
     cli.action.start('Adding account to the whitelist')
-    await this.heroku.put<any>(`${SHOGUN_URL}/${args.database}/whitelisted_accounts`, {
+    await this.heroku.put<any>(`/private-link/v0/databases/${args.database}/whitelisted_accounts`, {
       ...this.heroku.defaults,
       body: {
         whitelisted_accounts: [args.account_ids]

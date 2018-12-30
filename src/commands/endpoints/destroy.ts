@@ -2,9 +2,6 @@ import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
 import BaseCommand from '../../base'
-import host from '../../lib/host'
-
-const SHOGUN_URL = `https://${host()}/private-link/v0/databases`
 
 export default class EndpointssDestroy extends BaseCommand {
   static description = 'destroy a Trusted VPC Endpoint for your database'
@@ -25,7 +22,7 @@ export default class EndpointssDestroy extends BaseCommand {
     const {args} = this.parse(EndpointssDestroy)
 
     cli.action.start('Destroying Trusted VPC Endpoint')
-    await this.heroku.delete<any>(`${SHOGUN_URL}/${args.database}`, this.heroku.defaults)
+    await this.heroku.delete<any>(`/private-link/v0/databases/${args.database}`, this.heroku.defaults)
     cli.action.stop()
   }
 }

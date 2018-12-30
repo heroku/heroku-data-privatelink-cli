@@ -1,11 +1,12 @@
-import Command, {flags} from '@heroku-cli/command'
+import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
+import BaseCommand from '../../../base'
 import host from '../../../lib/host'
 
 const SHOGUN_URL = `https://${host()}/private-link/v0/databases`
 
-export default class EndpointsAccessRemove extends Command {
+export default class EndpointsAccessRemove extends BaseCommand {
   static description = 'remove an account from your Trusted VPC Endpoint\'s whitelist'
 
   static args = [
@@ -24,15 +25,9 @@ export default class EndpointsAccessRemove extends Command {
   async run() {
     const {args} = this.parse(EndpointsAccessRemove)
 
-    const defaultOptions = {
-      headers: {
-        authorization: `Basic ${Buffer.from(':' + this.heroku.auth).toString('base64')}`
-      }
-    }
-
     cli.action.start('Removing account from the whitelist')
     await this.heroku.patch<any>(`${SHOGUN_URL}/${args.database}/whitelisted_accounts`, {
-      ...defaultOptions,
+      ...this.heroku.defaults,
       body: {
         whitelisted_accounts: [args.account_ids]
       }

@@ -1,12 +1,13 @@
 import color from '@heroku-cli/color'
-import Command, {flags} from '@heroku-cli/command'
+import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
+import BaseCommand from '../../base'
 import host from '../../lib/host'
 
 const SHOGUN_URL = `https://${host()}/private-link/v0/databases`
 
-export default class EndpointsIndex extends Command {
+export default class EndpointsIndex extends BaseCommand {
   static description = 'list all your Trusted VPC Endpoints'
 
   static args = [
@@ -24,13 +25,7 @@ export default class EndpointsIndex extends Command {
   async run() {
     const {args} = this.parse(EndpointsIndex)
 
-    const defaultOptions = {
-      headers: {
-        authorization: `Basic ${Buffer.from(':' + this.heroku.auth).toString('base64')}`
-      }
-    }
-
-    const {body: res} = await this.heroku.get<any>(`${SHOGUN_URL}/${args.database}`, defaultOptions)
+    const {body: res} = await this.heroku.get<any>(`${SHOGUN_URL}/${args.database}`, this.heroku.defaults)
 
     cli.styledHeader(`Trusted VPC Endpoints for ${color.cyan(args.database)}`)
     if (res.connections.length > 0) {

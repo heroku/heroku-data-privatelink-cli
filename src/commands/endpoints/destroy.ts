@@ -3,7 +3,7 @@ import {cli} from 'cli-ux'
 
 import BaseCommand from '../../base'
 
-export default class EndpointssDestroy extends BaseCommand {
+export default class EndpointsDestroy extends BaseCommand {
   static description = 'destroy a Trusted VPC Endpoint for your database'
 
   static args = [
@@ -19,7 +19,7 @@ export default class EndpointssDestroy extends BaseCommand {
   ]
 
   async run() {
-    const {args} = this.parse(EndpointssDestroy)
+    const {args} = this.parse(EndpointsDestroy)
 
     cli.action.start('Destroying Trusted VPC Endpoint')
     await this.heroku.delete<any>(`/private-link/v0/databases/${args.database}`, this.heroku.defaults)

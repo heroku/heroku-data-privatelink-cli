@@ -19,7 +19,7 @@ $ npm install -g @heroku-cli/plugin-trusted-endpoints
 $ heroku COMMAND
 running command...
 $ heroku (-v|--version|version)
-@heroku-cli/plugin-trusted-endpoints/0.2.0 darwin-x64 node-v10.14.0
+@heroku-cli/plugin-trusted-endpoints/0.3.0 darwin-x64 node-v10.14.0
 $ heroku --help [COMMAND]
 USAGE
   $ heroku COMMAND
@@ -34,6 +34,7 @@ USAGE
 * [`heroku endpoints:access:remove DATABASE ACCOUNT_IDS`](#heroku-endpointsaccessremove-database-account-ids)
 * [`heroku endpoints:create DATABASE ACCOUNT_IDS`](#heroku-endpointscreate-database-account-ids)
 * [`heroku endpoints:destroy DATABASE`](#heroku-endpointsdestroy-database)
+* [`heroku endpoints:wait [DATABASE]`](#heroku-endpointswait-database)
 
 ## `heroku endpoints [DATABASE]`
 
@@ -50,7 +51,7 @@ EXAMPLE
   $ heroku endpoints
 ```
 
-_See code: [src/commands/endpoints/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.2.0/src/commands/endpoints/index.ts)_
+_See code: [src/commands/endpoints/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/index.ts)_
 
 ## `heroku endpoints:access DATABASE`
 
@@ -67,7 +68,7 @@ EXAMPLE
   $ heroku endpoints:access postgresql-rigid-37567
 ```
 
-_See code: [src/commands/endpoints/access/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.2.0/src/commands/endpoints/access/index.ts)_
+_See code: [src/commands/endpoints/access/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/access/index.ts)_
 
 ## `heroku endpoints:access:add DATABASE ACCOUNT_IDS`
 
@@ -85,7 +86,7 @@ EXAMPLES
   $ heroku endpoints:access:add postgresql-rigid-37567 123456,7891011
 ```
 
-_See code: [src/commands/endpoints/access/add.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.2.0/src/commands/endpoints/access/add.ts)_
+_See code: [src/commands/endpoints/access/add.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/access/add.ts)_
 
 ## `heroku endpoints:access:remove DATABASE ACCOUNT_IDS`
 
@@ -102,7 +103,7 @@ EXAMPLE
   $ heroku endpoints:access:remove arn:aws:iam::12345678910:root
 ```
 
-_See code: [src/commands/endpoints/access/remove.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.2.0/src/commands/endpoints/access/remove.ts)_
+_See code: [src/commands/endpoints/access/remove.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/access/remove.ts)_
 
 ## `heroku endpoints:create DATABASE ACCOUNT_IDS`
 
@@ -119,7 +120,7 @@ EXAMPLE
   $ heroku endpoints:create
 ```
 
-_See code: [src/commands/endpoints/create.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.2.0/src/commands/endpoints/create.ts)_
+_See code: [src/commands/endpoints/create.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/create.ts)_
 
 ## `heroku endpoints:destroy DATABASE`
 
@@ -136,5 +137,22 @@ EXAMPLE
   $ heroku endpoints:destroy
 ```
 
-_See code: [src/commands/endpoints/destroy.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.2.0/src/commands/endpoints/destroy.ts)_
+_See code: [src/commands/endpoints/destroy.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/destroy.ts)_
+
+## `heroku endpoints:wait [DATABASE]`
+
+wait for your Trusted VPC Endpoint to be provisioned
+
+```
+USAGE
+  $ heroku endpoints:wait [DATABASE]
+
+OPTIONS
+  -a, --app=app  (required) app to run command against
+
+EXAMPLE
+  $ heroku endpoints:wait
+```
+
+_See code: [src/commands/endpoints/wait.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/wait.ts)_
 <!-- commandsstop -->

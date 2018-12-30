@@ -1,7 +1,7 @@
 {
   "name": "@heroku-cli/plugin-trusted-endpoints",
   "description": "Heroku Trusted VPC Endpoints CLI",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Heroku Data UX",
   "bugs": "https://github.com/heroku/heroku-endpoints-cli/issues",
   "dependencies": {

@@ -26,30 +26,33 @@ export default class EndpointsIndex extends BaseCommand {
     const database = args.database || await fetcher(this.heroku, flags.app)
     const {body: res} = await this.heroku.get<any>(`/private-link/v0/databases/${database}`, this.heroku.defaults)
 
+    if (res.status === null) {
+      cli.error(`Your Trusted VPC Endpoint is still provisioning. Run ${color.cyan('heroku endpoints:wait')} to wait for it to be updated.`)
+    }
+
     cli.styledHeader(`Trusted VPC Endpoints for ${color.cyan(database)}`)
-    if (res.connections.length > 0) {
-      cli.styledObject({
-        Status: res.status,
-        'Service Name': res.service_name,
-        'Whitelisted Accounts': res.whitelisted_accounts,
-        Connections: res.connections
-      })
-    } else if (res.service_name) {
-      cli.styledObject({
-        Status: res.status,
-        'Service Name': res.service_name,
-        'Whitelisted Accounts': res.whitelisted_accounts,
-      })
-      cli.log(`
-Currently there are no active connections for your Trusted VPC Endpoint.
+    cli.styledObject({
+      Status: res.status,
+      'Service Name': res.service_name,
+    })
 
-Please follow these instructions(https://devcenter.heroku.com/articles/endpoints) to fully setup your endpoint.
-      `)
-    } else {
-      cli.log(`
-A Trusted VPC Endpoint has not been created for this database.
+    cli.log()
+    cli.styledHeader(`Whitelisted Accounts for ${color.cyan(database)}`)
+    if (res && res.whitelisted_accounts.length > 0) {
+      cli.table(res.whitelisted_accounts, {
+        arn: {header: 'ARN'},
+        status: {}
+      })
+    }
 
-In order to create one, run $ heroku endpoints:create`)
+    cli.log()
+    cli.styledHeader(`Connections for ${color.cyan(database)}`)
+    if (res && res.connections.length > 0) {
+      cli.table(res.connections, {
+        endpoint_id: {header: 'Endpoint ID'},
+        owner_arn: {header: 'Owner ARN'},
+        status: {}
+      })
     }
   }
 }

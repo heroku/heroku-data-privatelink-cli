@@ -26,33 +26,38 @@ export default class EndpointsIndex extends BaseCommand {
     const database = args.database || await fetcher(this.heroku, flags.app)
     const {body: res} = await this.heroku.get<any>(`/private-link/v0/databases/${database}`, this.heroku.defaults)
 
-    if (res.status === null) {
-      cli.error(`Your Trusted VPC Endpoint is still provisioning. Run ${color.cyan('heroku endpoints:wait')} to wait for it to be updated.`)
-    }
-
-    cli.styledHeader(`Trusted VPC Endpoints for ${color.cyan(database)}`)
-    cli.styledObject({
-      Status: res.status,
-      'Service Name': res.service_name,
-    })
-
-    cli.log()
-    cli.styledHeader(`Whitelisted Accounts for ${color.cyan(database)}`)
-    if (res && res.whitelisted_accounts.length > 0) {
-      cli.table(res.whitelisted_accounts, {
-        arn: {header: 'ARN'},
-        status: {}
+    if (res.status === 'Provisioning') {
+      cli.log()
+      cli.log(`The Trusted VPC Endpoint is now being provisioned for ${color.cyan(database)}.`)
+      cli.log(`Run ${color.cyan('heroku endpoints:wait')} to check the creation process.`)
+    } else {
+      cli.styledHeader(`Trusted VPC Endpoint status for ${color.cyan(database)}`)
+      cli.styledObject({
+        Status: res.status,
+        'Service Name': res.service_name || 'Provisioning',
       })
-    }
 
-    cli.log()
-    cli.styledHeader(`Connections for ${color.cyan(database)}`)
-    if (res && res.connections.length > 0) {
-      cli.table(res.connections, {
-        endpoint_id: {header: 'Endpoint ID'},
-        owner_arn: {header: 'Owner ARN'},
-        status: {}
-      })
+      if (res && res.whitelisted_accounts.length > 0) {
+        cli.log()
+        cli.styledHeader('Whitelisted Accounts')
+        cli.table(res.whitelisted_accounts, {
+          arn: {header: 'ARN'},
+          status: {}
+        })
+      }
+
+      if (res && res.connections.length > 0) {
+        cli.log()
+        cli.styledHeader('Connections')
+        cli.table(res.connections, {
+          endpoint_id: {header: 'Endpoint ID'},
+          owner_arn: {header: 'Owner ARN'},
+          status: {}
+        })
+      } else if (res.status === 'Operational' && res.connections.length === 0) {
+        cli.log('Your Trusted VPC Endpoint is now operational.')
+        cli.log(`You must now copy the ${color.cyan('Service Name')} and follow the rest of the steps listed in https://devcenter.heroku.com/articles/setting-up-a-trusted-vpc-endpoint?preview=1.`)
+      }
     }
   }
 }

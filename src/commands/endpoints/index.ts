@@ -26,7 +26,6 @@ export default class EndpointsIndex extends BaseCommand {
     const database = args.database || await fetcher(this.heroku, flags.app)
     const {body: res} = await this.heroku.get<any>(`/private-link/v0/databases/${database}`, this.heroku.defaults)
 
-    cli.log('foobar')
     cli.styledHeader(`Trusted VPC Endpoints for ${color.cyan(database)}`)
     if (res.connections.length > 0) {
       cli.styledObject({

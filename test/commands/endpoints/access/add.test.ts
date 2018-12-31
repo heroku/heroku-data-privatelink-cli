@@ -8,7 +8,7 @@ describe('endpoints:access:add', () => {
     )
     .stdout()
     .stderr()
-    .command(['endpoints:access:add', 'postgres-123', 'arn:aws:iam::123456789:root', '--app', 'myapp'])
+    .command(['endpoints:access:add', 'postgres-123', '--account_ids', 'arn:aws:iam::123456789:root', '--app', 'myapp'])
     .it('adds an account to the whitelist', ctx => {
       expect(ctx.stderr).to.contain('Adding account to the whitelist... done')
     })

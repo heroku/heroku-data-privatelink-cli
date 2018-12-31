@@ -29,11 +29,11 @@ USAGE
 # Commands
 <!-- commands -->
 * [`heroku endpoints [DATABASE]`](#heroku-endpoints-database)
-* [`heroku endpoints:access DATABASE`](#heroku-endpointsaccess-database)
-* [`heroku endpoints:access:add DATABASE ACCOUNT_IDS`](#heroku-endpointsaccessadd-database-account-ids)
-* [`heroku endpoints:access:remove DATABASE ACCOUNT_IDS`](#heroku-endpointsaccessremove-database-account-ids)
-* [`heroku endpoints:create DATABASE ACCOUNT_IDS`](#heroku-endpointscreate-database-account-ids)
-* [`heroku endpoints:destroy DATABASE`](#heroku-endpointsdestroy-database)
+* [`heroku endpoints:access [DATABASE]`](#heroku-endpointsaccess-database)
+* [`heroku endpoints:access:add [DATABASE]`](#heroku-endpointsaccessadd-database)
+* [`heroku endpoints:access:remove [DATABASE]`](#heroku-endpointsaccessremove-database)
+* [`heroku endpoints:create [DATABASE]`](#heroku-endpointscreate-database)
+* [`heroku endpoints:destroy [DATABASE]`](#heroku-endpointsdestroy-database)
 * [`heroku endpoints:wait [DATABASE]`](#heroku-endpointswait-database)
 
 ## `heroku endpoints [DATABASE]`
@@ -53,13 +53,13 @@ EXAMPLE
 
 _See code: [src/commands/endpoints/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/index.ts)_
 
-## `heroku endpoints:access DATABASE`
+## `heroku endpoints:access [DATABASE]`
 
 list all accounts for your Trusted VPC Endpoint's whitelist
 
 ```
 USAGE
-  $ heroku endpoints:access DATABASE
+  $ heroku endpoints:access [DATABASE]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
@@ -70,51 +70,54 @@ EXAMPLE
 
 _See code: [src/commands/endpoints/access/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/access/index.ts)_
 
-## `heroku endpoints:access:add DATABASE ACCOUNT_IDS`
+## `heroku endpoints:access:add [DATABASE]`
 
 add an account to your Trusted VPC Endpoints's whitelist
 
 ```
 USAGE
-  $ heroku endpoints:access:add DATABASE ACCOUNT_IDS
+  $ heroku endpoints:access:add [DATABASE]
 
 OPTIONS
-  -a, --app=app  (required) app to run command against
+  -a, --app=app              (required) app to run command against
+  --account_ids=account_ids  (required)
 
 EXAMPLES
-  $ heroku endpoints:access:add postgresql-rigid-37567 123456
-  $ heroku endpoints:access:add postgresql-rigid-37567 123456,7891011
+  $ heroku endpoints:access:add postgresql-rigid-37567 --account_ids 123456
+  $ heroku endpoints:access:add postgresql-rigid-37567 --account_ids 123456,78910
 ```
 
 _See code: [src/commands/endpoints/access/add.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/access/add.ts)_
 
-## `heroku endpoints:access:remove DATABASE ACCOUNT_IDS`
+## `heroku endpoints:access:remove [DATABASE]`
 
 remove an account from your Trusted VPC Endpoint's whitelist
 
 ```
 USAGE
-  $ heroku endpoints:access:remove DATABASE ACCOUNT_IDS
+  $ heroku endpoints:access:remove [DATABASE]
 
 OPTIONS
-  -a, --app=app  (required) app to run command against
+  -a, --app=app              (required) app to run command against
+  --account_ids=account_ids  (required)
 
 EXAMPLE
-  $ heroku endpoints:access:remove arn:aws:iam::12345678910:root
+  $ heroku endpoints:access:remove --account_ids arn:aws:iam::12345678910:root
 ```
 
 _See code: [src/commands/endpoints/access/remove.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/access/remove.ts)_
 
-## `heroku endpoints:create DATABASE ACCOUNT_IDS`
+## `heroku endpoints:create [DATABASE]`
 
 create a new Trusted VPC Endpoint for your database
 
 ```
 USAGE
-  $ heroku endpoints:create DATABASE ACCOUNT_IDS
+  $ heroku endpoints:create [DATABASE]
 
 OPTIONS
-  -a, --app=app  (required) app to run command against
+  -a, --app=app              (required) app to run command against
+  --account_ids=account_ids  (required)
 
 EXAMPLE
   $ heroku endpoints:create
@@ -122,13 +125,13 @@ EXAMPLE
 
 _See code: [src/commands/endpoints/create.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.3.0/src/commands/endpoints/create.ts)_
 
-## `heroku endpoints:destroy DATABASE`
+## `heroku endpoints:destroy [DATABASE]`
 
 destroy a Trusted VPC Endpoint for your database
 
 ```
 USAGE
-  $ heroku endpoints:destroy DATABASE
+  $ heroku endpoints:destroy [DATABASE]
 
 OPTIONS
   -a, --app=app  (required) app to run command against

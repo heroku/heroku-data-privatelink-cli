@@ -39,11 +39,11 @@ export default class EndpointsCreate extends BaseCommand {
     cli.log()
     cli.styledObject({
       Status: res.status,
-      'Service Name': res.service_name,
-      'Whitelisted Accounts': res.whitelisted_accounts,
+      'Service Name': res.service_name || 'Provisioning'
     })
 
-    cli.log(`
-Please copy the ${color.cyan('Service Name')} and follow the rest of the instructions here: https://devcenter.heroku.com/articles/private-links`)
+    cli.log()
+    cli.log(`The Trusted VPC Endpoint is now being provisioned for ${color.cyan(database)}.`)
+    cli.log(`Run ${color.cyan('heroku endpoints:wait')} to check the creation process.`)
   }
 }

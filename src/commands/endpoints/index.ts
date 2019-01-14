@@ -46,8 +46,8 @@ export default class EndpointsIndex extends BaseCommand {
         })
       }
 
+      cli.log()
       if (res && res.connections.length > 0) {
-        cli.log()
         cli.styledHeader('Connections')
         cli.table(res.connections, {
           endpoint_id: {header: 'Endpoint ID'},
@@ -56,7 +56,7 @@ export default class EndpointsIndex extends BaseCommand {
         })
       } else if (res.status === 'Operational' && res.connections.length === 0) {
         cli.log('Your Trusted VPC Endpoint is now operational.')
-        cli.log(`You must now copy the ${color.cyan('Service Name')} and follow the rest of the steps listed in https://devcenter.heroku.com/articles/setting-up-a-trusted-vpc-endpoint?preview=1.`)
+        cli.log(`You must now copy the ${color.cyan('Service Name')} and follow the rest of the steps listed in https://devcenter.heroku.com/articles/trusted-vpc-endpoints.`)
       }
     }
   }

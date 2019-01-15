@@ -36,14 +36,14 @@ export default class EndpointsCreate extends BaseCommand {
     })
 
     cli.action.stop()
-    cli.log()
+    this.log()
     cli.styledObject({
       Status: res.status,
       'Service Name': res.service_name || 'Provisioning'
     })
 
-    cli.log()
-    cli.log(`The Trusted VPC Endpoint is now being provisioned for ${color.cyan(database)}.`)
-    cli.log(`Run ${color.cyan('heroku endpoints:wait')} to check the creation process.`)
+    this.log()
+    this.log(`The Trusted VPC Endpoint is now being provisioned for ${color.cyan(database)}.`)
+    this.log(`Run ${color.cyan('heroku endpoints:wait')} to check the creation process.`)
   }
 }

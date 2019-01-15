@@ -8,7 +8,7 @@ describe('endpoints:create', () => {
     )
     .stderr()
     .stdout()
-    .command(['endpoints:create', 'postgres-123', '--account_ids', 'arn:aws:iam::123456789:root', '--app', 'myapp'])
+    .command(['endpoints:create', 'postgres-123', '--account-ids', 'arn:aws:iam::123456789:root', '--app', 'myapp'])
     .it('creates a trusted VPC endpoint', ctx => {
       expect(ctx.stderr).to.contain('Creating Trusted VPC Endpoint... done')
     })

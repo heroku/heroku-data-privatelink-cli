@@ -2,7 +2,7 @@ import color from '@heroku-cli/color'
 import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import BaseCommand from '../../base'
+import BaseCommand, {PrivateLinkDB} from '../../base'
 import fetcher from '../../lib/fetcher'
 
 export default class EndpointsCreate extends BaseCommand {
@@ -28,7 +28,7 @@ export default class EndpointsCreate extends BaseCommand {
 
     cli.action.start('Creating Trusted VPC Endpoint')
 
-    const {body: res} = await this.heroku.post<any>(`/private-link/v0/databases/${database}`, {
+    const {body: res} = await this.heroku.post<PrivateLinkDB>(`/private-link/v0/databases/${database}`, {
       ...this.heroku.defaults,
       body: {
         whitelisted_accounts: account_ids

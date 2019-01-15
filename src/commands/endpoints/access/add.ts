@@ -26,7 +26,7 @@ export default class EndpointsAccessAdd extends BaseCommand {
     const database = args.database || await fetcher(this.heroku, flags.app)
 
     cli.action.start('Adding account to the whitelist')
-    await this.heroku.put<any>(`/private-link/v0/databases/${database}/whitelisted_accounts`, {
+    await this.heroku.put(`/private-link/v0/databases/${database}/whitelisted_accounts`, {
       ...this.heroku.defaults,
       body: {
         whitelisted_accounts: [flags.account_ids]

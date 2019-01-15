@@ -12,7 +12,7 @@ export default class EndpointsAccessRemove extends BaseCommand {
   ]
 
   static flags = {
-    account_ids: flags.string({required: true}),
+    'account-ids': flags.string({required: true}),
     app: flags.app({required: true})
   }
 

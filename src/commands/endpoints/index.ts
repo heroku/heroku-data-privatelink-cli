@@ -2,7 +2,7 @@ import color from '@heroku-cli/color'
 import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import BaseCommand from '../../base'
+import BaseCommand, {PrivateLinkDB} from '../../base'
 import fetcher from '../../lib/fetcher'
 
 export default class EndpointsIndex extends BaseCommand {
@@ -24,7 +24,7 @@ export default class EndpointsIndex extends BaseCommand {
     const {args, flags} = this.parse(EndpointsIndex)
 
     const database = args.database || await fetcher(this.heroku, flags.app)
-    const {body: res} = await this.heroku.get<any>(`/private-link/v0/databases/${database}`, this.heroku.defaults)
+    const {body: res} = await this.heroku.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.heroku.defaults)
 
     if (res.status === 'Provisioning') {
       cli.log()

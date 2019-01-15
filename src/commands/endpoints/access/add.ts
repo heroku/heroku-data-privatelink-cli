@@ -29,7 +29,7 @@ export default class EndpointsAccessAdd extends BaseCommand {
     await this.heroku.put<any>(`/private-link/v0/databases/${database}/whitelisted_accounts`, {
       ...this.heroku.defaults,
       body: {
-        whitelisted_accounts: [flags.account_ids]
+        whitelisted_accounts: [flags['account-ids']]
       }
     })
     cli.action.stop()

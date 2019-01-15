@@ -28,7 +28,7 @@ export default class EndpointsAccessRemove extends BaseCommand {
     await this.heroku.patch<any>(`/private-link/v0/databases/${database}/whitelisted_accounts`, {
       ...this.heroku.defaults,
       body: {
-        whitelisted_accounts: [flags.account_ids]
+        whitelisted_accounts: [flags['account-ids']]
       }
     })
     cli.action.stop()

@@ -23,7 +23,7 @@ export default class EndpointsCreate extends BaseCommand {
 
   async run() {
     const {args, flags} = this.parse(EndpointsCreate)
-    const account_ids = flags.account_ids.split(',').map((account: any) => account.trim())
+    const account_ids = flags['account-ids'].split(',').map((account: any) => account.trim())
     const database = args.database || await fetcher(this.heroku, flags.app)
 
     cli.action.start('Creating Trusted VPC Endpoint')

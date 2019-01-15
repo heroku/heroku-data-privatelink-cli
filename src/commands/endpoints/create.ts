@@ -13,7 +13,7 @@ export default class EndpointsCreate extends BaseCommand {
   ]
 
   static flags = {
-    account_ids: flags.string({required: true}),
+    'account-ids': flags.string({required: true}),
     app: flags.app({required: true})
   }
 
@@ -23,7 +23,7 @@ export default class EndpointsCreate extends BaseCommand {
 
   async run() {
     const {args, flags} = this.parse(EndpointsCreate)
-    const account_ids = flags.account_ids.split(',').map((account: any) => account.trim())
+    const account_ids = flags['account-ids'].split(',').map((account: any) => account.trim())
     const database = args.database || await fetcher(this.heroku, flags.app)
 
     cli.action.start('Creating Trusted VPC Endpoint')
@@ -36,14 +36,14 @@ export default class EndpointsCreate extends BaseCommand {
     })
 
     cli.action.stop()
-    cli.log()
+    this.log()
     cli.styledObject({
       Status: res.status,
       'Service Name': res.service_name || 'Provisioning'
     })
 
-    cli.log()
-    cli.log(`The Trusted VPC Endpoint is now being provisioned for ${color.cyan(database)}.`)
-    cli.log(`Run ${color.cyan('heroku endpoints:wait')} to check the creation process.`)
+    this.log()
+    this.log(`The Trusted VPC Endpoint is now being provisioned for ${color.cyan(database)}.`)
+    this.log(`Run ${color.cyan('heroku endpoints:wait')} to check the creation process.`)
   }
 }

@@ -80,7 +80,7 @@ USAGE
 
 OPTIONS
   -a, --app=app              (required) app to run command against
-  --account_ids=account_ids  (required)
+  --account-ids=account-ids  (required)
 
 EXAMPLES
   $ heroku endpoints:access:add postgresql-rigid-37567 --account_ids 123456
@@ -99,7 +99,7 @@ USAGE
 
 OPTIONS
   -a, --app=app              (required) app to run command against
-  --account_ids=account_ids  (required)
+  --account-ids=account-ids  (required)
 
 EXAMPLE
   $ heroku endpoints:access:remove --account_ids arn:aws:iam::12345678910:root
@@ -117,7 +117,7 @@ USAGE
 
 OPTIONS
   -a, --app=app              (required) app to run command against
-  --account_ids=account_ids  (required)
+  --account-ids=account-ids  (required)
 
 EXAMPLE
   $ heroku endpoints:create

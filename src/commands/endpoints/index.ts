@@ -56,7 +56,7 @@ export default class EndpointsIndex extends BaseCommand {
         })
       } else if (res.status === 'Operational' && res.connections.length === 0) {
         this.log('Your Trusted VPC Endpoint is now operational.')
-        this.log(`You must now copy the ${color.cyan('Service Name')} and follow the rest of the steps listed in https://devcenter.heroku.com/articles/trusted-vpc-endpoints.`)
+        this.log(`You must now copy the ${color.cyan('Service Name')} and follow the rest of the steps listed in https://devcenter.heroku.com/articles/trusted-vpcs.`)
       }
     }
   }

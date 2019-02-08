@@ -8,7 +8,7 @@ describe('endpoints:access:add', () => {
     )
     .stdout()
     .stderr()
-    .command(['endpoints:access:add', 'postgres-123', '--account-ids', 'arn:aws:iam::123456789:root', '--app', 'myapp'])
+    .command(['endpoints:access:add', 'postgres-123', '--account-ids', '123456789:root', '--app', 'myapp'])
     .it('adds an account to the whitelist', ctx => {
       expect(ctx.stderr).to.contain('Adding account to the whitelist... done')
     })
@@ -20,7 +20,7 @@ describe('endpoints:access:add', () => {
     )
     .stdout()
     .stderr()
-    .command(['endpoints:access:add', 'postgres-123', '--account-ids', 'arn:aws:iam::123456789:resource1 arn:aws:iam::123456789:resource2', '--app', 'myapp'])
+    .command(['endpoints:access:add', 'postgres-123', '--account-ids', '"123456789:resource1 123456789:resource2"', '--app', 'myapp'])
     .it('adds multiple accounts to the whitelist', ctx => {
       expect(ctx.stderr).to.contain('Adding accounts to the whitelist... done')
     })

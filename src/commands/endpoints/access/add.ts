@@ -17,8 +17,8 @@ export default class EndpointsAccessAdd extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints:access:add postgresql-rigid-37567 --account_ids 123456',
-    '$ heroku endpoints:access:add postgresql-rigid-37567 --account_ids 123456 78910',
+    '$ heroku endpoints:access:add postgresql-sushi-12345 --account-ids 12345:user/abc',
+    '$ heroku endpoints:access:add postgresql-sushi-12345 --account-ids "12345:user/abc 45678:user/xyz" # multiple account ids must be in "quotes"',
   ]
 
   async run() {

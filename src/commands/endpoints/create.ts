@@ -18,17 +18,16 @@ export default class EndpointsCreate extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints:create postgresql-sushi-12345 --account-ids 12345:user/abc --app trusted-vpc-endpoint-demo',
-    '$ heroku endpoints:create postgresql-sushi-12345 --account-ids 12345:user/abc 45678:user/xyz --app trusted-vpc-endpoint-demo',
+    '$ heroku endpoints:create postgresql-sushi-12345 --account-ids 12345:user/abc',
+    '$ heroku endpoints:create postgresql-sushi-12345 --account-ids "12345:user/abc 45678:user/xyz" # multiple account ids must be in "quotes"',
   ]
 
   async run() {
     const {args, flags} = this.parse(EndpointsCreate)
-    const account_ids = flags['account-ids'].split(' ').map((account: any) => account.trim())
+    const account_ids = flags['account-ids'].split(' ')
     const database = args.database || await fetcher(this.heroku, flags.app)
 
     cli.action.start('Creating Trusted VPC Endpoint')
-
     const {body: res} = await this.heroku.post<PrivateLinkDB>(`/private-link/v0/databases/${database}`, {
       ...this.heroku.defaults,
       body: {

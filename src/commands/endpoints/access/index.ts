@@ -16,7 +16,7 @@ export default class EndpointsAccessIndex extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints:access postgresql-rigid-37567',
+    '$ heroku endpoints:access postgresql-sushi-12345',
   ]
 
   async run() {

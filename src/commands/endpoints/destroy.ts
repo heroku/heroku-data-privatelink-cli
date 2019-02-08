@@ -16,7 +16,7 @@ export default class EndpointsDestroy extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints:destroy',
+    '$ heroku endpoints:destroy postgresql-sushi-12345',
   ]
 
   async run() {

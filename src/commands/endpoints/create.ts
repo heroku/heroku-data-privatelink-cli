@@ -26,8 +26,8 @@ export default class EndpointsCreate extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints:create postgresql-sushi-12345 --account-id 12345:user/abc',
-    '$ heroku endpoints:create postgresql-sushi-12345 --account-id 12345:user/abc --account-id 45678:user/xyz',
+    '$ heroku endpoints:create postgresql-sushi-12345 --account-id 123456789012:user/abc',
+    '$ heroku endpoints:create postgresql-sushi-12345 --account-id 123456789012:user/abc --account-id 123456789012:user/xyz',
   ]
 
   async run() {

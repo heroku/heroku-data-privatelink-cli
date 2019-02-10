@@ -25,8 +25,8 @@ export default class EndpointsAccessRemove extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints:access:remove postgresql-sushi-12345 --account-id 12345:user/xyz',
-    '$ heroku endpoints:access:remove postgresql-sushi-12345 --account-id 12345:user/abc --account-id 45678:user/xyz',
+    '$ heroku endpoints:access:remove postgresql-sushi-12345 --account-id 123456789012:user/xyz',
+    '$ heroku endpoints:access:remove postgresql-sushi-12345 --account-id 123456789012:user/abc --account-id 123456789012:user/xyz',
   ]
 
   async run() {

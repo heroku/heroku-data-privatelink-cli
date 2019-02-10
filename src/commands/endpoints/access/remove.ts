@@ -12,20 +12,29 @@ export default class EndpointsAccessRemove extends BaseCommand {
   ]
 
   static flags = {
-    'account-ids': flags.string({required: true}),
+    'account-id': flags.build({
+      char: 'a',
+      description: 'account id to use',
+      parse: (input: string, ctx: any) => {
+        if (!ctx.endpoints_access_remove_ids) ctx.endpoints_access_remove_ids = []
+        ctx.endpoints_access_remove_ids.push(input)
+        return ctx.endpoints_access_remove_ids
+      },
+    })(),
     app: flags.app({required: true})
   }
 
   static examples = [
-    '$ heroku endpoints:access:remove postgresql-sushi-12345 --account-ids 12345:user/xyz',
-    '$ heroku endpoints:access:remove postgresql-sushi-12345 --account-ids "12345:user/abc 45678:user/xyz" # multiple account ids must be in "quotes"',
+    '$ heroku endpoints:access:remove postgresql-sushi-12345 --account-id 12345:user/xyz',
+    '$ heroku endpoints:access:remove postgresql-sushi-12345 --account-id 12345:user/abc --account-id 45678:user/xyz',
   ]
 
   async run() {
     const {args, flags} = this.parse(EndpointsAccessRemove)
     const database = args.database || await fetcher(this.heroku, flags.app)
-    const account_ids = flags['account-ids'].split(' ')
+    const account_ids = flags['account-id']
     const accountFormatted = account_ids.length > 1 ? 'accounts' : 'account'
+
     cli.action.start(`Removing ${accountFormatted} from the whitelist`)
     await this.heroku.patch(`/private-link/v0/databases/${database}/whitelisted_accounts`, {
       ...this.heroku.defaults,

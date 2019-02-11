@@ -13,7 +13,7 @@ export default class EndpointsAccessRemove extends BaseCommand {
 
   static flags = {
     'account-id': flags.build({
-      char: 'a',
+      char: 'A',
       description: 'account id to use',
       parse: (input: string, ctx: any) => {
         if (!ctx.endpoints_access_remove_ids) ctx.endpoints_access_remove_ids = []

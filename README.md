@@ -19,7 +19,7 @@ $ npm install -g @heroku-cli/plugin-trusted-endpoints
 $ heroku COMMAND
 running command...
 $ heroku (-v|--version|version)
-@heroku-cli/plugin-trusted-endpoints/0.4.1 darwin-x64 node-v10.14.0
+@heroku-cli/plugin-trusted-endpoints/0.5.0 darwin-x64 node-v10.14.0
 $ heroku --help [COMMAND]
 USAGE
   $ heroku COMMAND
@@ -48,10 +48,10 @@ OPTIONS
   -a, --app=app  (required) app to run command against
 
 EXAMPLE
-  $ heroku endpoints
+  $ heroku endpoints postgresql-sushi-12345
 ```
 
-_See code: [src/commands/endpoints/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.4.1/src/commands/endpoints/index.ts)_
+_See code: [src/commands/endpoints/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.5.0/src/commands/endpoints/index.ts)_
 
 ## `heroku endpoints:access [DATABASE]`
 
@@ -65,10 +65,10 @@ OPTIONS
   -a, --app=app  (required) app to run command against
 
 EXAMPLE
-  $ heroku endpoints:access postgresql-rigid-37567
+  $ heroku endpoints:access postgresql-sushi-12345
 ```
 
-_See code: [src/commands/endpoints/access/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.4.1/src/commands/endpoints/access/index.ts)_
+_See code: [src/commands/endpoints/access/index.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.5.0/src/commands/endpoints/access/index.ts)_
 
 ## `heroku endpoints:access:add [DATABASE]`
 
@@ -79,15 +79,16 @@ USAGE
   $ heroku endpoints:access:add [DATABASE]
 
 OPTIONS
-  -a, --app=app              (required) app to run command against
-  --account-ids=account-ids  (required)
+  -a, --app=app                (required) app to run command against
+  -i, --account-id=account-id  account id to use
 
 EXAMPLES
-  $ heroku endpoints:access:add postgresql-rigid-37567 --account_ids 123456
-  $ heroku endpoints:access:add postgresql-rigid-37567 --account_ids 123456,78910
+  $ heroku endpoints:access:add postgresql-sushi-12345 --account-id 123456789012:user/abc
+  $ heroku endpoints:access:add postgresql-sushi-12345 --account-id 123456789012:user/abc --account-id 
+  123456789012:user/xyz
 ```
 
-_See code: [src/commands/endpoints/access/add.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.4.1/src/commands/endpoints/access/add.ts)_
+_See code: [src/commands/endpoints/access/add.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.5.0/src/commands/endpoints/access/add.ts)_
 
 ## `heroku endpoints:access:remove [DATABASE]`
 
@@ -98,14 +99,16 @@ USAGE
   $ heroku endpoints:access:remove [DATABASE]
 
 OPTIONS
-  -a, --app=app              (required) app to run command against
-  --account-ids=account-ids  (required)
+  -a, --app=app                (required) app to run command against
+  -i, --account-id=account-id  account id to use
 
-EXAMPLE
-  $ heroku endpoints:access:remove --account_ids arn:aws:iam::12345678910:root
+EXAMPLES
+  $ heroku endpoints:access:remove postgresql-sushi-12345 --account-id 123456789012:user/xyz
+  $ heroku endpoints:access:remove postgresql-sushi-12345 --account-id 123456789012:user/abc --account-id 
+  123456789012:user/xyz
 ```
 
-_See code: [src/commands/endpoints/access/remove.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.4.1/src/commands/endpoints/access/remove.ts)_
+_See code: [src/commands/endpoints/access/remove.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.5.0/src/commands/endpoints/access/remove.ts)_
 
 ## `heroku endpoints:create [DATABASE]`
 
@@ -116,14 +119,15 @@ USAGE
   $ heroku endpoints:create [DATABASE]
 
 OPTIONS
-  -a, --app=app              (required) app to run command against
-  --account-ids=account-ids  (required)
+  -a, --app=app                (required) app to run command against
+  -i, --account-id=account-id  account id to use
 
-EXAMPLE
-  $ heroku endpoints:create
+EXAMPLES
+  $ heroku endpoints:create postgresql-sushi-12345 --account-id 123456789012:user/abc
+  $ heroku endpoints:create postgresql-sushi-12345 --account-id 123456789012:user/abc --account-id 123456789012:user/xyz
 ```
 
-_See code: [src/commands/endpoints/create.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.4.1/src/commands/endpoints/create.ts)_
+_See code: [src/commands/endpoints/create.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.5.0/src/commands/endpoints/create.ts)_
 
 ## `heroku endpoints:destroy [DATABASE]`
 
@@ -137,10 +141,10 @@ OPTIONS
   -a, --app=app  (required) app to run command against
 
 EXAMPLE
-  $ heroku endpoints:destroy
+  $ heroku endpoints:destroy postgresql-sushi-12345
 ```
 
-_See code: [src/commands/endpoints/destroy.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.4.1/src/commands/endpoints/destroy.ts)_
+_See code: [src/commands/endpoints/destroy.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.5.0/src/commands/endpoints/destroy.ts)_
 
 ## `heroku endpoints:wait [DATABASE]`
 
@@ -154,8 +158,8 @@ OPTIONS
   -a, --app=app  (required) app to run command against
 
 EXAMPLE
-  $ heroku endpoints:wait
+  $ heroku endpoints:wait postgresql-sushi-12345
 ```
 
-_See code: [src/commands/endpoints/wait.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.4.1/src/commands/endpoints/wait.ts)_
+_See code: [src/commands/endpoints/wait.ts](https://github.com/heroku/heroku-endpoints-cli/blob/v0.5.0/src/commands/endpoints/wait.ts)_
 <!-- commandsstop -->

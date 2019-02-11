@@ -16,7 +16,7 @@ export default class EndpointsWait extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints:wait',
+    '$ heroku endpoints:wait postgresql-sushi-12345',
   ]
 
   async run() {

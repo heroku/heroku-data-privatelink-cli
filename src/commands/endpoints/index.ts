@@ -17,7 +17,7 @@ export default class EndpointsIndex extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints',
+    '$ heroku endpoints postgresql-sushi-12345',
   ]
 
   async run() {

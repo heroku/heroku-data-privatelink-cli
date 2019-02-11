@@ -13,28 +13,35 @@ export default class EndpointsCreate extends BaseCommand {
   ]
 
   static flags = {
-    'account-ids': flags.string({required: true}),
+    'account-id': flags.build({
+      char: 'i',
+      description: 'account id to use',
+      parse: (input: string, ctx: any) => {
+        if (!ctx.endpoints_create_ids) ctx.endpoints_create_ids = []
+        ctx.endpoints_create_ids.push(input)
+        return ctx.endpoints_create_ids
+      },
+    })(),
     app: flags.app({required: true})
   }
 
   static examples = [
-    '$ heroku endpoints:create',
+    '$ heroku endpoints:create postgresql-sushi-12345 --account-id 123456789012:user/abc',
+    '$ heroku endpoints:create postgresql-sushi-12345 --account-id 123456789012:user/abc --account-id 123456789012:user/xyz',
   ]
 
   async run() {
     const {args, flags} = this.parse(EndpointsCreate)
-    const account_ids = flags['account-ids'].split(',').map((account: any) => account.trim())
     const database = args.database || await fetcher(this.heroku, flags.app)
+    const account_ids = flags['account-id']
 
     cli.action.start('Creating Trusted VPC Endpoint')
-
     const {body: res} = await this.heroku.post<PrivateLinkDB>(`/private-link/v0/databases/${database}`, {
       ...this.heroku.defaults,
       body: {
         whitelisted_accounts: account_ids
       }
     })
-
     cli.action.stop()
     this.log()
     cli.styledObject({

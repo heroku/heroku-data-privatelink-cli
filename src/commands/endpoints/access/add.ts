@@ -13,7 +13,7 @@ export default class EndpointsAccessAdd extends BaseCommand {
 
   static flags = {
     'account-id': flags.build({
-      char: 'A',
+      char: 'i',
       description: 'account id to use',
       parse: (input: string, ctx: any) => {
         if (!ctx.endpoints_access_add_ids) ctx.endpoints_access_add_ids = []

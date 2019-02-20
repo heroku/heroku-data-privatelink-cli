@@ -1,7 +1,7 @@
 {
   "name": "@heroku-cli/plugin-pg-privatelink",
   "description": "Heroku Postgres via PrivateLink CLI",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "author": "Heroku Data UX",
   "bugs": "https://github.com/heroku/heroku-pg-privatelink-cli/issues",
   "dependencies": {

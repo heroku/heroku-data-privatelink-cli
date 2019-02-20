@@ -3,7 +3,7 @@
   "description": "Heroku Postgres via PrivateLink CLI",
   "version": "0.5.0",
   "author": "Heroku Data UX",
-  "bugs": "https://github.com/heroku/heroku-endpoints-cli/issues",
+  "bugs": "https://github.com/heroku/heroku-pg-privatelink-cli/issues",
   "dependencies": {
     "@heroku-cli/color": "^1.1.14",
     "@heroku-cli/command": "^8.2.6",
@@ -43,7 +43,7 @@
     "/oclif.manifest.json",
     "/yarn.lock"
   ],
-  "homepage": "https://github.com/heroku/heroku-endpoints-cli",
+  "homepage": "https://github.com/heroku/heroku-pg-privatelink-cli",
   "keywords": [
     "oclif-plugin"
   ],
@@ -55,7 +55,7 @@
       "@oclif/plugin-help"
     ]
   },
-  "repository": "heroku/heroku-endpoints-cli",
+  "repository": "heroku/heroku-pg-privatelink-cli",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "tslint -p test -t stylish",

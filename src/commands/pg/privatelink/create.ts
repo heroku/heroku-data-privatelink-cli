@@ -26,8 +26,8 @@ export default class EndpointsCreate extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku pg:privatelink:create postgresql-sushi-12345 --account-id 123456789012:user/abc',
-    '$ heroku pg:privatelink:create postgresql-sushi-12345 --account-id 123456789012:user/abc --account-id 123456789012:user/xyz',
+    '$ heroku pg:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc',
+    '$ heroku pg:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --account-id 123456789012:user/xyz',
   ]
 
   async run() {

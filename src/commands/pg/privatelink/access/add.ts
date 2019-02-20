@@ -26,7 +26,7 @@ export default class EndpointsAccessAdd extends BaseCommand {
 
   static examples = [
     '$ heroku pg:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc',
-    '$ heroku pg:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --account-id 123456789012:user/xyz',
+    '$ heroku pg:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 123456789012:user/xyz',
   ]
 
   async run() {

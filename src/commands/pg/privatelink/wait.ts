@@ -1,11 +1,11 @@
 import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import BaseCommand, {PrivateLinkDB} from '../../base'
-import fetcher from '../../lib/fetcher'
+import BaseCommand, {PrivateLinkDB} from '../../../base'
+import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsWait extends BaseCommand {
-  static description = 'wait for your Trusted VPC Endpoint to be provisioned'
+  static description = 'wait for your privatelink endpoint to be provisioned'
 
   static args = [
     {name: 'database'}
@@ -16,7 +16,7 @@ export default class EndpointsWait extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints:wait postgresql-sushi-12345',
+    '$ heroku pg:privatelink:wait postgresql-sushi-12345',
   ]
 
   async run() {
@@ -24,7 +24,7 @@ export default class EndpointsWait extends BaseCommand {
     const database = args.database || await fetcher(this.heroku, flags.app)
 
     let status
-    cli.action.start('Waiting for the Trusted VPC Endpoint to be provisioned')
+    cli.action.start('Waiting for the privatelink endpoint to be provisioned')
     while (status !== 'Operational') {
       let {body: res} = await this.heroku.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.heroku.defaults)
       status = res.status

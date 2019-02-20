@@ -1,6 +1,6 @@
-import {expect, test} from '../../test'
+import {expect, test} from '../../../test'
 
-describe('endpoints:wait', () => {
+describe('pg:privatelink:wait', () => {
   const privateLinkListResponse = {
     app: {name: 'myapp'},
     addon: {name: 'postgres-123'},
@@ -17,8 +17,8 @@ describe('endpoints:wait', () => {
     )
     .stdout()
     .stderr()
-    .command(['endpoints:wait', 'postgres-123', '--app', 'myapp'])
-    .it('waits for a trusted VPC endpoint to be provisioned', ctx => {
-      expect(ctx.stderr).to.contain('Waiting for the Trusted VPC Endpoint to be provisioned... done')
+    .command(['pg:privatelink:wait', 'postgres-123', '--app', 'myapp'])
+    .it('waits for a privatelink endpoint to be provisioned', ctx => {
+      expect(ctx.stderr).to.contain('Waiting for the privatelink endpoint to be provisioned... done')
     })
 })

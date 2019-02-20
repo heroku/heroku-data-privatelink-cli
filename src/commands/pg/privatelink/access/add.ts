@@ -1,20 +1,20 @@
 import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import BaseCommand from '../../../base'
-import fetcher from '../../../lib/fetcher'
+import BaseCommand from '../../../../base'
+import fetcher from '../../../../lib/fetcher'
 
 export default class EndpointsAccessAdd extends BaseCommand {
-  static description = 'add an account to your Trusted VPC Endpoints\'s whitelist'
+  static description = 'add an account to your privatelink endpoint\'s whitelist'
 
   static args = [
     {name: 'database'},
   ]
 
   static flags = {
-    'account-id': flags.build({
+    'aws-account-id': flags.build({
       char: 'i',
-      description: 'account id to use',
+      description: 'AWS account id to use',
       parse: (input: string, ctx: any) => {
         if (!ctx.endpoints_access_add_ids) ctx.endpoints_access_add_ids = []
         ctx.endpoints_access_add_ids.push(input)
@@ -25,14 +25,14 @@ export default class EndpointsAccessAdd extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints:access:add postgresql-sushi-12345 --account-id 123456789012:user/abc',
-    '$ heroku endpoints:access:add postgresql-sushi-12345 --account-id 123456789012:user/abc --account-id 123456789012:user/xyz',
+    '$ heroku pg:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc',
+    '$ heroku pg:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 123456789012:user/xyz',
   ]
 
   async run() {
     const {args, flags} = this.parse(EndpointsAccessAdd)
     const database = args.database || await fetcher(this.heroku, flags.app)
-    const account_ids = flags['account-id']
+    const account_ids = flags['aws-account-id']
     const accountFormatted = account_ids.length > 1 ? 'accounts' : 'account'
 
     cli.action.start(`Adding ${accountFormatted} to the whitelist`)

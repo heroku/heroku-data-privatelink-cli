@@ -38,7 +38,7 @@ USAGE
 
 ## `heroku endpoints [DATABASE]`
 
-list all your Trusted VPC Endpoints
+list all your privatelink endpoints
 
 ```
 USAGE
@@ -55,7 +55,7 @@ _See code: [src/commands/endpoints/index.ts](https://github.com/heroku/heroku-en
 
 ## `heroku endpoints:access [DATABASE]`
 
-list all accounts for your Trusted VPC Endpoint's whitelist
+list all accounts for your privatelink endpoint's whitelist
 
 ```
 USAGE
@@ -72,7 +72,7 @@ _See code: [src/commands/endpoints/access/index.ts](https://github.com/heroku/he
 
 ## `heroku endpoints:access:add [DATABASE]`
 
-add an account to your Trusted VPC Endpoints's whitelist
+add an account to your privatelink endpoints's whitelist
 
 ```
 USAGE
@@ -92,7 +92,7 @@ _See code: [src/commands/endpoints/access/add.ts](https://github.com/heroku/hero
 
 ## `heroku endpoints:access:remove [DATABASE]`
 
-remove an account from your Trusted VPC Endpoint's whitelist
+remove an account from your privatelink endpoint's whitelist
 
 ```
 USAGE
@@ -112,7 +112,7 @@ _See code: [src/commands/endpoints/access/remove.ts](https://github.com/heroku/h
 
 ## `heroku endpoints:create [DATABASE]`
 
-create a new Trusted VPC Endpoint for your database
+create a new privatelink endpoint for your database
 
 ```
 USAGE
@@ -131,7 +131,7 @@ _See code: [src/commands/endpoints/create.ts](https://github.com/heroku/heroku-e
 
 ## `heroku endpoints:destroy [DATABASE]`
 
-destroy a Trusted VPC Endpoint for your database
+destroy a privatelink endpoint for your database
 
 ```
 USAGE
@@ -148,7 +148,7 @@ _See code: [src/commands/endpoints/destroy.ts](https://github.com/heroku/heroku-
 
 ## `heroku endpoints:wait [DATABASE]`
 
-wait for your Trusted VPC Endpoint to be provisioned
+wait for your privatelink endpoint to be provisioned
 
 ```
 USAGE

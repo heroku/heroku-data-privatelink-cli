@@ -2,11 +2,11 @@ import color from '@heroku-cli/color'
 import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import BaseCommand, {PrivateLinkDB} from '../../base'
-import fetcher from '../../lib/fetcher'
+import BaseCommand, {PrivateLinkDB} from '../../../base'
+import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsIndex extends BaseCommand {
-  static description = 'list all your Trusted VPC Endpoints'
+  static description = 'list all your privatelink endpoints'
 
   static args = [
     {name: 'database'}
@@ -17,7 +17,7 @@ export default class EndpointsIndex extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints postgresql-sushi-12345',
+    '$ heroku pg:privatelink postgresql-sushi-12345',
   ]
 
   async run() {
@@ -28,10 +28,10 @@ export default class EndpointsIndex extends BaseCommand {
 
     if (res.status === 'Provisioning') {
       this.log()
-      this.log(`The Trusted VPC Endpoint is now being provisioned for ${color.cyan(database)}.`)
-      this.log(`Run ${color.cyan('heroku endpoints:wait')} to check the creation process.`)
+      this.log(`The privatelink endpoint is now being provisioned for ${color.cyan(database)}.`)
+      this.log(`Run ${color.cyan('heroku pg:privatelink:wait -a APP')} to check the creation process.`)
     } else {
-      cli.styledHeader(`Trusted VPC Endpoint status for ${color.cyan(database)}`)
+      cli.styledHeader(`privatelink endpoint status for ${color.cyan(database)}`)
       cli.styledObject({
         Status: res.status,
         'Service Name': res.service_name || 'Provisioning',
@@ -55,7 +55,7 @@ export default class EndpointsIndex extends BaseCommand {
           status: {}
         })
       } else if (res.status === 'Operational' && res.connections.length === 0) {
-        this.log('Your Trusted VPC Endpoint is now operational.')
+        this.log('Your privatelink endpoint is now operational.')
         this.log(`You must now copy the ${color.cyan('Service Name')} and follow the rest of the steps listed in https://devcenter.heroku.com/articles/trusted-vpcs.`)
       }
     }

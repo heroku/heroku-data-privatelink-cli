@@ -1,6 +1,6 @@
-import {expect, test} from '../../../test'
+import {expect, test} from '../../../../test'
 
-describe('endpoints:access', () => {
+describe('pg:privatelink:access', () => {
   const privateLinkWhitelistResponse = {
     app: {name: 'myapp'},
     addon: {name: 'postgres-123'},
@@ -17,7 +17,7 @@ describe('endpoints:access', () => {
     )
     .stdout()
     .stderr()
-    .command(['endpoints:access', 'postgres-123', '--app', 'myapp'])
+    .command(['pg:privatelink:access', 'postgres-123', '--app', 'myapp'])
     .it('shows all accounts in the whitelist', ctx => {
       expect(ctx.stdout).to.contain('ARN                         Status')
       expect(ctx.stdout).to.contain('arn:aws:iam::123456789:root Available')

@@ -1,11 +1,11 @@
 import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
-import BaseCommand, {PrivateLinkDB} from '../../../base'
-import fetcher from '../../../lib/fetcher'
+import BaseCommand, {PrivateLinkDB} from '../../../../base'
+import fetcher from '../../../../lib/fetcher'
 
 export default class EndpointsAccessIndex extends BaseCommand {
-  static description = 'list all accounts for your Trusted VPC Endpoint\'s whitelist'
+  static description = 'list all accounts for your privatelink endpoint\'s whitelist'
 
   static args = [
     {name: 'database'},
@@ -16,7 +16,7 @@ export default class EndpointsAccessIndex extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku endpoints:access postgresql-sushi-12345',
+    '$ heroku pg:privatelink:access postgresql-sushi-12345',
   ]
 
   async run() {

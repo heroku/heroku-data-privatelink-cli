@@ -14,7 +14,7 @@ export default class EndpointsAccessRemove extends BaseCommand {
   static flags = {
     'aws-account-id': flags.build({
       char: 'i',
-      description: 'aws-account id to use',
+      description: 'AWS account id to use',
       parse: (input: string, ctx: any) => {
         if (!ctx.endpoints_access_remove_ids) ctx.endpoints_access_remove_ids = []
         ctx.endpoints_access_remove_ids.push(input)
@@ -26,7 +26,7 @@ export default class EndpointsAccessRemove extends BaseCommand {
 
   static examples = [
     '$ heroku pg:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/xyz',
-    '$ heroku pg:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --account-id 123456789012:user/xyz',
+    '$ heroku pg:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 123456789012:user/xyz',
   ]
 
   async run() {

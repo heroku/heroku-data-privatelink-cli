@@ -1,6 +1,6 @@
-import {expect, test} from '../../test'
+import {expect, test} from '../../../test'
 
-describe('endpoints', () => {
+describe('privatelink', () => {
   const privateLinkNewlyCreated = {
     app: {name: 'myapp'},
     addon: {name: 'postgres-123'},
@@ -32,9 +32,9 @@ describe('endpoints', () => {
     )
     .stdout()
     .stderr()
-    .command(['endpoints', 'postgres-123', '--app', 'myapp'])
-    .it('shows the status of a trusted VPC endpoint, inc. whitelist and connections', ctx => {
-      expect(ctx.stdout).to.contain('=== Trusted VPC Endpoint status for postgres-123')
+    .command(['pg:privatelink', 'postgres-123', '--app', 'myapp'])
+    .it('shows the status of a privatelink endpoint, inc. whitelist and connections', ctx => {
+      expect(ctx.stdout).to.contain('=== privatelink endpoint status for postgres-123')
       expect(ctx.stdout).to.contain('Service Name: com.amazonaws.vpce.testvpc')
       expect(ctx.stdout).to.contain('Status:       Operational')
 
@@ -54,9 +54,9 @@ describe('endpoints', () => {
     )
     .stdout()
     .stderr()
-    .command(['endpoints', 'postgres-123', '--app', 'myapp'])
-    .it('tells the user to run heroku endpoints:wait for a newly created endpoint', ctx => {
-      expect(ctx.stdout).to.contain('The Trusted VPC Endpoint is now being provisioned for postgres-123.')
-      expect(ctx.stdout).to.contain('Run heroku endpoints:wait to check the creation process.')
+    .command(['pg:privatelink', 'postgres-123', '--app', 'myapp'])
+    .it('tells the user to run heroku pg:privatelink:wait for a newly created endpoint', ctx => {
+      expect(ctx.stdout).to.contain('The privatelink endpoint is now being provisioned for postgres-123.')
+      expect(ctx.stdout).to.contain('Run heroku pg:privatelink:wait -a APP to check the creation process.')
     })
 })

@@ -10,7 +10,7 @@ export default abstract class extends Command {
 
     const client = new APIClient(this.config, {})
     const host = process.env.HEROKU_DATA_HOST
-    client.defaults.host = host ? url.parse(host).host : 'postgres-api.heroku.com'
+    client.defaults.host = host ? host : 'postgres-api.heroku.com'
     client.defaults.headers = {
       ...this.heroku.defaults.headers,
       authorization: `Basic ${Buffer.from(':' + this.heroku.auth).toString('base64')}`

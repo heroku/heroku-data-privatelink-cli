@@ -6,7 +6,7 @@ import BaseCommand, {PrivateLinkDB} from '../../../base'
 import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsIndex extends BaseCommand {
-  static description = 'list all your privatelink endpoints'
+  static description = 'list all your privatelink endpoints!'
 
   static args = [
     {name: 'database'}
@@ -23,8 +23,8 @@ export default class EndpointsIndex extends BaseCommand {
   async run() {
     const {args, flags} = this.parse(EndpointsIndex)
 
-    const database = args.database || await fetcher(this.heroku, flags.app)
-    const {body: res} = await this.heroku.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.heroku.defaults)
+    const database = args.database || await fetcher(this.shogun, flags.app)
+    const {body: res} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
 
     if (res.status === 'Provisioning') {
       this.log()

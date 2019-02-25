@@ -21,12 +21,12 @@ export default class EndpointsWait extends BaseCommand {
 
   async run() {
     const {args, flags} = this.parse(EndpointsWait)
-    const database = args.database || await fetcher(this.heroku, flags.app)
+    const database = args.database || await fetcher(this.shogun, flags.app)
 
     let status
     cli.action.start('Waiting for the privatelink endpoint to be provisioned')
     while (status !== 'Operational') {
-      let {body: res} = await this.heroku.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.heroku.defaults)
+      let {body: res} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
       status = res.status
       await cli.wait(3000)
     }

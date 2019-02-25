@@ -1,7 +1,5 @@
-heroku-endpoints-cli
+Heroku Postgres via PrivateLink CLI
 =======================
-
-heroku endpoints CLI
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/heroku-endpoints-cli.svg)](https://npmjs.org/package/heroku-privatelinks-cli)

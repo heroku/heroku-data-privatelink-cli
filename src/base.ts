@@ -9,7 +9,7 @@ export default abstract class extends Command {
     super(argv, config)
 
     const client = new APIClient(this.config, {})
-    const host = process.env.HEROKU_ADDONS_HOST
+    const host = process.env.HEROKU_DATA_HOST
     client.defaults.host = host ? url.parse(host).host : 'postgres-api.heroku.com'
     client.defaults.headers = {
       ...this.heroku.defaults.headers,

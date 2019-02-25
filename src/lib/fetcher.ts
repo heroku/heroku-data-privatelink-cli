@@ -11,7 +11,7 @@ export default async function (heroku: any, addon_attachment: string, app: strin
   )
 
   if (res.id !== 'not_found') {
-    return res[0]['addon'].name
+    return res[0].addon.name
   } else {
     cli.error(res.message)
   }

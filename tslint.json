@@ -1,6 +1,3 @@
 {
-  "extends": "@oclif/tslint",
-  "rules": {
-    "no-string-literal": false
-  }
+  "extends": "@oclif/tslint"
 }

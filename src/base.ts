@@ -1,6 +1,5 @@
 import {APIClient, Command} from '@heroku-cli/command'
 import {IConfig} from '@oclif/config'
-import * as url from 'url'
 
 export default abstract class extends Command {
   shogun: APIClient

@@ -1,15 +1,19 @@
-import {Command} from '@heroku-cli/command'
+import {APIClient, Command} from '@heroku-cli/command'
 import {IConfig} from '@oclif/config'
 
 export default abstract class extends Command {
+  shogun: APIClient
+
   protected constructor(argv: string[], config: IConfig) {
     super(argv, config)
 
-    this.heroku.defaults.host = process.env.HEROKU_DATA_HOST || 'postgres-api.heroku.com'
-    this.heroku.defaults.headers = {
+    const client = new APIClient(this.config, {})
+    client.defaults.host = process.env.HEROKU_DATA_HOST || 'postgres-api.heroku.com'
+    client.defaults.headers = {
       ...this.heroku.defaults.headers,
       authorization: `Basic ${Buffer.from(':' + this.heroku.auth).toString('base64')}`
     }
+    this.shogun = client
   }
 }
 

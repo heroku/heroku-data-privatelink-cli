@@ -32,12 +32,12 @@ export default class EndpointsCreate extends BaseCommand {
 
   async run() {
     const {args, flags} = this.parse(EndpointsCreate)
-    const database = args.database || await fetcher(this.heroku, flags.app)
+    const database = await fetcher(this.heroku, args.database, flags.app)
     const account_ids = flags['aws-account-id']
 
     cli.action.start('Creating privatelink endpoint')
-    const {body: res} = await this.heroku.post<PrivateLinkDB>(`/private-link/v0/databases/${database}`, {
-      ...this.heroku.defaults,
+    const {body: res} = await this.shogun.post<PrivateLinkDB>(`/private-link/v0/databases/${database}`, {
+      ...this.shogun.defaults,
       body: {
         whitelisted_accounts: account_ids
       }

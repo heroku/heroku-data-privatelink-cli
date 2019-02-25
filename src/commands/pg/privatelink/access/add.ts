@@ -31,13 +31,13 @@ export default class EndpointsAccessAdd extends BaseCommand {
 
   async run() {
     const {args, flags} = this.parse(EndpointsAccessAdd)
-    const database = args.database || await fetcher(this.heroku, flags.app)
+    const database = await fetcher(this.heroku, args.database, flags.app)
     const account_ids = flags['aws-account-id']
     const accountFormatted = account_ids.length > 1 ? 'accounts' : 'account'
 
     cli.action.start(`Adding ${accountFormatted} to the whitelist`)
-    await this.heroku.put(`/private-link/v0/databases/${database}/whitelisted_accounts`, {
-      ...this.heroku.defaults,
+    await this.shogun.put(`/private-link/v0/databases/${database}/whitelisted_accounts`, {
+      ...this.shogun.defaults,
       body: {
         whitelisted_accounts: account_ids
       }

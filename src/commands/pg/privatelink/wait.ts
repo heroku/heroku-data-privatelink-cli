@@ -21,7 +21,7 @@ export default class EndpointsWait extends BaseCommand {
 
   async run() {
     const {args, flags} = this.parse(EndpointsWait)
-    const database = args.database || await fetcher(this.shogun, flags.app)
+    const database = args.database || await fetcher(this.heroku, flags.app)
 
     let status
     cli.action.start('Waiting for the privatelink endpoint to be provisioned')

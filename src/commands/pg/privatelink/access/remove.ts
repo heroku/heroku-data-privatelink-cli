@@ -31,7 +31,7 @@ export default class EndpointsAccessRemove extends BaseCommand {
 
   async run() {
     const {args, flags} = this.parse(EndpointsAccessRemove)
-    const database = args.database || await fetcher(this.shogun, flags.app)
+    const database = args.database || await fetcher(this.heroku, flags.app)
     const account_ids = flags['aws-account-id']
     const accountFormatted = account_ids.length > 1 ? 'accounts' : 'account'
 

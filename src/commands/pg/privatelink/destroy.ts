@@ -21,7 +21,7 @@ export default class EndpointsDestroy extends BaseCommand {
 
   async run() {
     const {args, flags} = this.parse(EndpointsDestroy)
-    const database = args.database || await fetcher(this.shogun, flags.app)
+    const database = args.database || await fetcher(this.heroku, flags.app)
 
     cli.action.start('Destroying privatelink endpoint')
     await this.shogun.delete<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)

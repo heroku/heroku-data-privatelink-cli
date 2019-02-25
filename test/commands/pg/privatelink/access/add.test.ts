@@ -1,3 +1,4 @@
+import {addonsFetcherResponse} from '../../../../fixtures'
 import {expect, test} from '../../../../test'
 
 describe('pg:privatelink:access:add', () => {
@@ -5,6 +6,10 @@ describe('pg:privatelink:access:add', () => {
     .nock('https://postgres-api.heroku.com', api => api
       .put('/private-link/v0/databases/postgres-123/whitelisted_accounts', {whitelisted_accounts: ['123456789012:root']})
       .reply(200, {})
+    )
+    .nock('https://api.heroku.com', api => api
+      .post('/actions/addon-attachments/resolve')
+      .reply(200, addonsFetcherResponse)
     )
     .stdout()
     .stderr()
@@ -17,6 +22,10 @@ describe('pg:privatelink:access:add', () => {
     .nock('https://postgres-api.heroku.com', api => api
       .put('/private-link/v0/databases/postgres-123/whitelisted_accounts', {whitelisted_accounts: ['123456789012:resource1', '123456789012:resource2']})
       .reply(200, {})
+    )
+    .nock('https://api.heroku.com', api => api
+      .post('/actions/addon-attachments/resolve')
+      .reply(200, addonsFetcherResponse)
     )
     .stdout()
     .stderr()

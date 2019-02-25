@@ -1,3 +1,4 @@
+import {addonsFetcherResponse} from '../../../fixtures'
 import {expect, test} from '../../../test'
 
 describe('pg:privatelink:destroy', () => {
@@ -5,6 +6,10 @@ describe('pg:privatelink:destroy', () => {
     .nock('https://postgres-api.heroku.com', api => api
       .delete('/private-link/v0/databases/postgres-123')
       .reply(200, {})
+    )
+    .nock('https://api.heroku.com', api => api
+      .post('/actions/addon-attachments/resolve')
+      .reply(200, addonsFetcherResponse)
     )
     .stderr()
     .stdout()

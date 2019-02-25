@@ -21,7 +21,7 @@ export default class EndpointsAccessIndex extends BaseCommand {
 
   async run() {
     const {args, flags} = this.parse(EndpointsAccessIndex)
-    const database = args.database || await fetcher(this.heroku, flags.app)
+    const database = await fetcher(this.heroku, args.database, flags.app)
 
     const {body: {whitelisted_accounts}} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
 

@@ -32,7 +32,7 @@ export default class EndpointsCreate extends BaseCommand {
 
   async run() {
     const {args, flags} = this.parse(EndpointsCreate)
-    const database = args.database || await fetcher(this.heroku, flags.app)
+    const database = await fetcher(this.heroku, args.database, flags.app)
     const account_ids = flags['aws-account-id']
 
     cli.action.start('Creating privatelink endpoint')

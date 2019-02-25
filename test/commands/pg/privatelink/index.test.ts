@@ -1,34 +1,17 @@
+import {addonsFetcherResponse,
+  privateLinkNewlyCreated,
+  privateLinkWithConnections} from '../../../fixtures'
 import {expect, test} from '../../../test'
 
 describe('privatelink', () => {
-  const privateLinkNewlyCreated = {
-    app: {name: 'myapp'},
-    addon: {name: 'postgres-123'},
-    status: 'Provisioning',
-    service_name: 'com.amazonaws.vpce.testvpc"',
-    connections: [],
-    whitelisted_accounts: []
-  }
-
-  const privateLinkOperational = {
-    ...privateLinkNewlyCreated,
-    status: 'Operational',
-  }
-
-  const privateLinkWithConnections = {
-    ...privateLinkOperational,
-    connections: [
-      {endpoint_id: '123456', owner_arn: 'arn:aws:iam::12345567890:root', status: 'Available'}
-    ],
-    whitelisted_accounts: [
-      {arn: 'arn:aws:iam::12345567890:root', status: 'Active'}
-    ]
-  }
-
   test
     .nock('https://postgres-api.heroku.com', api => api
       .get('/private-link/v0/databases/postgres-123')
       .reply(200, privateLinkWithConnections)
+    )
+    .nock('https://api.heroku.com', api => api
+      .post('/actions/addon-attachments/resolve')
+      .reply(200, addonsFetcherResponse)
     )
     .stdout()
     .stderr()
@@ -51,6 +34,10 @@ describe('privatelink', () => {
     .nock('https://postgres-api.heroku.com', api => api
       .get('/private-link/v0/databases/postgres-123')
       .reply(200, privateLinkNewlyCreated)
+    )
+    .nock('https://api.heroku.com', api => api
+      .post('/actions/addon-attachments/resolve')
+      .reply(200, addonsFetcherResponse)
     )
     .stdout()
     .stderr()

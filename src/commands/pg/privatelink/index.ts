@@ -22,8 +22,7 @@ export default class EndpointsIndex extends BaseCommand {
 
   async run() {
     const {args, flags} = this.parse(EndpointsIndex)
-
-    const database = args.database || await fetcher(this.heroku, flags.app)
+    const database = await fetcher(this.heroku, args.database, flags.app)
     const {body: res} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
 
     if (res.status === 'Provisioning') {

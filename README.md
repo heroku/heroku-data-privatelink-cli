@@ -19,7 +19,7 @@ $ npm install -g @heroku-cli/plugin-pg-privatelink
 $ heroku COMMAND
 running command...
 $ heroku (-v|--version|version)
-@heroku-cli/plugin-pg-privatelink/0.6.0 darwin-x64 node-v8.13.0
+@heroku-cli/plugin-pg-privatelink/0.7.0 darwin-x64 node-v8.13.0
 $ heroku --help [COMMAND]
 USAGE
   $ heroku COMMAND
@@ -38,7 +38,7 @@ USAGE
 
 ## `heroku pg:privatelink [DATABASE]`
 
-list all your privatelink endpoints
+list all your privatelink endpoints!
 
 ```
 USAGE
@@ -51,7 +51,7 @@ EXAMPLE
   $ heroku pg:privatelink postgresql-sushi-12345
 ```
 
-_See code: [src/commands/pg/privatelink/index.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.6.0/src/commands/pg/privatelink/index.ts)_
+_See code: [src/commands/pg/privatelink/index.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.7.0/src/commands/pg/privatelink/index.ts)_
 
 ## `heroku pg:privatelink:access [DATABASE]`
 
@@ -68,7 +68,7 @@ EXAMPLE
   $ heroku pg:privatelink:access postgresql-sushi-12345
 ```
 
-_See code: [src/commands/pg/privatelink/access/index.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.6.0/src/commands/pg/privatelink/access/index.ts)_
+_See code: [src/commands/pg/privatelink/access/index.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.7.0/src/commands/pg/privatelink/access/index.ts)_
 
 ## `heroku pg:privatelink:access:add [DATABASE]`
 
@@ -88,7 +88,7 @@ EXAMPLES
   123456789012:user/xyz
 ```
 
-_See code: [src/commands/pg/privatelink/access/add.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.6.0/src/commands/pg/privatelink/access/add.ts)_
+_See code: [src/commands/pg/privatelink/access/add.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.7.0/src/commands/pg/privatelink/access/add.ts)_
 
 ## `heroku pg:privatelink:access:remove [DATABASE]`
 
@@ -108,7 +108,7 @@ EXAMPLES
   123456789012:user/xyz
 ```
 
-_See code: [src/commands/pg/privatelink/access/remove.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.6.0/src/commands/pg/privatelink/access/remove.ts)_
+_See code: [src/commands/pg/privatelink/access/remove.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.7.0/src/commands/pg/privatelink/access/remove.ts)_
 
 ## `heroku pg:privatelink:create [DATABASE]`
 
@@ -128,7 +128,7 @@ EXAMPLES
   123456789012:user/xyz
 ```
 
-_See code: [src/commands/pg/privatelink/create.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.6.0/src/commands/pg/privatelink/create.ts)_
+_See code: [src/commands/pg/privatelink/create.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.7.0/src/commands/pg/privatelink/create.ts)_
 
 ## `heroku pg:privatelink:destroy [DATABASE]`
 
@@ -145,7 +145,7 @@ EXAMPLE
   $ heroku pg:privatelink:destroy postgresql-sushi-12345
 ```
 
-_See code: [src/commands/pg/privatelink/destroy.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.6.0/src/commands/pg/privatelink/destroy.ts)_
+_See code: [src/commands/pg/privatelink/destroy.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.7.0/src/commands/pg/privatelink/destroy.ts)_
 
 ## `heroku pg:privatelink:wait [DATABASE]`
 
@@ -162,5 +162,5 @@ EXAMPLE
   $ heroku pg:privatelink:wait postgresql-sushi-12345
 ```
 
-_See code: [src/commands/pg/privatelink/wait.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.6.0/src/commands/pg/privatelink/wait.ts)_
+_See code: [src/commands/pg/privatelink/wait.ts](https://github.com/heroku/heroku-pg-privatelink-cli/blob/v0.7.0/src/commands/pg/privatelink/wait.ts)_
 <!-- commandsstop -->

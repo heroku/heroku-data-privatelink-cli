@@ -6,7 +6,7 @@ export default async function (heroku: any, addon_attachment: string, app: strin
     body: {
       app,
       addon_attachment: db,
-      addon_service: 'heroku-postgresql'
+      addon_service: process.env.HEROKU_ADDON_NAME || 'heroku-postgresql'
     }}
   )
 

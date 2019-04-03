@@ -17,7 +17,7 @@ describe('pg:privatelink:access', () => {
       .reply(200, privateLinkWhitelistResponse)
     )
     .nock('https://api.heroku.com', api => api
-      .post('/actions/addon-attachments/resolve')
+      .post('/actions/addons/resolve')
       .reply(200, addonsFetcherResponse)
     )
     .stdout()

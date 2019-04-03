@@ -8,7 +8,7 @@ describe('pg:privatelink:destroy', () => {
       .reply(200, {})
     )
     .nock('https://api.heroku.com', api => api
-      .post('/actions/addon-attachments/resolve')
+      .post('/actions/addons/resolve')
       .reply(200, addonsFetcherResponse)
     )
     .stderr()

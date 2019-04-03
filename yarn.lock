@@ -145,6 +145,11 @@
   resolved "https://registry.yarnpkg.com/@heroku-cli/schema/-/schema-1.0.25.tgz#175d489d82c2ff0be700fe9fab8590b64c7e4f39"
   integrity sha512-7V6/WdTHrsvpqeqttm4zhzVJyt/Us/Cz9oS4yure4JdLtwlr2eF6PvlDLA5ZIvBybMtSDyxhHid0PeshKLtwxw==
 
+"@heroku-cli/typescript-api-schema@false0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@heroku-cli/typescript-api-schema/-/typescript-api-schema-0.0.1.tgz#32f1bc339af9cdfadc72e0044e158872ff6e9ecd"
+  integrity sha512-zqGRx8e3VreaE0rgJ10CraoyDWT0cCoQWJYsqSuqvYtsXNDpAIpvZzjTMwEIiIX9qqSiGX+71uQyiiWhGPGodQ==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

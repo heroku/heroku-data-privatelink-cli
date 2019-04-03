@@ -10,7 +10,7 @@ describe('privatelink', () => {
       .reply(200, privateLinkWithConnections)
     )
     .nock('https://api.heroku.com', api => api
-      .post('/actions/addon-attachments/resolve')
+      .post('/actions/addons/resolve')
       .reply(200, addonsFetcherResponse)
     )
     .stdout()
@@ -36,7 +36,7 @@ describe('privatelink', () => {
       .reply(200, privateLinkNewlyCreated)
     )
     .nock('https://api.heroku.com', api => api
-      .post('/actions/addon-attachments/resolve')
+      .post('/actions/addons/resolve')
       .reply(200, addonsFetcherResponse)
     )
     .stdout()

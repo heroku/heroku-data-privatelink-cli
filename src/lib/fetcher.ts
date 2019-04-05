@@ -1,4 +1,4 @@
-import {AddOnAction} from '@heroku-cli/schema'
+import {AddOn} from '@heroku-cli/schema'
 import {cli} from 'cli-ux'
 
 export default async function (heroku: any, addon_attachment: string, app: string) {
@@ -14,7 +14,7 @@ export default async function (heroku: any, addon_attachment: string, app: strin
     cli.error(res.message)
   }
 
-  const filteredDb = res.find((addon: AddOnAction) => addon.addon_service.name.startsWith('heroku-postgresql'))
+  const filteredDb = res.find((addon: AddOn) => addon.addon_service && addon.addon_server.name.startsWith('heroku-postgresql'))
 
   if (filteredDb) {
     return filteredDb.name

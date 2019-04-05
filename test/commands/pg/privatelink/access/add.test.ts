@@ -8,7 +8,7 @@ describe('pg:privatelink:access:add', () => {
       .reply(200, {})
     )
     .nock('https://api.heroku.com', api => api
-      .post('/actions/addon-attachments/resolve')
+      .post('/actions/addons/resolve')
       .reply(200, addonsFetcherResponse)
     )
     .stdout()
@@ -24,7 +24,7 @@ describe('pg:privatelink:access:add', () => {
       .reply(200, {})
     )
     .nock('https://api.heroku.com', api => api
-      .post('/actions/addon-attachments/resolve')
+      .post('/actions/addons/resolve')
       .reply(200, addonsFetcherResponse)
     )
     .stdout()

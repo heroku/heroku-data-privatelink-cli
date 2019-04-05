@@ -1,24 +1,50 @@
 export const addonsFetcherResponse = [
   {
-    addon: {
-      id: '68ac478b-257c-4b0c-a2bf-b29b115486cd',
-      name: 'postgres-123',
-      app: {
-        id: '097c056a-8d45-4f18-9501-05e8708652c0',
-        name: 'myapp'
+    actions: [
+      {
+        id: 'dc0af4a6-9ce6-47bb-aa5f-87f32212786a',
+        label: 'Create Dataclip',
+        action: null,
+        url: 'https://dataclip.heroku.com',
+        requires_owner: null
+      },
+      {
+        id: '457ad119-2e8d-4ed3-b7c5-0994cfbbd1f3',
+        label: 'Upgrade instructions',
+        action: null,
+        url: 'https://devcenter.heroku.com/articles/upgrading-heroku-postgres-databases',
+        requires_owner: null
       }
-    },
+    ],
     app: {
-      id: '097c056a-8d45-4f18-9501-05e8708652c0',
+      id: '1879136a-cc51-428f-b59b-2dee3cd5193b',
       name: 'myapp'
     },
-    id: '2e2805c2-1aa7-4fed-9e4d-a54d24d50992',
-    name: 'HEROKU_POSTGRESQL_PINK',
-    namespace: null,
-    created_at: '2019-02-08T18:31:31Z',
-    updated_at: '2019-02-08T18:31:31Z',
-    web_url: 'https://addons-sso.heroku.com/apps/fe3c96b2-f839-4efa-a708-06c26c7407cc/addons/68ac478b-257c-4b0c-a2bf-b29b115486cd',
-    log_input_url: null
+    created_at: '2019-03-08T17:37:10Z',
+    id: '912ce943-9b8d-4135-a147-f745c3a2c4a3',
+    name: 'postgres-123',
+    addon_service: {
+      id: 'af5cb32e-0cac-4ccc-b88b-598ca78adc19',
+      name: 'heroku-postgresql'
+    },
+    plan: {
+      id: '592e4709-ee76-4676-82df-2b0356b7c954',
+      name: 'heroku-postgresql:private-0'
+    },
+    billing_entity: {
+      id: '1879136a-cc51-428f-b59b-2dee3cd5193b',
+      name: 'myapp',
+      type: 'app'
+    },
+    provider_id: 'resource12345@heroku.com',
+    state: 'provisioned',
+    updated_at: '2019-04-01T10:45:28Z',
+    web_url: 'https://addons-sso.heroku.com/apps/1879136a-cc51-428f-b59b-2dee3cd5193b/addons/af5cb32e-0cac-4ccc-b88b-598ca78adc19',
+    billed_price: {
+      cents: 30000,
+      contract: false,
+      unit: 'month'
+    }
   }
 ]
 

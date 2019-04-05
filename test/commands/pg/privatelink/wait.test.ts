@@ -17,7 +17,7 @@ describe('pg:privatelink:wait', () => {
       .reply(200, privateLinkListResponse)
     )
     .nock('https://api.heroku.com', api => api
-      .post('/actions/addon-attachments/resolve')
+      .post('/actions/addons/resolve')
       .reply(200, addonsFetcherResponse)
     )
     .stdout()

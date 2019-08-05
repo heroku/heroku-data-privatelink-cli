@@ -6,6 +6,7 @@ import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsDestroy extends BaseCommand {
   static description = 'destroy a privatelink endpoint for your database'
+  static aliases = ['pg:privatelink:destroy', 'kafka:privatelink:destroy']
 
   static args = [
     {name: 'database'}
@@ -16,7 +17,7 @@ export default class EndpointsDestroy extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku pg:privatelink:destroy postgresql-sushi-12345',
+    '$ heroku data:privatelink:destroy postgresql-sushi-12345',
   ]
 
   async run() {

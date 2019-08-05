@@ -6,6 +6,7 @@ import fetcher from '../../../../lib/fetcher'
 
 export default class EndpointsAccessIndex extends BaseCommand {
   static description = 'list all accounts for your privatelink endpoint\'s whitelist'
+  static aliases = ['pg:privatelink:access', 'kafka:privatelink:access']
 
   static args = [
     {name: 'database'},
@@ -16,7 +17,7 @@ export default class EndpointsAccessIndex extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku pg:privatelink:access postgresql-sushi-12345',
+    '$ heroku data:privatelink:access postgresql-sushi-12345',
   ]
 
   async run() {

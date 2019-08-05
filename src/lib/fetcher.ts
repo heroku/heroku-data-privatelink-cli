@@ -2,7 +2,7 @@ import {AddOn} from '@heroku-cli/schema'
 import {cli} from 'cli-ux'
 
 export default async function (heroku: any, addon_attachment: string, app: string) {
-  const db = addon_attachment || 'DATABASE_URL'
+  const db = addon_attachment
   const {body: res} = await heroku.post('/actions/addons/resolve', {
     body: {
       app,
@@ -14,15 +14,15 @@ export default async function (heroku: any, addon_attachment: string, app: strin
     cli.error(res.message)
   }
 
-  const filteredDb = res.find((addon: AddOn) => {
+  const filteredAddon = res.find((addon: AddOn) => {
     if (addon.addon_service) {
-      return addon.addon_service.name && addon.addon_service.name.startsWith('heroku-postgresql')
+      return addon.addon_service.name && addon.addon_service.name.startsWith('heroku-')
     }
   })
 
-  if (filteredDb) {
-    return filteredDb.name
+  if (filteredAddon) {
+    return filteredAddon.name
   } else {
-    cli.error('No databases found')
+    cli.error('No addons found')
   }
 }

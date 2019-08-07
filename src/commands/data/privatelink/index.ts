@@ -7,6 +7,7 @@ import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsIndex extends BaseCommand {
   static description = 'list all your privatelink endpoints!'
+  static aliases = ['pg:privatelink', 'kafka:privatelink']
 
   static args = [
     {name: 'database'}
@@ -17,7 +18,7 @@ export default class EndpointsIndex extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku pg:privatelink postgresql-sushi-12345',
+    '$ heroku data:privatelink postgresql-sushi-12345',
   ]
 
   async run() {
@@ -28,7 +29,7 @@ export default class EndpointsIndex extends BaseCommand {
     if (res.status === 'Provisioning') {
       this.log()
       this.log(`The privatelink endpoint is now being provisioned for ${color.cyan(database)}.`)
-      this.log(`Run ${color.cyan('heroku pg:privatelink:wait -a APP')} to check the creation process.`)
+      this.log(`Run ${color.cyan('heroku data:privatelink:wait -a APP')} to check the creation process.`)
     } else {
       cli.styledHeader(`privatelink endpoint status for ${color.cyan(database)}`)
       cli.styledObject({

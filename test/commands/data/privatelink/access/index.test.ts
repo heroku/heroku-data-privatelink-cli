@@ -1,7 +1,7 @@
 import {addonsFetcherResponse} from '../../../../fixtures'
 import {expect, test} from '../../../../test'
 
-describe('pg:privatelink:access', () => {
+describe('data:privatelink:access', () => {
   const privateLinkWhitelistResponse = {
     app: {name: 'myapp'},
     addon: {name: 'postgres-123'},
@@ -22,7 +22,7 @@ describe('pg:privatelink:access', () => {
     )
     .stdout()
     .stderr()
-    .command(['pg:privatelink:access', 'postgres-123', '--app', 'myapp'])
+    .command(['data:privatelink:access', 'postgres-123', '--app', 'myapp'])
     .it('shows all accounts in the whitelist', ctx => {
       expect(ctx.stdout).to.contain('ARN                         Status')
       expect(ctx.stdout).to.contain('arn:aws:iam::123456789:root Available')

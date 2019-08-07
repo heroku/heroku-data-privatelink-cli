@@ -6,6 +6,7 @@ import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsWait extends BaseCommand {
   static description = 'wait for your privatelink endpoint to be provisioned'
+  static aliases = ['pg:privatelink:wait', 'kafka:privatelink:wait']
 
   static args = [
     {name: 'database'}
@@ -16,7 +17,7 @@ export default class EndpointsWait extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku pg:privatelink:wait postgresql-sushi-12345',
+    '$ heroku data:privatelink:wait postgresql-sushi-12345',
   ]
 
   async run() {

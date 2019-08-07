@@ -7,6 +7,7 @@ import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsCreate extends BaseCommand {
   static description = 'create a new privatelink endpoint for your database'
+  static aliases = ['pg:privatelink:create', 'kafka:privatelink:create']
 
   static args = [
     {name: 'database'},
@@ -26,8 +27,8 @@ export default class EndpointsCreate extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku pg:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc',
-    '$ heroku pg:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --account-id 123456789012:user/xyz',
+    '$ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc',
+    '$ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --account-id 123456789012:user/xyz',
   ]
 
   async run() {
@@ -51,6 +52,6 @@ export default class EndpointsCreate extends BaseCommand {
 
     this.log()
     this.log(`The privatelink endpoint is now being provisioned for ${color.cyan(database)}.`)
-    this.log(`Run ${color.cyan('heroku pg:privatelink:wait --app APP')} to check the creation process.`)
+    this.log(`Run ${color.cyan('heroku data:privatelink:wait --app APP')} to check the creation process.`)
   }
 }

@@ -15,7 +15,7 @@ describe('privatelink', () => {
     )
     .stdout()
     .stderr()
-    .command(['pg:privatelink', 'postgres-123', '--app', 'myapp'])
+    .command(['data:privatelink', 'postgres-123', '--app', 'myapp'])
     .it('shows the status of a privatelink endpoint, inc. whitelist and connections', ctx => {
       expect(ctx.stdout).to.contain('=== privatelink endpoint status for postgres-123')
       expect(ctx.stdout).to.contain('Service Name: com.amazonaws.vpce.testvpc')
@@ -41,9 +41,9 @@ describe('privatelink', () => {
     )
     .stdout()
     .stderr()
-    .command(['pg:privatelink', 'postgres-123', '--app', 'myapp'])
-    .it('tells the user to run heroku pg:privatelink:wait for a newly created endpoint', ctx => {
+    .command(['data:privatelink', 'postgres-123', '--app', 'myapp'])
+    .it('tells the user to run heroku data:privatelink:wait for a newly created endpoint', ctx => {
       expect(ctx.stdout).to.contain('The privatelink endpoint is now being provisioned for postgres-123.')
-      expect(ctx.stdout).to.contain('Run heroku pg:privatelink:wait -a APP to check the creation process.')
+      expect(ctx.stdout).to.contain('Run heroku data:privatelink:wait -a APP to check the creation process.')
     })
 })

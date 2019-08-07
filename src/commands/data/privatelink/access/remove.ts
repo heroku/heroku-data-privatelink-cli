@@ -6,6 +6,7 @@ import fetcher from '../../../../lib/fetcher'
 
 export default class EndpointsAccessRemove extends BaseCommand {
   static description = 'remove an account from your privatelink endpoint\'s whitelist'
+  static aliases = ['pg:privatelink:access:remove', 'kafka:privatelink:access:remove']
 
   static args = [
     {name: 'database'},
@@ -25,8 +26,8 @@ export default class EndpointsAccessRemove extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku pg:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/xyz',
-    '$ heroku pg:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 123456789012:user/xyz',
+    '$ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/xyz',
+    '$ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 123456789012:user/xyz',
   ]
 
   async run() {

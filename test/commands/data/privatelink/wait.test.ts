@@ -1,7 +1,7 @@
 import {addonsFetcherResponse} from '../../../fixtures'
 import {expect, test} from '../../../test'
 
-describe('pg:privatelink:wait', () => {
+describe('data:privatelink:wait', () => {
   const privateLinkListResponse = {
     app: {name: 'myapp'},
     addon: {name: 'postgres-123'},
@@ -22,7 +22,7 @@ describe('pg:privatelink:wait', () => {
     )
     .stdout()
     .stderr()
-    .command(['pg:privatelink:wait', 'postgres-123', '--app', 'myapp'])
+    .command(['data:privatelink:wait', 'postgres-123', '--app', 'myapp'])
     .it('waits for a privatelink endpoint to be provisioned', ctx => {
       expect(ctx.stderr).to.contain('Waiting for the privatelink endpoint to be provisioned... done')
     })

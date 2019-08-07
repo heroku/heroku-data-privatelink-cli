@@ -3,8 +3,8 @@ import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
 import BaseCommand, {PrivateLinkDB} from '../../../base'
-import fetcher from '../../../lib/fetcher'
 import addontype from '../../../lib/addontype'
+import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsIndex extends BaseCommand {
   static description = 'list all your privatelink endpoints!'

@@ -6,7 +6,7 @@ import fetcher from '../../../../lib/fetcher'
 
 export default class EndpointsAccessRemove extends BaseCommand {
   static description = 'remove an account from your privatelink endpoint\'s whitelist'
-  static aliases = ['pg:privatelink:access:remove', 'kafka:privatelink:access:remove']
+  static aliases = ['pg:privatelink:access:remove', 'kafka:privatelink:access:remove', 'redis:privatelink:access:remove']
 
   static args = [
     {name: 'database'},

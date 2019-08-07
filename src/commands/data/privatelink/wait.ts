@@ -6,7 +6,7 @@ import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsWait extends BaseCommand {
   static description = 'wait for your privatelink endpoint to be provisioned'
-  static aliases = ['pg:privatelink:wait', 'kafka:privatelink:wait']
+  static aliases = ['pg:privatelink:wait', 'kafka:privatelink:wait', 'redis:privatelink:wait']
 
   static args = [
     {name: 'database'}

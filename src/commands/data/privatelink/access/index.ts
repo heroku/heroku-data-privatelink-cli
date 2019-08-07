@@ -6,7 +6,7 @@ import fetcher from '../../../../lib/fetcher'
 
 export default class EndpointsAccessIndex extends BaseCommand {
   static description = 'list all accounts for your privatelink endpoint\'s whitelist'
-  static aliases = ['pg:privatelink:access', 'kafka:privatelink:access']
+  static aliases = ['pg:privatelink:access', 'kafka:privatelink:access', 'redis:privatelink:access']
 
   static args = [
     {name: 'database'},

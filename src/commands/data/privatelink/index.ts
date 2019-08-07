@@ -7,7 +7,7 @@ import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsIndex extends BaseCommand {
   static description = 'list all your privatelink endpoints!'
-  static aliases = ['pg:privatelink', 'kafka:privatelink']
+  static aliases = ['pg:privatelink', 'kafka:privatelink', 'redis:privatelink']
 
   static args = [
     {name: 'database'}

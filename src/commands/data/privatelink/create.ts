@@ -7,7 +7,7 @@ import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsCreate extends BaseCommand {
   static description = 'create a new privatelink endpoint for your database'
-  static aliases = ['pg:privatelink:create', 'kafka:privatelink:create']
+  static aliases = ['pg:privatelink:create', 'kafka:privatelink:create', 'redis:privatelink:create']
 
   static args = [
     {name: 'database'},

@@ -3,6 +3,7 @@ import {flags} from '@heroku-cli/command'
 import {cli} from 'cli-ux'
 
 import BaseCommand, {PrivateLinkDB} from '../../../base'
+import addontype from '../../../lib/addontype'
 import fetcher from '../../../lib/fetcher'
 
 export default class EndpointsIndex extends BaseCommand {
@@ -25,6 +26,7 @@ export default class EndpointsIndex extends BaseCommand {
     const {args, flags} = this.parse(EndpointsIndex)
     const database = await fetcher(this.heroku, args.database, flags.app)
     const {body: res} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
+    const addonType = await addontype(res.addon.name)
 
     if (res.status === 'Provisioning') {
       this.log()
@@ -56,7 +58,7 @@ export default class EndpointsIndex extends BaseCommand {
         })
       } else if (res.status === 'Operational' && res.connections.length === 0) {
         this.log('Your privatelink endpoint is now operational.')
-        this.log(`You must now copy the ${color.cyan('Service Name')} and follow the rest of the steps listed in https://devcenter.heroku.com/articles/trusted-vpcs.`)
+        this.log(`You must now copy the ${color.cyan('Service Name')} and follow the rest of the steps listed in https://devcenter.heroku.com/articles/heroku-${addonType}-via-privatelink`)
       }
     }
   }

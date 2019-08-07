@@ -1,7 +1,7 @@
 {
   "name": "@heroku-cli/plugin-data-privatelink",
   "description": "Heroku Data via PrivateLink CLI",
-  "version": "0.8.0",
+  "version": "1.0.1",
   "author": "Heroku Data UX",
   "bugs": "https://github.com/heroku/heroku-data-privatelink-cli/issues",
   "dependencies": {

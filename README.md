@@ -17,7 +17,7 @@ $ npm install -g @heroku-cli/plugin-data-privatelink
 $ heroku COMMAND
 running command...
 $ heroku (-v|--version|version)
-@heroku-cli/plugin-data-privatelink/0.8.0 darwin-x64 node-v10.15.1
+@heroku-cli/plugin-data-privatelink/1.0.1 darwin-x64 node-v10.16.0
 $ heroku --help [COMMAND]
 USAGE
   $ heroku COMMAND
@@ -26,59 +26,71 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`heroku data:privatelink [ADDON]`](#heroku-dataprivatelink-addon)
-* [`heroku data:privatelink:access [ADDON]`](#heroku-dataprivatelinkaccess-addon)
-* [`heroku data:privatelink:access:add [ADDON]`](#heroku-dataprivatelinkaccessadd-addon)
-* [`heroku data:privatelink:access:remove [ADDON]`](#heroku-dataprivatelinkaccessremove-addon)
-* [`heroku data:privatelink:create [ADDON]`](#heroku-dataprivatelinkcreate-addon)
-* [`heroku data:privatelink:destroy [ADDON]`](#heroku-dataprivatelinkdestroy-addon)
-* [`heroku data:privatelink:wait [ADDON]`](#heroku-dataprivatelinkwait-addon)
+* [`heroku data:privatelink [DATABASE]`](#heroku-dataprivatelink-database)
+* [`heroku data:privatelink:access [DATABASE]`](#heroku-dataprivatelinkaccess-database)
+* [`heroku data:privatelink:access:add [DATABASE]`](#heroku-dataprivatelinkaccessadd-database)
+* [`heroku data:privatelink:access:remove [DATABASE]`](#heroku-dataprivatelinkaccessremove-database)
+* [`heroku data:privatelink:create [DATABASE]`](#heroku-dataprivatelinkcreate-database)
+* [`heroku data:privatelink:destroy [DATABASE]`](#heroku-dataprivatelinkdestroy-database)
+* [`heroku data:privatelink:wait [DATABASE]`](#heroku-dataprivatelinkwait-database)
 
-## `heroku data:privatelink [ADDON]`
+## `heroku data:privatelink [DATABASE]`
 
 list all your privatelink endpoints!
 
 ```
 USAGE
-  $ heroku data:privatelink [ADDON]
+  $ heroku data:privatelink [DATABASE]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
+
+ALIASES
+  $ heroku pg:privatelink
+  $ heroku kafka:privatelink
 
 EXAMPLE
   $ heroku data:privatelink postgresql-sushi-12345
 ```
 
-_See code: [src/commands/data/privatelink/index.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v0.8.0/src/commands/data/privatelink/index.ts)_
+_See code: [src/commands/data/privatelink/index.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.0.1/src/commands/data/privatelink/index.ts)_
 
-## `heroku data:privatelink:access [ADDON]`
+## `heroku data:privatelink:access [DATABASE]`
 
 list all accounts for your privatelink endpoint's whitelist
 
 ```
 USAGE
-  $ heroku data:privatelink:access [ADDON]
+  $ heroku data:privatelink:access [DATABASE]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
+
+ALIASES
+  $ heroku pg:privatelink:access
+  $ heroku kafka:privatelink:access
 
 EXAMPLE
   $ heroku data:privatelink:access postgresql-sushi-12345
 ```
 
-_See code: [src/commands/data/privatelink/access/index.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v0.8.0/src/commands/data/privatelink/access/index.ts)_
+_See code: [src/commands/data/privatelink/access/index.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.0.1/src/commands/data/privatelink/access/index.ts)_
 
-## `heroku data:privatelink:access:add [ADDON]`
+## `heroku data:privatelink:access:add [DATABASE]`
 
 add an account to your privatelink endpoint's whitelist
 
 ```
 USAGE
-  $ heroku data:privatelink:access:add [ADDON]
+  $ heroku data:privatelink:access:add [DATABASE]
 
 OPTIONS
   -a, --app=app                        (required) app to run command against
   -i, --aws-account-id=aws-account-id  AWS account id to use
+
+ALIASES
+  $ heroku pg:privatelink:access:add
+  $ heroku kafka:privatelink:access:add
 
 EXAMPLES
   $ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc
@@ -86,19 +98,23 @@ EXAMPLES
   123456789012:user/xyz
 ```
 
-_See code: [src/commands/data/privatelink/access/add.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v0.8.0/src/commands/data/privatelink/access/add.ts)_
+_See code: [src/commands/data/privatelink/access/add.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.0.1/src/commands/data/privatelink/access/add.ts)_
 
-## `heroku data:privatelink:access:remove [ADDON]`
+## `heroku data:privatelink:access:remove [DATABASE]`
 
 remove an account from your privatelink endpoint's whitelist
 
 ```
 USAGE
-  $ heroku data:privatelink:access:remove [ADDON]
+  $ heroku data:privatelink:access:remove [DATABASE]
 
 OPTIONS
   -a, --app=app                        (required) app to run command against
   -i, --aws-account-id=aws-account-id  AWS account id to use
+
+ALIASES
+  $ heroku pg:privatelink:access:remove
+  $ heroku kafka:privatelink:access:remove
 
 EXAMPLES
   $ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/xyz
@@ -106,19 +122,23 @@ EXAMPLES
   123456789012:user/xyz
 ```
 
-_See code: [src/commands/data/privatelink/access/remove.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v0.8.0/src/commands/data/privatelink/access/remove.ts)_
+_See code: [src/commands/data/privatelink/access/remove.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.0.1/src/commands/data/privatelink/access/remove.ts)_
 
-## `heroku data:privatelink:create [ADDON]`
+## `heroku data:privatelink:create [DATABASE]`
 
 create a new privatelink endpoint for your database
 
 ```
 USAGE
-  $ heroku data:privatelink:create [ADDON]
+  $ heroku data:privatelink:create [DATABASE]
 
 OPTIONS
   -a, --app=app                        (required) app to run command against
   -i, --aws-account-id=aws-account-id  AWS account id to use
+
+ALIASES
+  $ heroku pg:privatelink:create
+  $ heroku kafka:privatelink:create
 
 EXAMPLES
   $ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc
@@ -126,39 +146,47 @@ EXAMPLES
   123456789012:user/xyz
 ```
 
-_See code: [src/commands/data/privatelink/create.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v0.8.0/src/commands/data/privatelink/create.ts)_
+_See code: [src/commands/data/privatelink/create.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.0.1/src/commands/data/privatelink/create.ts)_
 
-## `heroku data:privatelink:destroy [ADDON]`
+## `heroku data:privatelink:destroy [DATABASE]`
 
 destroy a privatelink endpoint for your database
 
 ```
 USAGE
-  $ heroku data:privatelink:destroy [ADDON]
+  $ heroku data:privatelink:destroy [DATABASE]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
+
+ALIASES
+  $ heroku pg:privatelink:destroy
+  $ heroku kafka:privatelink:destroy
 
 EXAMPLE
   $ heroku data:privatelink:destroy postgresql-sushi-12345
 ```
 
-_See code: [src/commands/data/privatelink/destroy.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v0.8.0/src/commands/data/privatelink/destroy.ts)_
+_See code: [src/commands/data/privatelink/destroy.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.0.1/src/commands/data/privatelink/destroy.ts)_
 
-## `heroku data:privatelink:wait [ADDON]`
+## `heroku data:privatelink:wait [DATABASE]`
 
 wait for your privatelink endpoint to be provisioned
 
 ```
 USAGE
-  $ heroku data:privatelink:wait [ADDON]
+  $ heroku data:privatelink:wait [DATABASE]
 
 OPTIONS
   -a, --app=app  (required) app to run command against
+
+ALIASES
+  $ heroku pg:privatelink:wait
+  $ heroku kafka:privatelink:wait
 
 EXAMPLE
   $ heroku data:privatelink:wait postgresql-sushi-12345
 ```
 
-_See code: [src/commands/data/privatelink/wait.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v0.8.0/src/commands/data/privatelink/wait.ts)_
+_See code: [src/commands/data/privatelink/wait.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.0.1/src/commands/data/privatelink/wait.ts)_
 <!-- commandsstop -->

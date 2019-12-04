@@ -32,5 +32,6 @@ describe('data:privatelink:create', () => {
     .command(['data:privatelink:create', 'postgres-123', '--aws-account-id', '123456789012:resource1', '--aws-account-id', '123456789012:resource2', '--app', 'myapp'])
     .it('creates a privatelink endpoint with multiple account ids', ctx => {
       expect(ctx.stderr).to.contain('Creating privatelink endpoint... done')
+      expect(ctx.stdout).to.contain('Run heroku data:privatelink:wait postgres-123 --app myapp to check the creation process.')
     })
 })

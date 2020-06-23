@@ -5,7 +5,7 @@ import BaseCommand from '../../../../base'
 import fetcher from '../../../../lib/fetcher'
 
 export default class EndpointsAccessRemove extends BaseCommand {
-  static description = 'remove an account from your privatelink endpoint\'s whitelist'
+  static description = 'remove an allowed account from your privatelink endpoint'
   static aliases = ['pg:privatelink:access:remove', 'kafka:privatelink:access:remove', 'redis:privatelink:access:remove']
 
   static args = [
@@ -36,11 +36,11 @@ export default class EndpointsAccessRemove extends BaseCommand {
     const account_ids = flags['aws-account-id']
     const accountFormatted = account_ids.length > 1 ? 'accounts' : 'account'
 
-    cli.action.start(`Removing ${accountFormatted} from the whitelist`)
-    await this.shogun.patch(`/private-link/v0/databases/${database}/whitelisted_accounts`, {
+    cli.action.start(`Removing ${accountFormatted}`)
+    await this.shogun.patch(`/private-link/v0/databases/${database}/allowlisted_accounts`, {
       ...this.shogun.defaults,
       body: {
-        whitelisted_accounts: account_ids
+        allowlisted_accounts: account_ids
       }
     })
     cli.action.stop()

@@ -5,7 +5,7 @@ import BaseCommand, {PrivateLinkDB} from '../../../../base'
 import fetcher from '../../../../lib/fetcher'
 
 export default class EndpointsAccessIndex extends BaseCommand {
-  static description = 'list all accounts for your privatelink endpoint\'s whitelist'
+  static description = 'list all allowed accounts for your privatelink endpoint'
   static aliases = ['pg:privatelink:access', 'kafka:privatelink:access', 'redis:privatelink:access']
 
   static args = [
@@ -24,10 +24,10 @@ export default class EndpointsAccessIndex extends BaseCommand {
     const {args, flags} = this.parse(EndpointsAccessIndex)
     const database = await fetcher(this.heroku, args.database, flags.app)
 
-    const {body: {whitelisted_accounts}} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
+    const {body: {allowlisted_accounts}} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
 
-    if (whitelisted_accounts.length > 0) {
-      cli.table(whitelisted_accounts, {
+    if (allowlisted_accounts.length > 0) {
+      cli.table(allowlisted_accounts, {
         arn: {
           header: 'ARN'
         },
@@ -36,7 +36,7 @@ export default class EndpointsAccessIndex extends BaseCommand {
         }
       })
     } else {
-      cli.error('There are no whitelisted accounts')
+      cli.error('There are no allowed accounts')
     }
   }
 }

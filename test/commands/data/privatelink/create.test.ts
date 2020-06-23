@@ -4,7 +4,7 @@ import {expect, test} from '../../../test'
 describe('data:privatelink:create', () => {
   test
     .nock('https://postgres-api.heroku.com', api => api
-      .post('/private-link/v0/databases/postgres-123', {whitelisted_accounts: ['123456789012:root']})
+      .post('/private-link/v0/databases/postgres-123', {allowlisted_accounts: ['123456789012:root']})
       .reply(200, {})
     )
     .nock('https://api.heroku.com', api => api
@@ -20,7 +20,7 @@ describe('data:privatelink:create', () => {
 
   test
     .nock('https://postgres-api.heroku.com', api => api
-      .post('/private-link/v0/databases/postgres-123', {whitelisted_accounts: ['123456789012:resource1', '123456789012:resource2']})
+      .post('/private-link/v0/databases/postgres-123', {allowlisted_accounts: ['123456789012:resource1', '123456789012:resource2']})
       .reply(200, {})
     )
     .nock('https://api.heroku.com', api => api

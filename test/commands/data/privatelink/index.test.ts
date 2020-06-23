@@ -1,6 +1,8 @@
-import {addonsFetcherResponse,
+import {
+  addonsFetcherResponse,
   privateLinkNewlyCreated,
-  privateLinkWithConnections} from '../../../fixtures'
+  privateLinkWithConnections
+} from '../../../fixtures'
 import {expect, test} from '../../../test'
 
 describe('privatelink', () => {
@@ -16,12 +18,12 @@ describe('privatelink', () => {
     .stdout()
     .stderr()
     .command(['data:privatelink', 'postgres-123', '--app', 'myapp'])
-    .it('shows the status of a privatelink endpoint, inc. whitelist and connections', ctx => {
+    .it('shows the status of a privatelink endpoint, inc. allowed accounts and connections', ctx => {
       expect(ctx.stdout).to.contain('=== privatelink endpoint status for postgres-123')
       expect(ctx.stdout).to.contain('Service Name: com.amazonaws.vpce.testvpc')
       expect(ctx.stdout).to.contain('Status:       Operational')
 
-      expect(ctx.stdout).to.contain('Whitelisted Accounts')
+      expect(ctx.stdout).to.contain('Allowed Accounts')
       expect(ctx.stdout).to.contain('ARN                           Status')
       expect(ctx.stdout).to.contain('arn:aws:iam::12345567890:root Active')
 

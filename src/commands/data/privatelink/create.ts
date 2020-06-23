@@ -40,7 +40,7 @@ export default class EndpointsCreate extends BaseCommand {
     const {body: res} = await this.shogun.post<PrivateLinkDB>(`/private-link/v0/databases/${database}`, {
       ...this.shogun.defaults,
       body: {
-        whitelisted_accounts: account_ids
+        allowlisted_accounts: account_ids
       }
     })
     cli.action.stop()
@@ -53,6 +53,6 @@ export default class EndpointsCreate extends BaseCommand {
     this.log()
     this.log(`The privatelink endpoint is now being provisioned for ${color.cyan(database)}.`)
     this.log('Run ' + color.cyan('heroku data:privatelink:wait ' + database + ' --app ' + flags.app) +
-             ' to check the creation process.')
+      ' to check the creation process.')
   }
 }

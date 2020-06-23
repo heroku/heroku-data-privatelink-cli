@@ -58,7 +58,7 @@ _See code: [src/commands/data/privatelink/index.ts](https://github.com/heroku/he
 
 ## `heroku data:privatelink:access [DATABASE]`
 
-list all accounts for your privatelink endpoint's whitelist
+list all allowed accounts for your privatelink endpoint
 
 ```
 USAGE
@@ -80,7 +80,7 @@ _See code: [src/commands/data/privatelink/access/index.ts](https://github.com/he
 
 ## `heroku data:privatelink:access:add [DATABASE]`
 
-add an account to your privatelink endpoint's whitelist
+add an allowed account to your privatelink endpoint
 
 ```
 USAGE
@@ -105,7 +105,7 @@ _See code: [src/commands/data/privatelink/access/add.ts](https://github.com/hero
 
 ## `heroku data:privatelink:access:remove [DATABASE]`
 
-remove an account from your privatelink endpoint's whitelist
+remove an allowed account from your privatelink endpoint
 
 ```
 USAGE

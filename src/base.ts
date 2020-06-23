@@ -18,10 +18,10 @@ export default abstract class extends Command {
 }
 
 export interface PrivateLinkDB {
-  apps: {name: string},
-  addon: {name: string},
+  apps: { name: string },
+  addon: { name: string },
   status: string,
   service_name: string,
-  whitelisted_accounts: {arn: string, status: string}[],
-  connections: {endpoint_id: string, owner_arn: string, status: string}[],
+  whitelisted_accounts: { arn: string, status: string }[],
+  connections: { endpoint_id: string, owner_arn: string, status: string }[],
 }

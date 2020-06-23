@@ -41,7 +41,7 @@ export default class EndpointsIndex extends BaseCommand {
 
       if (res && res.whitelisted_accounts.length > 0) {
         this.log()
-        cli.styledHeader('Whitelisted Accounts')
+        cli.styledHeader('Allowed Accounts')
         cli.table(res.whitelisted_accounts, {
           arn: {header: 'ARN'},
           status: {}

@@ -5,7 +5,7 @@ import BaseCommand, {PrivateLinkDB} from '../../../../base'
 import fetcher from '../../../../lib/fetcher'
 
 export default class EndpointsAccessIndex extends BaseCommand {
-  static description = 'list all accounts for your privatelink endpoint\'s whitelist'
+  static description = 'list all allowed accounts for your privatelink endpoint'
   static aliases = ['pg:privatelink:access', 'kafka:privatelink:access', 'redis:privatelink:access']
 
   static args = [
@@ -36,7 +36,7 @@ export default class EndpointsAccessIndex extends BaseCommand {
         }
       })
     } else {
-      cli.error('There are no whitelisted accounts')
+      cli.error('There are no allowed accounts')
     }
   }
 }

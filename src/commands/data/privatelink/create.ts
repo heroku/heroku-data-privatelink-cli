@@ -53,6 +53,6 @@ export default class EndpointsCreate extends BaseCommand {
     this.log()
     this.log(`The privatelink endpoint is now being provisioned for ${color.cyan(database)}.`)
     this.log('Run ' + color.cyan('heroku data:privatelink:wait ' + database + ' --app ' + flags.app) +
-             ' to check the creation process.')
+      ' to check the creation process.')
   }
 }

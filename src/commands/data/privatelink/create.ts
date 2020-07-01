@@ -40,7 +40,7 @@ export default class EndpointsCreate extends BaseCommand {
     const {body: res} = await this.shogun.post<PrivateLinkDB>(`/private-link/v0/databases/${database}`, {
       ...this.shogun.defaults,
       body: {
-        whitelisted_accounts: account_ids
+        allowed_accounts: account_ids
       }
     })
     cli.action.stop()

@@ -37,10 +37,10 @@ export default class EndpointsAccessAdd extends BaseCommand {
     const accountFormatted = account_ids.length > 1 ? 'accounts' : 'account'
 
     cli.action.start(`Adding ${accountFormatted}`)
-    await this.shogun.put(`/private-link/v0/databases/${database}/whitelisted_accounts`, {
+    await this.shogun.put(`/private-link/v0/databases/${database}/allowed_accounts`, {
       ...this.shogun.defaults,
       body: {
-        whitelisted_accounts: account_ids
+        allowed_accounts: account_ids
       }
     })
     cli.action.stop()

@@ -22,6 +22,6 @@ export interface PrivateLinkDB {
   addon: { name: string },
   status: string,
   service_name: string,
-  whitelisted_accounts: { arn: string, status: string }[],
+  allowed_accounts: { arn: string, status: string }[],
   connections: { endpoint_id: string, owner_arn: string, status: string }[],
 }

@@ -37,10 +37,10 @@ export default class EndpointsAccessRemove extends BaseCommand {
     const accountFormatted = account_ids.length > 1 ? 'accounts' : 'account'
 
     cli.action.start(`Removing ${accountFormatted}`)
-    await this.shogun.patch(`/private-link/v0/databases/${database}/whitelisted_accounts`, {
+    await this.shogun.patch(`/private-link/v0/databases/${database}/allowed_accounts`, {
       ...this.shogun.defaults,
       body: {
-        whitelisted_accounts: account_ids
+        allowed_accounts: account_ids
       }
     })
     cli.action.stop()

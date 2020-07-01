@@ -24,10 +24,10 @@ export default class EndpointsAccessIndex extends BaseCommand {
     const {args, flags} = this.parse(EndpointsAccessIndex)
     const database = await fetcher(this.heroku, args.database, flags.app)
 
-    const {body: {whitelisted_accounts}} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
+    const {body: {allowed_accounts}} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
 
-    if (whitelisted_accounts.length > 0) {
-      cli.table(whitelisted_accounts, {
+    if (allowed_accounts.length > 0) {
+      cli.table(allowed_accounts, {
         arn: {
           header: 'ARN'
         },

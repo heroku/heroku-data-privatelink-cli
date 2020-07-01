@@ -8,7 +8,7 @@ describe('data:privatelink:access', () => {
     status: 'Operational',
     service_name: 'com.amazonaws.vpce.testvpc"',
     connections: [],
-    whitelisted_accounts: [{arn: 'arn:aws:iam::123456789:root', status: 'Available'}]
+    allowed_accounts: [{arn: 'arn:aws:iam::123456789:root', status: 'Available'}]
   }
 
   test

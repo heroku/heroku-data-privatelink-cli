@@ -4,7 +4,7 @@ import {expect, test} from '../../../../test'
 describe('data:privatelink:access:remove', () => {
   test
     .nock('https://postgres-api.heroku.com', api => api
-      .patch('/private-link/v0/databases/postgres-123/whitelisted_accounts', {whitelisted_accounts: ['123456789012:root']})
+      .patch('/private-link/v0/databases/postgres-123/allowed_accounts', {allowed_accounts: ['123456789012:root']})
       .reply(200, {})
     )
     .nock('https://api.heroku.com', api => api
@@ -20,7 +20,7 @@ describe('data:privatelink:access:remove', () => {
 
   test
     .nock('https://postgres-api.heroku.com', api => api
-      .patch('/private-link/v0/databases/postgres-123/whitelisted_accounts', {whitelisted_accounts: ['123456789012:resource1', '123456789012:resource2']})
+      .patch('/private-link/v0/databases/postgres-123/allowed_accounts', {allowed_accounts: ['123456789012:resource1', '123456789012:resource2']})
       .reply(200, {})
     )
     .nock('https://api.heroku.com', api => api

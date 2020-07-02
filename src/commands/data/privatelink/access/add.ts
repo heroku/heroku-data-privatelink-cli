@@ -5,7 +5,7 @@ import BaseCommand from '../../../../base'
 import fetcher from '../../../../lib/fetcher'
 
 export default class EndpointsAccessAdd extends BaseCommand {
-  static description = 'add an account to your privatelink endpoint\'s whitelist'
+  static description = 'add an allowed account to your privatelink endpoint'
   static aliases = ['pg:privatelink:access:add', 'kafka:privatelink:access:add', 'redis:privatelink:access:add']
 
   static args = [
@@ -36,11 +36,11 @@ export default class EndpointsAccessAdd extends BaseCommand {
     const account_ids = flags['aws-account-id']
     const accountFormatted = account_ids.length > 1 ? 'accounts' : 'account'
 
-    cli.action.start(`Adding ${accountFormatted} to the whitelist`)
-    await this.shogun.put(`/private-link/v0/databases/${database}/whitelisted_accounts`, {
+    cli.action.start(`Adding ${accountFormatted}`)
+    await this.shogun.put(`/private-link/v0/databases/${database}/allowed_accounts`, {
       ...this.shogun.defaults,
       body: {
-        whitelisted_accounts: account_ids
+        allowed_accounts: account_ids
       }
     })
     cli.action.stop()

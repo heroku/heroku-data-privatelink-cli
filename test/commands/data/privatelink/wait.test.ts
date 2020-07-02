@@ -8,7 +8,7 @@ describe('data:privatelink:wait', () => {
     status: 'Operational',
     service_name: 'com.amazonaws.vpce.testvpc"',
     connections: [],
-    whitelisted_accounts: []
+    allowed_accounts: []
   }
 
   test

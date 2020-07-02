@@ -54,7 +54,7 @@ export const privateLinkNewlyCreated = {
   status: 'Provisioning',
   service_name: 'com.amazonaws.vpce.testvpc',
   connections: [],
-  whitelisted_accounts: []
+  allowed_accounts: []
 }
 
 export const privateLinkOperational = {
@@ -67,7 +67,7 @@ export const privateLinkWithConnections = {
   connections: [
     {endpoint_id: '123456', owner_arn: 'arn:aws:iam::12345567890:root', status: 'Available'}
   ],
-  whitelisted_accounts: [
+  allowed_accounts: [
     {arn: 'arn:aws:iam::12345567890:root', status: 'Active'}
   ]
 }

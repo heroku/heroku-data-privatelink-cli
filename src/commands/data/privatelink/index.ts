@@ -39,10 +39,10 @@ export default class EndpointsIndex extends BaseCommand {
         'Service Name': res.service_name || 'Provisioning',
       })
 
-      if (res && res.whitelisted_accounts.length > 0) {
+      if (res && res.allowed_accounts.length > 0) {
         this.log()
-        cli.styledHeader('Whitelisted Accounts')
-        cli.table(res.whitelisted_accounts, {
+        cli.styledHeader('Allowed Accounts')
+        cli.table(res.allowed_accounts, {
           arn: {header: 'ARN'},
           status: {}
         })

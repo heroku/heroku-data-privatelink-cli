@@ -2,9 +2,9 @@ Heroku Postgres via PrivateLink CLI
 =======================
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/heroku-endpoints-cli.svg)](https://npmjs.org/package/heroku-privatelinks-cli)
-[![Downloads/week](https://img.shields.io/npm/dw/heroku-endpoints-cli.svg)](https://npmjs.org/package/heroku-privatelinks-cli)
-[![License](https://img.shields.io/npm/l/heroku-endpoints-cli.svg)](https://github.com/brettgoulder/heroku-endpoints-cli/blob/master/package.json)
+[![Version](https://img.shields.io/npm/v/@heroku-cli/plugin-data-privatelink.svg)](https://www.npmjs.com/package/@heroku-cli/plugin-data-privatelink)
+[![Downloads/week](https://img.shields.io/npm/dw/@heroku-cli/plugin-data-privatelink.svg)](https://www.npmjs.com/package/@heroku-cli/plugin-data-privatelink)
+[![License](https://img.shields.io/npm/l/@heroku-cli/plugin-data-privatelink.svg)](https://github.com/heroku/heroku-data-privatelink-cli/blob/main/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -97,7 +97,7 @@ ALIASES
 
 EXAMPLES
   $ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc
-  $ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 
+  $ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id
   123456789012:user/xyz
 ```
 
@@ -122,7 +122,7 @@ ALIASES
 
 EXAMPLES
   $ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/xyz
-  $ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 
+  $ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id
   123456789012:user/xyz
 ```
 
@@ -147,7 +147,7 @@ ALIASES
 
 EXAMPLES
   $ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc
-  $ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --account-id 
+  $ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --account-id
   123456789012:user/xyz
 ```
 

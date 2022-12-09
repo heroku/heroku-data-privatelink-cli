@@ -17,7 +17,7 @@ $ npm install -g @heroku-cli/plugin-data-privatelink
 $ heroku COMMAND
 running command...
 $ heroku (-v|--version|version)
-@heroku-cli/plugin-data-privatelink/1.3.0 darwin-x64 node-v14.2.0
+@heroku-cli/plugin-data-privatelink/1.3.1 darwin-arm64 node-v16.18.0
 $ heroku --help [COMMAND]
 USAGE
   $ heroku COMMAND
@@ -54,7 +54,7 @@ EXAMPLE
   $ heroku data:privatelink postgresql-sushi-12345
 ```
 
-_See code: [src/commands/data/privatelink/index.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.0/src/commands/data/privatelink/index.ts)_
+_See code: [src/commands/data/privatelink/index.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.1/src/commands/data/privatelink/index.ts)_
 
 ## `heroku data:privatelink:access [DATABASE]`
 
@@ -76,7 +76,7 @@ EXAMPLE
   $ heroku data:privatelink:access postgresql-sushi-12345
 ```
 
-_See code: [src/commands/data/privatelink/access/index.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.0/src/commands/data/privatelink/access/index.ts)_
+_See code: [src/commands/data/privatelink/access/index.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.1/src/commands/data/privatelink/access/index.ts)_
 
 ## `heroku data:privatelink:access:add [DATABASE]`
 
@@ -97,11 +97,11 @@ ALIASES
 
 EXAMPLES
   $ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc
-  $ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id
+  $ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 
   123456789012:user/xyz
 ```
 
-_See code: [src/commands/data/privatelink/access/add.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.0/src/commands/data/privatelink/access/add.ts)_
+_See code: [src/commands/data/privatelink/access/add.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.1/src/commands/data/privatelink/access/add.ts)_
 
 ## `heroku data:privatelink:access:remove [DATABASE]`
 
@@ -122,11 +122,11 @@ ALIASES
 
 EXAMPLES
   $ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/xyz
-  $ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id
+  $ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 
   123456789012:user/xyz
 ```
 
-_See code: [src/commands/data/privatelink/access/remove.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.0/src/commands/data/privatelink/access/remove.ts)_
+_See code: [src/commands/data/privatelink/access/remove.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.1/src/commands/data/privatelink/access/remove.ts)_
 
 ## `heroku data:privatelink:create [DATABASE]`
 
@@ -147,11 +147,11 @@ ALIASES
 
 EXAMPLES
   $ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc
-  $ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --account-id
+  $ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --account-id 
   123456789012:user/xyz
 ```
 
-_See code: [src/commands/data/privatelink/create.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.0/src/commands/data/privatelink/create.ts)_
+_See code: [src/commands/data/privatelink/create.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.1/src/commands/data/privatelink/create.ts)_
 
 ## `heroku data:privatelink:destroy [DATABASE]`
 
@@ -173,7 +173,7 @@ EXAMPLE
   $ heroku data:privatelink:destroy postgresql-sushi-12345
 ```
 
-_See code: [src/commands/data/privatelink/destroy.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.0/src/commands/data/privatelink/destroy.ts)_
+_See code: [src/commands/data/privatelink/destroy.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.1/src/commands/data/privatelink/destroy.ts)_
 
 ## `heroku data:privatelink:wait [DATABASE]`
 
@@ -195,5 +195,5 @@ EXAMPLE
   $ heroku data:privatelink:wait postgresql-sushi-12345
 ```
 
-_See code: [src/commands/data/privatelink/wait.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.0/src/commands/data/privatelink/wait.ts)_
+_See code: [src/commands/data/privatelink/wait.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.1/src/commands/data/privatelink/wait.ts)_
 <!-- commandsstop -->

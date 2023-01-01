@@ -197,3 +197,4 @@ EXAMPLE
 
 _See code: [src/commands/data/privatelink/wait.ts](https://github.com/heroku/heroku-data-privatelink-cli/blob/v1.3.1/src/commands/data/privatelink/wait.ts)_
 <!-- commandsstop -->
+test

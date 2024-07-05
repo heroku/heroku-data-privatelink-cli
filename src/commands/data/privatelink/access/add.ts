@@ -1,48 +1,45 @@
 import {flags} from '@heroku-cli/command'
-import {cli} from 'cli-ux'
-
+import {Args, ux} from '@oclif/core'
 import BaseCommand from '../../../../base'
 import fetcher from '../../../../lib/fetcher'
 
-export default class EndpointsAccessAdd extends BaseCommand {
+export default class Add extends BaseCommand {
   static description = 'add an allowed account to your privatelink endpoint'
-  static aliases = ['pg:privatelink:access:add', 'kafka:privatelink:access:add', 'redis:privatelink:access:add']
+  static hiddenAliases = ['pg:privatelink:access:add', 'kafka:privatelink:access:add', 'redis:privatelink:access:add']
 
-  static args = [
-    {name: 'database'},
-  ]
+  static args = {
+    database: Args.string({required: true}),
+  }
 
   static flags = {
-    'aws-account-id': flags.build({
+    'aws-account-id': flags.string({
       char: 'i',
       description: 'AWS account id to use',
-      parse: (input: string, ctx: any) => {
-        if (!ctx.endpoints_access_add_ids) ctx.endpoints_access_add_ids = []
-        ctx.endpoints_access_add_ids.push(input)
-        return ctx.endpoints_access_add_ids
-      },
-    })(),
-    app: flags.app({required: true})
+      required: true,
+      multiple: true,
+    }),
+    app: flags.app({required: true}),
+    remote: flags.remote(),
   }
 
   static examples = [
-    '$ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc',
-    '$ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 123456789012:user/xyz',
+    '$ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc -a my-app',
+    '$ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 123456789012:user/xyz -a my-app',
   ]
 
-  async run() {
-    const {args, flags} = this.parse(EndpointsAccessAdd)
+  public async run(): Promise<void> {
+    const {args, flags} = await this.parse(Add)
     const database = await fetcher(this.heroku, args.database, flags.app)
-    const account_ids = flags['aws-account-id']
+    const {'aws-account-id': account_ids} = flags
     const accountFormatted = account_ids.length > 1 ? 'accounts' : 'account'
 
-    cli.action.start(`Adding ${accountFormatted}`)
+    ux.action.start(`Adding ${accountFormatted}`)
     await this.shogun.put(`/private-link/v0/databases/${database}/allowed_accounts`, {
       ...this.shogun.defaults,
       body: {
-        allowed_accounts: account_ids
-      }
+        allowed_accounts: account_ids,
+      },
     })
-    cli.action.stop()
+    ux.action.stop()
   }
 }

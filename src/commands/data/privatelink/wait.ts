@@ -1,36 +1,37 @@
 import {flags} from '@heroku-cli/command'
-import {cli} from 'cli-ux'
-
+import {Args, ux} from '@oclif/core'
 import BaseCommand, {PrivateLinkDB} from '../../../base'
 import fetcher from '../../../lib/fetcher'
 
-export default class EndpointsWait extends BaseCommand {
+export default class Wait extends BaseCommand {
   static description = 'wait for your privatelink endpoint to be provisioned'
-  static aliases = ['pg:privatelink:wait', 'kafka:privatelink:wait', 'redis:privatelink:wait']
+  static hiddenAliases = ['pg:privatelink:wait', 'kafka:privatelink:wait', 'redis:privatelink:wait']
 
-  static args = [
-    {name: 'database'}
-  ]
+  static args = {
+    database: Args.string({required: true}),
+  }
 
   static flags = {
-    app: flags.app({required: true})
+    app: flags.app({required: true}),
+    remote: flags.remote(),
   }
 
   static examples = [
     '$ heroku data:privatelink:wait postgresql-sushi-12345',
   ]
 
-  async run() {
-    const {args, flags} = this.parse(EndpointsWait)
+  public async run(): Promise<void> {
+    const {args, flags} = await this.parse(Wait)
     const database = await fetcher(this.heroku, args.database, flags.app)
 
     let status
-    cli.action.start('Waiting for the privatelink endpoint to be provisioned')
+    ux.action.start('Waiting for the privatelink endpoint to be provisioned')
     while (status !== 'Operational') {
-      let {body: res} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
+      const {body: res} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
       status = res.status
-      await cli.wait(3000)
+      await ux.wait(3000)
     }
-    cli.action.stop()
+
+    ux.action.stop()
   }
 }

@@ -23,19 +23,19 @@
     "@oclif/tslint": "^3.1.1",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.5",
-    "@types/node": "^10.12.18",
-    "chai": "^4.2.0",
-    "globby": "^8.0.1",
+    "@types/node": "16.11.7",
+    "chai": "^4.4.1",
+    "globby": "^9.2.0",
     "lolex": "^3.0.0",
-    "mocha": "^5.2.0",
-    "nock": "^10.0.5",
+    "mocha": "^10.4.0",
+    "nock": "^13.5.1",
     "nyc": "^13.1.0",
     "ts-node": "^10.9.2",
     "tslint": "^5.12.0",
-    "typescript": "^3.2.2"
+    "typescript": "3.8.3"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=16.0.0"
   },
   "files": [
     "/lib",
@@ -48,6 +48,16 @@
     "oclif-plugin"
   ],
   "license": "MIT",
+  "mocha": {
+    "require": [
+      "ts-node/register",
+      "source-map-support/register"
+    ],
+    "watch-extensions": "ts",
+    "recursive": true,
+    "reporter": "spec",
+    "timeout": 360000
+  },
   "oclif": {
     "commands": "./lib/commands",
     "bin": "heroku",

@@ -68,7 +68,10 @@
   },
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "heroku"
+    "bin": "heroku",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
   },
   "repository": "heroku/heroku-data-privatelink-cli",
   "resolutions": {

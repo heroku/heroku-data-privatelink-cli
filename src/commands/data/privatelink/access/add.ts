@@ -4,7 +4,7 @@ import BaseCommand from '../../../../base'
 import fetcher from '../../../../lib/fetcher'
 
 export default class Add extends BaseCommand {
-  static description = 'add an allowed account to your privatelink endpoint'
+  static description = 'add one or more allowed AWS accounts to your privatelink endpoint'
   static hiddenAliases = ['pg:privatelink:access:add', 'kafka:privatelink:access:add', 'redis:privatelink:access:add']
 
   static args = {

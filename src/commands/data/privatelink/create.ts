@@ -1,58 +1,55 @@
 import color from '@heroku-cli/color'
 import {flags} from '@heroku-cli/command'
-import {cli} from 'cli-ux'
-
+import {Args, ux} from '@oclif/core'
 import BaseCommand, {PrivateLinkDB} from '../../../base'
 import fetcher from '../../../lib/fetcher'
 
-export default class EndpointsCreate extends BaseCommand {
+export default class Create extends BaseCommand {
   static description = 'create a new privatelink endpoint for your database'
-  static aliases = ['pg:privatelink:create', 'kafka:privatelink:create', 'redis:privatelink:create']
+  static hiddenAliases = ['pg:privatelink:create', 'kafka:privatelink:create', 'redis:privatelink:create']
 
-  static args = [
-    {name: 'database'},
-  ]
+  static args = {
+    database: Args.string({required: true}),
+  }
 
   static flags = {
-    'aws-account-id': flags.build({
+    'aws-account-id': flags.string({
       char: 'i',
       description: 'AWS account id to use',
-      parse: (input: string, ctx: any) => {
-        if (!ctx.endpoints_create_ids) ctx.endpoints_create_ids = []
-        ctx.endpoints_create_ids.push(input)
-        return ctx.endpoints_create_ids
-      },
-    })(),
-    app: flags.app({required: true})
+      required: true,
+      multiple: true,
+    }),
+    app: flags.app({required: true}),
+    remote: flags.remote(),
   }
 
   static examples = [
-    '$ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc',
-    '$ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --account-id 123456789012:user/xyz',
+    '$ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --app my-app',
+    '$ heroku data:privatelink:create postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --account-id 123456789012:user/xyz --app my-app',
   ]
 
-  async run() {
-    const {args, flags} = this.parse(EndpointsCreate)
+  public async run(): Promise<void> {
+    const {args, flags} = await this.parse(Create)
     const database = await fetcher(this.heroku, args.database, flags.app)
-    const account_ids = flags['aws-account-id']
+    const {'aws-account-id': account_ids, app} = flags
 
-    cli.action.start('Creating privatelink endpoint')
+    ux.action.start('Creating privatelink endpoint')
     const {body: res} = await this.shogun.post<PrivateLinkDB>(`/private-link/v0/databases/${database}`, {
       ...this.shogun.defaults,
       body: {
-        allowed_accounts: account_ids
-      }
+        allowed_accounts: account_ids,
+      },
     })
-    cli.action.stop()
-    this.log()
-    cli.styledObject({
+    ux.action.stop()
+    ux.log()
+    ux.styledObject({
       Status: res.status,
-      'Service Name': res.service_name || 'Provisioning'
+      'Service Name': res.service_name || 'Provisioning',
     })
 
-    this.log()
-    this.log(`The privatelink endpoint is now being provisioned for ${color.cyan(database)}.`)
-    this.log('Run ' + color.cyan('heroku data:privatelink:wait ' + database + ' --app ' + flags.app) +
+    ux.log()
+    ux.log(`The privatelink endpoint is now being provisioned for ${color.green(database)}.`)
+    ux.log('Run ' + color.cmd('heroku data:privatelink:wait ' + database + ' --app ' + app) +
       ' to check the creation process.')
   }
 }

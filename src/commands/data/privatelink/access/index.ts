@@ -1,42 +1,43 @@
 import {flags} from '@heroku-cli/command'
-import {cli} from 'cli-ux'
-
+import {Args, ux} from '@oclif/core'
 import BaseCommand, {PrivateLinkDB} from '../../../../base'
 import fetcher from '../../../../lib/fetcher'
 
-export default class EndpointsAccessIndex extends BaseCommand {
+export default class Index extends BaseCommand {
+  static topic = 'data:privatelink:access'
   static description = 'list all allowed accounts for your privatelink endpoint'
-  static aliases = ['pg:privatelink:access', 'kafka:privatelink:access', 'redis:privatelink:access']
+  static hiddenAliases = ['pg:privatelink:access', 'kafka:privatelink:access', 'redis:privatelink:access']
 
-  static args = [
-    {name: 'database'},
-  ]
+  static args = {
+    database: Args.string({required: true}),
+  }
 
   static flags = {
-    app: flags.app({required: true})
+    app: flags.app({required: true}),
+    remote: flags.remote(),
   }
 
   static examples = [
-    '$ heroku data:privatelink:access postgresql-sushi-12345',
+    '$ heroku data:privatelink:access postgresql-sushi-12345 --app my-app',
   ]
 
-  async run() {
-    const {args, flags} = this.parse(EndpointsAccessIndex)
+  public async run(): Promise<void> {
+    const {args, flags} = await this.parse(Index)
     const database = await fetcher(this.heroku, args.database, flags.app)
 
     const {body: {allowed_accounts}} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
 
     if (allowed_accounts.length > 0) {
-      cli.table(allowed_accounts, {
+      ux.table(allowed_accounts, {
         arn: {
-          header: 'ARN'
+          header: 'ARN',
         },
         status: {
-          header: 'Status'
-        }
+          header: 'Status',
+        },
       })
     } else {
-      cli.error('There are no allowed accounts')
+      ux.log('There are no allowed accounts')
     }
   }
 }

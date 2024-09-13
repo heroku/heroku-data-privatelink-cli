@@ -23,8 +23,8 @@ export default class Add extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc -a my-app',
-    '$ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 123456789012:user/xyz -a my-app',
+    '$ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --app my-app',
+    '$ heroku data:privatelink:access:add postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 123456789012:user/xyz --app my-app',
   ]
 
   public async run(): Promise<void> {

@@ -19,7 +19,7 @@ export default class Index extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku data:privatelink postgresql-sushi-12345 -a my-app',
+    '$ heroku data:privatelink postgresql-sushi-12345 --app my-app',
   ]
 
   public async run(): Promise<void> {

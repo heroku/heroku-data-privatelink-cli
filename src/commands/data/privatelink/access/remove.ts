@@ -23,8 +23,8 @@ export default class Remove extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/xyz -a my-app',
-    '$ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 123456789012:user/xyz -a my-app',
+    '$ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/xyz --app my-app',
+    '$ heroku data:privatelink:access:remove postgresql-sushi-12345 --aws-account-id 123456789012:user/abc --aws-account-id 123456789012:user/xyz --app my-app',
   ]
 
   public async run(): Promise<void> {

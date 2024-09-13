@@ -17,7 +17,7 @@ export default class Destroy extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku data:privatelink:destroy postgresql-sushi-12345 -a my-app',
+    '$ heroku data:privatelink:destroy postgresql-sushi-12345 --app my-app',
   ]
 
   public async run(): Promise<void> {

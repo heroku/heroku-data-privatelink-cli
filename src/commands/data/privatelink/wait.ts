@@ -17,7 +17,7 @@ export default class Wait extends BaseCommand {
   }
 
   static examples = [
-    '$ heroku data:privatelink:wait postgresql-sushi-12345',
+    '$ heroku data:privatelink:wait postgresql-sushi-12345 postgresql-sushi-12345 --app my-app',
   ]
 
   public async run(): Promise<void> {

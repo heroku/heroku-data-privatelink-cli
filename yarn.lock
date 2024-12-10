@@ -405,9 +405,9 @@
     tslib "^1.9.3"
 
 "@heroku-cli/command@^11.1.2":
-  version "11.1.2"
-  resolved "https://registry.yarnpkg.com/@heroku-cli/command/-/command-11.1.2.tgz#6c9b2f34706e6f84fa8ca11313180a94f9974260"
-  integrity sha512-WacQVPdCvxUWxJOiRlfv6IUi0GtKzY1vLRiveF18RbtKt1aulCiADpz72+MO5wmhrtxYZUM3YCXAfutYEgScuA==
+  version "11.3.2"
+  resolved "https://registry.yarnpkg.com/@heroku-cli/command/-/command-11.3.2.tgz#153cb8aaec4337c6d5156c4b3087290c03302010"
+  integrity sha512-T8dtZxpiCNkPg75hUB6wSxJ8mrk/Y74ni904IIIP3YvAm3a2KOUJWU7rZx0Z+gv+Z5rRC5adtfifttAnUuLwcg==
   dependencies:
     "@heroku-cli/color" "^2.0.1"
     "@oclif/core" "^2.16.0"
@@ -419,6 +419,8 @@
     netrc-parser "^3.1.6"
     open "^8.4.2"
     uuid "^8.3.0"
+    yargs-parser "^18.1.3"
+    yargs-unparser "^2.0.0"
 
 "@heroku-cli/schema@^1.0.25":
   version "1.0.25"
@@ -7105,7 +7107,7 @@ yargs-parser@20.2.4:
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-20.2.4.tgz#b42890f14566796f85ae8e3a25290d205f154a54"
   integrity sha512-WOkpgNhPTlE73h4VFAFsOnomJVaovO8VqLDzy5saChRBFQFBoMYirowyW+Q9HB4HFF4Z7VZTiG3iSzJJA29yRA==
 
-yargs-parser@^18.1.2:
+yargs-parser@^18.1.2, yargs-parser@^18.1.3:
   version "18.1.3"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-18.1.3.tgz#be68c4975c6b2abf469236b0c870362fab09a7b0"
   integrity sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==
@@ -7123,7 +7125,7 @@ yargs-parser@^21.1.1:
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-21.1.1.tgz#9096bceebf990d21bb31fa9516e0ede294a77d35"
   integrity sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==
 
-yargs-unparser@2.0.0:
+yargs-unparser@2.0.0, yargs-unparser@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/yargs-unparser/-/yargs-unparser-2.0.0.tgz#f131f9226911ae5d9ad38c432fe809366c2325eb"
   integrity sha512-7pRTIA9Qc1caZ0bZ6RYRGbHJthJWuakf+WmHK0rVeLkNrrGhfoabBNdue6kdINI6r4if7ocq9aD/n7xwKOdzOA==

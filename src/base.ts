@@ -1,7 +1,7 @@
 import {APIClient, Command} from '@heroku-cli/command'
 import {Config} from '@oclif/core'
 
-export default abstract class extends Command {
+export default abstract class BaseCommand extends Command {
   shogun: APIClient
 
   public constructor(argv: string[], config: Config) {

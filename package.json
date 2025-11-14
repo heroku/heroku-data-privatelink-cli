@@ -6,10 +6,10 @@
   "bugs": "https://github.com/heroku/heroku-data-privatelink-cli/issues",
   "dependencies": {
     "@heroku-cli/color": "^2.0.1",
-    "@heroku-cli/command": "^11.5.0",
+    "@heroku-cli/command": "^12.0.0",
     "@heroku-cli/schema": "^1.0.25",
-    "@oclif/core": "^2.16.0",
-    "@oclif/plugin-help": "^5",
+    "@oclif/core": "^4.0.0",
+    "@oclif/plugin-help": "^6.1.0",
     "stdout-stderr": "^0.1.13",
     "tslib": "1.14.1"
   },

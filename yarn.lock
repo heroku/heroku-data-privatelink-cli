@@ -838,9 +838,9 @@
   integrity sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==
 
 "@heroku-cli/color@^2.0.1":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@heroku-cli/color/-/color-2.0.3.tgz#3f993e95f6a71b92b36f29b9882ad9ec8201d7f2"
-  integrity sha512-xr0Yu0qZta9K+LOq0UvIwW32g+WcWea9Dgmph9oq2zzslgdrOtm6Wm4IMzPN7PymfTUa1n6SEyzRr6HuDEvKXA==
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@heroku-cli/color/-/color-2.0.4.tgz#fc13dcc5cb372d202ba52cd27df4c7edc8d0b08b"
+  integrity sha512-CjG4Mlj8B5ZELk8mzgJLUEb1fH+zckrqtufgxeKG9jLMyUCRyHNhEEBT9XHadPE6HbKTXMzW941QsmK6qVgNng==
   dependencies:
     ansi-styles "^4.3.0"
     chalk "^4.1.2"

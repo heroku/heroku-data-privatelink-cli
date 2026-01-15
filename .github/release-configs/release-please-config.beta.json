@@ -54,5 +54,6 @@
       "prerelease-type": "beta"
     }
   },
-  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "bootstrap-sha": "e584cd1e74a618c89a8bca3688adf514f30492db"
 }

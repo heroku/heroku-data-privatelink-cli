@@ -10,6 +10,7 @@
     "@heroku-cli/schema": "^1.0.25",
     "@oclif/core": "^2.16.0",
     "@oclif/plugin-help": "^5",
+    "cli-ux": "^6.0.9",
     "stdout-stderr": "^0.1.13",
     "tslib": "1.14.1"
   },
@@ -20,35 +21,27 @@
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.14.8",
     "@types/supports-color": "^8.1.3",
-    "@typescript-eslint/eslint-plugin": "7.18.0",
-    "@typescript-eslint/parser": "7.18.0",
     "chai": "^4.4.1",
     "chai-as-promised": "^7.1.1",
-    "eslint": "^8.57.1",
-    "eslint-config-oclif": "^4.0.0",
-    "eslint-config-oclif-typescript": "^1.0.2",
-    "eslint-import-resolver-typescript": "^3.5.5",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-mocha": "^10.4.3",
-    "eslint-plugin-unicorn": "^56.0",
+    "eslint": "^9",
+    "eslint-config-oclif": "^6.0.144",
+    "eslint-plugin-mocha": "^11.2.0",
     "globby": "^10.0.2",
     "lolex": "^3.1.0",
-    "mocha": "^10",
+    "mocha": "^11",
     "nock": "^13.5.1",
     "nyc": "^17.1.0",
-    "oclif": "^4.22.73",
+    "oclif": "^4.22.81",
     "ts-node": "^10.9.2",
     "tsheredoc": "^1.0.1",
     "typescript": "5.9.3"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=20"
   },
   "files": [
     "/lib",
-    "/npm-shrinkwrap.json",
-    "/oclif.manifest.json",
-    "/yarn.lock"
+    "/oclif.manifest.json"
   ],
   "homepage": "https://github.com/heroku/heroku-data-privatelink-cli",
   "keywords": [
@@ -77,12 +70,15 @@
   "repository": "heroku/heroku-data-privatelink-cli",
   "scripts": {
     "build": "rm -rf lib && tsc -b",
-    "lint": "eslint . --ext .ts --config .eslintrc",
+    "lint": "eslint .",
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "yarn lint",
     "prepack": "rm -rf lib && tsc -b && oclif manifest",
     "pretest": "tsc -p test --noEmit && yarn build",
     "test": "nyc mocha --forbid-only \"test/**/*.unit.test.ts\"",
     "version": "oclif readme && git add README.md"
+  },
+  "resolutions": {
+    "serialize-javascript": "^7.0.3"
   }
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.4](https://github.com/heroku/heroku-data-privatelink-cli/compare/plugin-data-privatelink-v1.3.3...plugin-data-privatelink-v1.3.4) (2026-03-04)
+
+
+### Bug Fixes
+
+* address high security vulns reported by Dependabot ([#130](https://github.com/heroku/heroku-data-privatelink-cli/issues/130)) ([92ac322](https://github.com/heroku/heroku-data-privatelink-cli/commit/92ac3229157cff9ed9de5cb3e5149b8adc64c73a))
+
 ## [1.3.3](https://github.com/heroku/heroku-data-privatelink-cli/compare/plugin-data-privatelink-v1.3.2...plugin-data-privatelink-v1.3.3) (2026-01-29)
 
 

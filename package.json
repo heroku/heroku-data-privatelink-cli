@@ -20,7 +20,7 @@
     "@vitest/coverage-v8": "^4.0.0",
     "eslint": "^9",
     "eslint-config-oclif": "^6.0.144",
-    "nock": "^13.5.1",
+    "nock": "^14.0.15",
     "oclif": "^4.22.81",
     "tsheredoc": "^1.0.1",
     "typescript": "5.9.3",

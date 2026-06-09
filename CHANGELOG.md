@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.4](https://github.com/heroku/heroku-data-privatelink-cli/compare/plugin-data-privatelink-v1.3.3...plugin-data-privatelink-v1.3.4) (2026-06-09)
+
+
+### Bug Fixes
+
+* address high security vulns reported by Dependabot ([#130](https://github.com/heroku/heroku-data-privatelink-cli/issues/130)) ([92ac322](https://github.com/heroku/heroku-data-privatelink-cli/commit/92ac3229157cff9ed9de5cb3e5149b8adc64c73a))
+* **deps:** bump fast-xml-builder from 1.1.4 to 1.2.0 ([#139](https://github.com/heroku/heroku-data-privatelink-cli/issues/139)) ([9809ed7](https://github.com/heroku/heroku-data-privatelink-cli/commit/9809ed7de1efbfa5d9fd4ace04f74efafb576979))
+* **deps:** bump flatted from 3.3.4 to 3.4.2 ([#135](https://github.com/heroku/heroku-data-privatelink-cli/issues/135)) ([787c566](https://github.com/heroku/heroku-data-privatelink-cli/commit/787c5662d4beeb4988c324cd77c07b6a6fdf8d7a))
+* **deps:** bump lodash from 4.17.23 to 4.18.1 ([#136](https://github.com/heroku/heroku-data-privatelink-cli/issues/136)) ([afd5c6b](https://github.com/heroku/heroku-data-privatelink-cli/commit/afd5c6b8a46a45d80c494f0cb1109ac58348de4d))
+
+
+### Dependencies
+
+* bump actions/create-github-app-token from 2 to 3 ([#133](https://github.com/heroku/heroku-data-privatelink-cli/issues/133)) ([894c40c](https://github.com/heroku/heroku-data-privatelink-cli/commit/894c40cb81267752f20da1333052bf5bd8726c2a))
+* fix high security alerts from Dependabot ([#137](https://github.com/heroku/heroku-data-privatelink-cli/issues/137)) ([45e9d3e](https://github.com/heroku/heroku-data-privatelink-cli/commit/45e9d3e6b9355824de9241cd5560ddb5647f9aa4))
+* migrate to npm and vitest, fix audit vulnerabilities ([#142](https://github.com/heroku/heroku-data-privatelink-cli/issues/142)) ([b3b5c34](https://github.com/heroku/heroku-data-privatelink-cli/commit/b3b5c34cc7dbd23d394259d44078f06b1abf871d))
+
 ## [1.3.3](https://github.com/heroku/heroku-data-privatelink-cli/compare/plugin-data-privatelink-v1.3.2...plugin-data-privatelink-v1.3.3) (2026-01-29)
 
 

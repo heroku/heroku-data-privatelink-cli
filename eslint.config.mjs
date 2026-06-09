@@ -34,7 +34,6 @@ export default [
       'array-callback-return': 'warn',
       camelcase: 'off',
       'import/namespace': 'warn',
-      'mocha/no-mocha-arrows': 'warn',
       'n/shebang': 'warn',
       'no-await-in-loop': 'off',
       'no-else-return': 'warn',

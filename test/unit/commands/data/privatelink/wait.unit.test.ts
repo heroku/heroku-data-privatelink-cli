@@ -1,12 +1,12 @@
 import {stdout} from 'stdout-stderr'
 import Cmd from '../../../../../src/commands/data/privatelink/index'
 import runCommand from '../../../../helpers/runCommand'
-import {expect} from 'chai'
+import {afterEach, beforeEach, describe, expect, it} from 'vitest'
 import {addonsFetcherResponse} from '../../../../fixtures'
-import * as nock from 'nock'
+import nock from 'nock'
 import heredoc from 'tsheredoc'
 
-describe('data:privatelink:wait', function () {
+describe('data:privatelink:wait', () => {
   const privateLinkListResponse = {
     app: {name: 'myapp'},
     addon: {name: 'postgres-123'},
@@ -18,18 +18,18 @@ describe('data:privatelink:wait', function () {
   let api: nock.Scope
   let shogun: nock.Scope
 
-  beforeEach(function () {
+  beforeEach(() => {
     api = nock('https://api.heroku.com')
     shogun = nock('https://api.data.heroku.com')
   })
 
-  afterEach(function () {
+  afterEach(() => {
     api.done()
     shogun.done()
     nock.cleanAll()
   })
 
-  it('waits for a privatelink endpoint to be provisioned', async function () {
+  it('waits for a privatelink endpoint to be provisioned', async () => {
     shogun
       .get('/private-link/v0/databases/postgres-123')
       .reply(200, privateLinkListResponse)
@@ -43,7 +43,7 @@ describe('data:privatelink:wait', function () {
       'myapp',
     ])
 
-    expect(stdout.output).to.eq(heredoc`
+    expect(stdout.output).toBe(heredoc`
       === privatelink endpoint status for postgres-123
 
       Service Name: com.amazonaws.vpce.testvpc

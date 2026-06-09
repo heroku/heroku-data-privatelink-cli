@@ -1,31 +1,31 @@
 import {stdout} from 'stdout-stderr'
 import Cmd from '../../../../../src/commands/data/privatelink/index'
 import runCommand from '../../../../helpers/runCommand'
-import {expect} from 'chai'
+import {afterEach, beforeEach, describe, expect, it} from 'vitest'
 import {
   addonsFetcherResponse,
   privateLinkNewlyCreated,
   privateLinkWithConnections,
 } from '../../../../fixtures'
-import * as nock from 'nock'
+import nock from 'nock'
 import heredoc from 'tsheredoc'
 
-describe('data:privatelink', function () {
+describe('data:privatelink', () => {
   let api: nock.Scope
   let shogun: nock.Scope
 
-  beforeEach(function () {
+  beforeEach(() => {
     api = nock('https://api.heroku.com')
     shogun = nock('https://api.data.heroku.com')
   })
 
-  afterEach(function () {
+  afterEach(() => {
     api.done()
     shogun.done()
     nock.cleanAll()
   })
 
-  it('shows the status of a privatelink endpoint, including allowed accounts and connections', async function () {
+  it('shows the status of a privatelink endpoint, including allowed accounts and connections', async () => {
     shogun
       .get('/private-link/v0/databases/postgres-123')
       .reply(200, privateLinkWithConnections)
@@ -39,7 +39,7 @@ describe('data:privatelink', function () {
       'myapp',
     ])
 
-    expect(stdout.output).to.eq(heredoc`
+    expect(stdout.output).toBe(heredoc`
       === privatelink endpoint status for postgres-123
 
       Service Name: com.amazonaws.vpce.testvpc
@@ -59,7 +59,7 @@ describe('data:privatelink', function () {
     `)
   })
 
-  it('tells the user to run heroku data:privatelink:wait for a newly created endpoint', async function () {
+  it('tells the user to run heroku data:privatelink:wait for a newly created endpoint', async () => {
     shogun
       .get('/private-link/v0/databases/postgres-123')
       .reply(200, privateLinkNewlyCreated)
@@ -73,7 +73,7 @@ describe('data:privatelink', function () {
       'myapp',
     ])
 
-    expect(stdout.output).to.eq(heredoc`
+    expect(stdout.output).toBe(heredoc`
 
       The privatelink endpoint is now being provisioned for postgres-123.
       Run heroku data:privatelink:wait -a myapp to check the creation process.

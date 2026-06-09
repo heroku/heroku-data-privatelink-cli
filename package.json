@@ -22,7 +22,7 @@
     "eslint-config-oclif": "^6.0.144",
     "nock": "^13.5.1",
     "oclif": "^4.22.81",
-    "tsheredoc": "^1.0.1",
+    "tsheredoc": "^2.0.0",
     "typescript": "5.9.3",
     "vitest": "^4.0.0"
   },

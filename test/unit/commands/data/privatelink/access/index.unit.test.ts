@@ -1,12 +1,12 @@
 import {stdout} from 'stdout-stderr'
 import Cmd from '../../../../../../src/commands/data/privatelink/access/index'
 import runCommand from '../../../../../helpers/runCommand'
-import {expect} from 'chai'
+import {afterEach, beforeEach, describe, expect, it} from 'vitest'
 import {addonsFetcherResponse} from '../../../../../fixtures'
-import * as nock from 'nock'
+import nock from 'nock'
 import heredoc from 'tsheredoc'
 
-describe('data:privatelink:access', function () {
+describe('data:privatelink:access', () => {
   const privateLinkAllowlistResponse = {
     app: {name: 'myapp'},
     addon: {name: 'postgres-123'},
@@ -18,18 +18,18 @@ describe('data:privatelink:access', function () {
   let api: nock.Scope
   let shogun: nock.Scope
 
-  beforeEach(function () {
+  beforeEach(() => {
     api = nock('https://api.heroku.com')
     shogun = nock('https://api.data.heroku.com')
   })
 
-  afterEach(function () {
+  afterEach(() => {
     api.done()
     shogun.done()
     nock.cleanAll()
   })
 
-  it('shows all allowed accounts', async function () {
+  it('shows all allowed accounts', async () => {
     shogun
       .get('/private-link/v0/databases/postgres-123')
       .reply(200, privateLinkAllowlistResponse)
@@ -43,7 +43,7 @@ describe('data:privatelink:access', function () {
       'myapp',
     ])
 
-    expect(heredoc(stdout.output)).to.eq(heredoc`
+    expect(heredoc(stdout.output)).toBe(heredoc`
       ARN                         Status    
       ─────────────────────────── ───────── 
       arn:aws:iam::123456789:root Available 

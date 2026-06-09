@@ -3,6 +3,8 @@
   "extends": "../tsconfig",
   "compilerOptions": {
     "sourceMap": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "rootDirs": ["./", "../src"]
   },
   "include": [

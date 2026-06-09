@@ -1,27 +1,27 @@
 import {stderr} from 'stdout-stderr'
 import Cmd from '../../../../../src/commands/data/privatelink/destroy'
 import runCommand from '../../../../helpers/runCommand'
-import {expect} from 'chai'
+import {afterEach, beforeEach, describe, expect, it} from 'vitest'
 import {addonsFetcherResponse} from '../../../../fixtures'
-import * as nock from 'nock'
+import nock from 'nock'
 import heredoc from 'tsheredoc'
 
-describe('data:privatelink:destroy', function () {
+describe('data:privatelink:destroy', () => {
   let api: nock.Scope
   let shogun: nock.Scope
 
-  beforeEach(function () {
+  beforeEach(() => {
     api = nock('https://api.heroku.com')
     shogun = nock('https://api.data.heroku.com')
   })
 
-  afterEach(function () {
+  afterEach(() => {
     api.done()
     shogun.done()
     nock.cleanAll()
   })
 
-  it('destroys a privatelink endpoint', async function () {
+  it('destroys a privatelink endpoint', async () => {
     shogun
       .delete('/private-link/v0/databases/postgres-123')
       .reply(200, {})
@@ -35,7 +35,7 @@ describe('data:privatelink:destroy', function () {
       'myapp',
     ])
 
-    expect(stderr.output).to.eq(heredoc`
+    expect(stderr.output).toBe(heredoc`
       Destroying privatelink endpoint...
       Destroying privatelink endpoint... done
     `)

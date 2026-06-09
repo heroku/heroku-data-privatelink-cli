@@ -15,24 +15,16 @@
     "tslib": "1.14.1"
   },
   "devDependencies": {
-    "@oclif/test": "^2.3.28",
-    "@types/chai": "^4.3.14",
-    "@types/chai-as-promised": "^7.1.8",
-    "@types/mocha": "^10.0.6",
     "@types/node": "^20.14.8",
     "@types/supports-color": "^8.1.3",
-    "chai": "^4.4.1",
-    "chai-as-promised": "^7.1.1",
+    "@vitest/coverage-v8": "^4.0.0",
     "eslint": "^9",
     "eslint-config-oclif": "^6.0.144",
-    "eslint-plugin-mocha": "^11.2.0",
-    "mocha": "^11",
     "nock": "^13.5.1",
-    "nyc": "^17.1.0",
     "oclif": "^4.22.81",
-    "ts-node": "^10.9.2",
     "tsheredoc": "^1.0.1",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "vitest": "^4.0.0"
   },
   "engines": {
     "node": ">=20"
@@ -47,17 +39,6 @@
     "heroku-cli-plugin"
   ],
   "license": "MIT",
-  "mocha": {
-    "require": [
-      "test/helpers/init.js",
-      "ts-node/register",
-      "source-map-support/register"
-    ],
-    "watch-extensions": "ts",
-    "recursive": true,
-    "reporter": "spec",
-    "timeout": 30000
-  },
   "oclif": {
     "commands": "./lib/commands",
     "bin": "heroku",
@@ -70,13 +51,13 @@
     "build": "rm -rf lib && tsc -b",
     "lint": "eslint .",
     "postpack": "rm -f oclif.manifest.json",
-    "posttest": "yarn lint",
+    "posttest": "npm run lint",
     "prepack": "rm -rf lib && tsc -b && oclif manifest",
-    "pretest": "tsc -p test --noEmit && yarn build",
-    "test": "nyc mocha --forbid-only \"test/**/*.unit.test.ts\"",
+    "pretest": "tsc -p test --noEmit && npm run build",
+    "test": "vitest run --coverage",
     "version": "oclif readme && git add README.md"
   },
-  "resolutions": {
-    "serialize-javascript": "^7.0.3"
+  "overrides": {
+    "uuid": "^11.1.1"
   }
 }

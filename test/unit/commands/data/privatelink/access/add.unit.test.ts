@@ -1,27 +1,27 @@
 import {stderr} from 'stdout-stderr'
 import Cmd from '../../../../../../src/commands/data/privatelink/access/add'
 import runCommand from '../../../../../helpers/runCommand'
-import {expect} from 'chai'
+import {afterEach, beforeEach, describe, expect, it} from 'vitest'
 import {addonsFetcherResponse} from '../../../../../fixtures'
-import * as nock from 'nock'
+import nock from 'nock'
 import heredoc from 'tsheredoc'
 
-describe('data:privatelink:access:add', function () {
+describe('data:privatelink:access:add', () => {
   let api: nock.Scope
   let shogun: nock.Scope
 
-  beforeEach(function () {
+  beforeEach(() => {
     api = nock('https://api.heroku.com:443')
     shogun = nock('https://api.data.heroku.com:443')
   })
 
-  afterEach(function () {
+  afterEach(() => {
     api.done()
     shogun.done()
     nock.cleanAll()
   })
 
-  it('adds an allowed account', async function () {
+  it('adds an allowed account', async () => {
     api
       .post('/actions/addons/resolve')
       .reply(200, addonsFetcherResponse)
@@ -37,13 +37,13 @@ describe('data:privatelink:access:add', function () {
       'myapp',
     ])
 
-    expect(stderr.output).to.eq(heredoc`
+    expect(stderr.output).toBe(heredoc`
       Adding account...
       Adding account... done
     `)
   })
 
-  it('adds multiple allowed accounts', async function () {
+  it('adds multiple allowed accounts', async () => {
     shogun
       .put('/private-link/v0/databases/postgres-123/allowed_accounts', {allowed_accounts: ['123456789012:resource1', '123456789012:resource2']})
       .reply(200, {})
@@ -61,7 +61,7 @@ describe('data:privatelink:access:add', function () {
       'myapp',
     ])
 
-    expect(stderr.output).to.eq(heredoc`
+    expect(stderr.output).toBe(heredoc`
       Adding accounts...
       Adding accounts... done
     `)

@@ -23,7 +23,6 @@
     "nock": "^13.5.1",
     "oclif": "^4.22.81",
     "tsheredoc": "^1.0.1",
-    "tsx": "^4.20.6",
     "typescript": "5.9.3",
     "vitest": "^4.0.0"
   },
@@ -55,7 +54,7 @@
     "posttest": "npm run lint",
     "prepack": "rm -rf lib && tsc -b && oclif manifest",
     "pretest": "tsc -p test --noEmit && npm run build",
-    "test": "NODE_OPTIONS='--import tsx' vitest run --coverage",
+    "test": "vitest run --coverage",
     "version": "oclif readme && git add README.md"
   },
   "overrides": {

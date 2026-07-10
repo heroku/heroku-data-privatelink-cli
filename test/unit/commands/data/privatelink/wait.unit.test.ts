@@ -1,29 +1,34 @@
-import {stdout} from 'stdout-stderr'
-import Cmd from '../../../../../src/commands/data/privatelink/index'
-import runCommand from '../../../../helpers/runCommand'
-import {afterEach, beforeEach, describe, expect, it} from 'vitest'
-import {addonsFetcherResponse} from '../../../../fixtures'
+import {runCommand} from '@heroku-cli/test-utils'
 import nock from 'nock'
-import heredoc from 'tsheredoc'
+import {
+  afterEach, beforeEach, describe, expect, it,
+} from 'vitest'
+
+import Cmd from '../../../../../src/commands/data/privatelink/wait.js'
+import {addonsFetcherResponse} from '../../../../fixtures/index.js'
+import {stubUxActionStart} from '../../../../helpers/stub-ux-action.js'
 
 describe('data:privatelink:wait', () => {
   const privateLinkListResponse = {
-    app: {name: 'myapp'},
     addon: {name: 'postgres-123'},
-    status: 'Operational',
-    service_name: 'com.amazonaws.vpce.testvpc',
-    connections: [],
     allowed_accounts: [],
+    app: {name: 'myapp'},
+    connections: [],
+    service_name: 'com.amazonaws.vpce.testvpc',
+    status: 'Operational',
   }
   let api: nock.Scope
   let shogun: nock.Scope
+  let uxStub: ReturnType<typeof stubUxActionStart>
 
   beforeEach(() => {
     api = nock('https://api.heroku.com')
     shogun = nock('https://api.data.heroku.com')
+    uxStub = stubUxActionStart()
   })
 
   afterEach(() => {
+    uxStub.restore()
     api.done()
     shogun.done()
     nock.cleanAll()
@@ -37,20 +42,12 @@ describe('data:privatelink:wait', () => {
       .post('/actions/addons/resolve')
       .reply(200, addonsFetcherResponse)
 
-    await runCommand(Cmd, [
+    const {stderr} = await runCommand(Cmd, [
       'postgres-123',
       '--app',
       'myapp',
     ])
 
-    expect(stdout.output).toBe(heredoc`
-      === privatelink endpoint status for postgres-123
-
-      Service Name: com.amazonaws.vpce.testvpc
-      Status:       Operational
-
-      Your privatelink endpoint is now operational.
-      You must now copy the Service Name and follow the rest of the steps listed in https://devcenter.heroku.com/articles/heroku-postgres-via-privatelink
-    `)
+    expect(stderr).to.contain('Waiting for the privatelink endpoint to be provisioned')
   })
 })

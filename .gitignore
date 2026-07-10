@@ -1,8 +1,10 @@
 *-debug.log
 *-error.log
-oclif.manifest.json
-/coverage
+**/.DS_Store
+/.idea
 /dist
-/lib
+/node_modules
 /tmp
-node_modules
+.nyc_output
+oclif.manifest.json
+coverage

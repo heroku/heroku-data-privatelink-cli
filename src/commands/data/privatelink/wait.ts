@@ -1,36 +1,38 @@
 import {flags} from '@heroku-cli/command'
-import {Args, ux} from '@oclif/core'
-import BaseCommand, {PrivateLinkDB} from '../../../base'
-import fetcher from '../../../lib/fetcher'
+import {wait} from '@heroku/heroku-cli-util/hux'
+import {Args} from '@oclif/core'
+import {ux} from '@oclif/core/ux'
+
+import BaseCommand, {PrivateLinkDB} from '../../../base.js'
 
 export default class Wait extends BaseCommand {
-  static description = 'wait for your privatelink endpoint to be provisioned'
-  static hiddenAliases = ['pg:privatelink:wait', 'kafka:privatelink:wait', 'redis:privatelink:wait']
-
   static args = {
     database: Args.string({required: true}),
   }
-
+  static description = 'wait for your privatelink endpoint to be provisioned'
+  static examples = [
+    '$ heroku data:privatelink:wait postgresql-sushi-12345 --app my-app',
+  ]
   static flags = {
     app: flags.app({required: true}),
     remote: flags.remote(),
   }
-
-  static examples = [
-    '$ heroku data:privatelink:wait postgresql-sushi-12345 postgresql-sushi-12345 --app my-app',
-  ]
+  static hiddenAliases = ['pg:privatelink:wait', 'kafka:privatelink:wait', 'redis:privatelink:wait']
 
   public async run(): Promise<void> {
     const {args, flags} = await this.parse(Wait)
-    const database = await fetcher(this.heroku, args.database, flags.app)
+    const database = await this.resolveAddon(args.database, flags.app)
 
     let status
     ux.action.start('Waiting for the privatelink endpoint to be provisioned')
+    // Sequential polling: each check must wait for the previous request and delay.
+    /* eslint-disable no-await-in-loop */
     while (status !== 'Operational') {
       const {body: res} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
       status = res.status
-      await ux.wait(3000)
+      await wait(3000)
     }
+    /* eslint-enable no-await-in-loop */
 
     ux.action.stop()
   }

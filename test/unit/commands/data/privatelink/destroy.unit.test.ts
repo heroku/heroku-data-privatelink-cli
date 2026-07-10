@@ -42,4 +42,35 @@ describe('data:privatelink:destroy', () => {
 
     expect(stderr).to.contain('Destroying privatelink endpoint')
   })
+
+  it('errors when the addon cannot be resolved', async () => {
+    api
+      .post('/actions/addons/resolve')
+      .reply(200, [])
+
+    const {error} = await runCommand(Cmd, [
+      'postgres-123',
+      '--app',
+      'myapp',
+    ])
+
+    expect(error?.message).to.contain('Couldn\'t find that addon.')
+  })
+
+  it('errors when the addon identifier is ambiguous', async () => {
+    api
+      .post('/actions/addons/resolve')
+      .reply(200, [
+        {addon_service: {name: 'heroku-postgresql'}, name: 'postgres-123'},
+        {addon_service: {name: 'heroku-postgresql'}, name: 'postgres-456'},
+      ])
+
+    const {error} = await runCommand(Cmd, [
+      'postgres-123',
+      '--app',
+      'myapp',
+    ])
+
+    expect(error?.message).to.contain('Ambiguous identifier; multiple matching add-ons found')
+  })
 })

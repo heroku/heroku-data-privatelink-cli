@@ -65,4 +65,39 @@ describe('data:privatelink:access:remove', () => {
 
     expect(stderr).to.contain('Removing accounts')
   })
+
+  it('errors when the addon cannot be resolved', async () => {
+    api
+      .post('/actions/addons/resolve')
+      .reply(200, [])
+
+    const {error} = await runCommand(Cmd, [
+      'postgres-123',
+      '--aws-account-id',
+      '123456789012:root',
+      '--app',
+      'myapp',
+    ])
+
+    expect(error?.message).to.contain('Couldn\'t find that addon.')
+  })
+
+  it('errors when the addon identifier is ambiguous', async () => {
+    api
+      .post('/actions/addons/resolve')
+      .reply(200, [
+        {addon_service: {name: 'heroku-postgresql'}, name: 'postgres-123'},
+        {addon_service: {name: 'heroku-postgresql'}, name: 'postgres-456'},
+      ])
+
+    const {error} = await runCommand(Cmd, [
+      'postgres-123',
+      '--aws-account-id',
+      '123456789012:root',
+      '--app',
+      'myapp',
+    ])
+
+    expect(error?.message).to.contain('Ambiguous identifier; multiple matching add-ons found')
+  })
 })

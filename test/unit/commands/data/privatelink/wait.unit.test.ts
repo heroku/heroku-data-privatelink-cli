@@ -17,6 +17,10 @@ describe('data:privatelink:wait', () => {
     service_name: 'com.amazonaws.vpce.testvpc',
     status: 'Operational',
   }
+  const privateLinkProvisioningResponse = {
+    ...privateLinkListResponse,
+    status: 'Provisioning',
+  }
   let api: nock.Scope
   let shogun: nock.Scope
   let uxStub: ReturnType<typeof stubUxActionStart>
@@ -49,5 +53,55 @@ describe('data:privatelink:wait', () => {
     ])
 
     expect(stderr).to.contain('Waiting for the privatelink endpoint to be provisioned')
+  })
+
+  it('polls until the endpoint becomes operational', async () => {
+    shogun
+      .get('/private-link/v0/databases/postgres-123')
+      .reply(200, privateLinkProvisioningResponse)
+      .get('/private-link/v0/databases/postgres-123')
+      .reply(200, privateLinkListResponse)
+    api
+      .post('/actions/addons/resolve')
+      .reply(200, addonsFetcherResponse)
+
+    const {stderr} = await runCommand(Cmd, [
+      'postgres-123',
+      '--app',
+      'myapp',
+    ])
+
+    expect(stderr).to.contain('Waiting for the privatelink endpoint to be provisioned')
+  })
+
+  it('errors when the addon cannot be resolved', async () => {
+    api
+      .post('/actions/addons/resolve')
+      .reply(200, [])
+
+    const {error} = await runCommand(Cmd, [
+      'postgres-123',
+      '--app',
+      'myapp',
+    ])
+
+    expect(error?.message).to.contain('Couldn\'t find that addon.')
+  })
+
+  it('errors when the addon identifier is ambiguous', async () => {
+    api
+      .post('/actions/addons/resolve')
+      .reply(200, [
+        {addon_service: {name: 'heroku-postgresql'}, name: 'postgres-123'},
+        {addon_service: {name: 'heroku-postgresql'}, name: 'postgres-456'},
+      ])
+
+    const {error} = await runCommand(Cmd, [
+      'postgres-123',
+      '--app',
+      'myapp',
+    ])
+
+    expect(error?.message).to.contain('Ambiguous identifier; multiple matching add-ons found')
   })
 })

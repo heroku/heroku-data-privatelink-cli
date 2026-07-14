@@ -1,6 +1,5 @@
 import {flags} from '@heroku-cli/command'
-import {Args} from '@oclif/core'
-import {ux} from '@oclif/core/ux'
+import {Args, ux} from '@oclif/core'
 
 import BaseCommand, {PrivateLinkDB} from '../../../base.js'
 

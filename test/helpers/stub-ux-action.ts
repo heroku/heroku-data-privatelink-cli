@@ -1,4 +1,4 @@
-import {ux} from '@oclif/core/ux'
+import {ux} from '@oclif/core'
 import ansis from 'ansis'
 
 export function stubUxActionStart() {

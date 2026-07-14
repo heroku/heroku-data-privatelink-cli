@@ -1,8 +1,7 @@
 import {flags} from '@heroku-cli/command'
 import * as color from '@heroku/heroku-cli-util/color'
 import {styledObject} from '@heroku/heroku-cli-util/hux'
-import {Args} from '@oclif/core'
-import {ux} from '@oclif/core/ux'
+import {Args, ux} from '@oclif/core'
 
 import BaseCommand, {PrivateLinkDB} from '../../../base.js'
 

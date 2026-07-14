@@ -17,7 +17,7 @@ $ npm install -g @heroku-cli/plugin-data-privatelink
 $ heroku COMMAND
 running command...
 $ heroku (--version)
-@heroku-cli/plugin-data-privatelink/1.3.4 darwin-arm64 node-v24.15.0
+@heroku-cli/plugin-data-privatelink/1.3.4 darwin-arm64 node-v22.22.2
 $ heroku --help [COMMAND]
 USAGE
   $ heroku COMMAND

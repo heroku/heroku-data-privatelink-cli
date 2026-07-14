@@ -6,8 +6,8 @@
   "type": "module",
   "bugs": "https://github.com/heroku/heroku-data-privatelink-cli/issues",
   "dependencies": {
-    "@heroku-cli/command": "~12.3.3",
-    "@heroku/heroku-cli-util": "10.8.0",
+    "@heroku-cli/command": "^13.0.0",
+    "@heroku/heroku-cli-util": "^10.9.1",
     "@oclif/core": "^4.3.0",
     "@oclif/plugin-help": "^5"
   },

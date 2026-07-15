@@ -1,19 +1,21 @@
-import {stdout} from 'stdout-stderr'
-import Cmd from '../../../../../../src/commands/data/privatelink/access/index'
-import runCommand from '../../../../../helpers/runCommand'
-import {afterEach, beforeEach, describe, expect, it} from 'vitest'
-import {addonsFetcherResponse} from '../../../../../fixtures'
+import {runCommand} from '@heroku-cli/test-utils'
 import nock from 'nock'
-import heredoc from 'tsheredoc'
+import {
+  afterEach, beforeEach, describe, expect, it,
+} from 'vitest'
+
+import Cmd from '../../../../../../src/commands/data/privatelink/access/index.js'
+import {addonsFetcherResponse} from '../../../../../fixtures/index.js'
+import removeAllWhitespace from '../../../../../helpers/utils/remove-whitespaces.js'
 
 describe('data:privatelink:access', () => {
   const privateLinkAllowlistResponse = {
-    app: {name: 'myapp'},
     addon: {name: 'postgres-123'},
-    status: 'Operational',
-    service_name: 'com.amazonaws.vpce.testvpc"',
-    connections: [],
     allowed_accounts: [{arn: 'arn:aws:iam::123456789:root', status: 'Available'}],
+    app: {name: 'myapp'},
+    connections: [],
+    service_name: 'com.amazonaws.vpce.testvpc"',
+    status: 'Operational',
   }
   let api: nock.Scope
   let shogun: nock.Scope
@@ -37,16 +39,31 @@ describe('data:privatelink:access', () => {
       .post('/actions/addons/resolve')
       .reply(200, addonsFetcherResponse)
 
-    await runCommand(Cmd, [
+    const {stdout} = await runCommand(Cmd, [
       'postgres-123',
       '--app',
       'myapp',
     ])
 
-    expect(heredoc(stdout.output)).toBe(heredoc`
-      ARN                         Status    
-      ─────────────────────────── ───────── 
-      arn:aws:iam::123456789:root Available 
-    `)
+    const actual = removeAllWhitespace(stdout)
+    expect(actual).to.include(removeAllWhitespace('ARN Status'))
+    expect(actual).to.include(removeAllWhitespace('arn:aws:iam::123456789:root Available'))
+  })
+
+  it('tells the user when there are no allowed accounts', async () => {
+    shogun
+      .get('/private-link/v0/databases/postgres-123')
+      .reply(200, {...privateLinkAllowlistResponse, allowed_accounts: []})
+    api
+      .post('/actions/addons/resolve')
+      .reply(200, addonsFetcherResponse)
+
+    const {stdout} = await runCommand(Cmd, [
+      'postgres-123',
+      '--app',
+      'myapp',
+    ])
+
+    expect(stdout).to.contain('There are no allowed accounts')
   })
 })

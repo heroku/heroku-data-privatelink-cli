@@ -1,14 +1,9 @@
 {
-  "declaration": false,
   "extends": "../tsconfig",
   "compilerOptions": {
     "sourceMap": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
     "rootDirs": ["./", "../src"]
   },
-  "include": [
-    "./**/*",
-    "../src/**/*"
-  ]
+  "include": ["./**/*", "../src/**/*"],
+  "ts-node": {"transpileOnly": true}
 }

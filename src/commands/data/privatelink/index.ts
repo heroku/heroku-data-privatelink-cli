@@ -1,72 +1,70 @@
-import color from '@heroku-cli/color'
 import {flags} from '@heroku-cli/command'
+import * as color from '@heroku/heroku-cli-util/color'
+import {styledHeader, styledObject, table} from '@heroku/heroku-cli-util/hux'
 import {Args, ux} from '@oclif/core'
-import BaseCommand, {PrivateLinkDB} from '../../../base'
-import fetcher from '../../../lib/fetcher'
+
+import BaseCommand, {PrivateLinkDB} from '../../../base.js'
 
 export default class Index extends BaseCommand {
-  static topic = 'data:privatelink'
-  static description = 'list all your privatelink endpoints'
-  static hiddenAliases = ['pg:privatelink', 'kafka:privatelink', 'redis:privatelink']
-
   static args = {
     database: Args.string({required: true}),
   }
-
+  static description = 'list all your privatelink endpoints'
+  static examples = [
+    '$ heroku data:privatelink postgresql-sushi-12345 --app my-app',
+  ]
   static flags = {
     app: flags.app({required: true}),
     remote: flags.remote(),
   }
-
-  static examples = [
-    '$ heroku data:privatelink postgresql-sushi-12345 --app my-app',
-  ]
+  static hiddenAliases = ['pg:privatelink', 'kafka:privatelink', 'redis:privatelink']
+  static topic = 'data:privatelink'
 
   public async run(): Promise<void> {
     const {args, flags} = await this.parse(Index)
     const {app} = flags
-    const database = await fetcher(this.heroku, args.database, app)
+    const database = await this.resolveAddon(args.database, app)
     const {body: res} = await this.shogun.get<PrivateLinkDB>(`/private-link/v0/databases/${database}`, this.shogun.defaults)
     const addonType = this.addonType(res.addon.name)
 
     if (res.status === 'Provisioning') {
-      ux.log()
-      ux.log(`The privatelink endpoint is now being provisioned for ${color.green(database)}.`)
-      ux.log(`Run ${color.cmd(`heroku data:privatelink:wait -a ${app}`)} to check the creation process.`)
+      ux.stdout()
+      ux.stdout(`The privatelink endpoint is now being provisioned for ${color.addon(database)}.`)
+      ux.stdout(`Use ${color.command(`heroku data:privatelink:wait -a ${app}`)} to check the creation process.`)
     } else {
-      ux.styledHeader(`privatelink endpoint status for ${color.green(database)}`)
-      ux.styledObject({
-        Status: res.status,
+      styledHeader(`privatelink endpoint status for ${color.addon(database)}`)
+      styledObject({
         'Service Name': res.service_name || 'Provisioning',
+        Status: res.status,
       })
 
       if (res && res.allowed_accounts.length > 0) {
-        ux.log()
-        ux.styledHeader('Allowed Accounts')
-        ux.table(res.allowed_accounts, {
+        ux.stdout()
+        styledHeader('Allowed Accounts')
+        table(res.allowed_accounts, {
           arn: {header: 'ARN'},
-          status: {},
+          status: {header: 'Status'},
         })
       }
 
-      ux.log()
+      ux.stdout()
       if (res && res.connections.length > 0) {
-        ux.styledHeader('Connections')
-        ux.table(res.connections, {
+        styledHeader('Connections')
+        table(res.connections, {
           endpoint_id: {header: 'Endpoint ID'},
           owner_arn: {header: 'Owner ARN'},
-          status: {},
+          status: {header: 'Status'},
         })
       } else if (res.status === 'Operational' && res.connections.length === 0) {
-        ux.log('Your privatelink endpoint is now operational.')
-        ux.log(`You must now copy the ${color.green('Service Name')} and follow the rest of the steps listed in https://devcenter.heroku.com/articles/heroku-${addonType}-via-privatelink`)
+        ux.stdout('Your privatelink endpoint is now operational.')
+        ux.stdout(`You must now copy the ${color.green('Service Name')} and follow the rest of the steps listed in https://devcenter.heroku.com/articles/heroku-${addonType}-via-privatelink`)
       }
     }
   }
 
-  private addonType(addon_name: string): string | undefined {
-    if (addon_name.includes('postgres')) return 'postgres'
-    if (addon_name.includes('kafka')) return 'kafka'
-    if (addon_name.includes('redis')) return 'redis'
+  private addonType(addonName: string): string | undefined {
+    if (addonName.includes('postgres')) return 'postgres'
+    if (addonName.includes('kafka')) return 'kafka'
+    if (addonName.includes('redis')) return 'redis'
   }
 }

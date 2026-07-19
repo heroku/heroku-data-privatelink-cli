@@ -12,7 +12,7 @@
     "@oclif/plugin-help": "^5"
   },
   "devDependencies": {
-    "@heroku-cli/test-utils": "^0.2.0",
+    "@heroku-cli/test-utils": "^1.0.1",
     "@types/node": "^22",
     "@vitest/coverage-v8": "^4.0.0",
     "ansis": "^3.17.0",

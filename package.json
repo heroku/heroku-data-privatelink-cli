@@ -9,7 +9,7 @@
     "@heroku-cli/command": "^13.0.0",
     "@heroku/heroku-cli-util": "^10.9.1",
     "@oclif/core": "^4.3.0",
-    "@oclif/plugin-help": "^5"
+    "@oclif/plugin-help": "^6"
   },
   "devDependencies": {
     "@heroku-cli/test-utils": "^0.2.0",

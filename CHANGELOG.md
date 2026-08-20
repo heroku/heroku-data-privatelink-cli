@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/heroku/heroku-data-privatelink-cli/compare/plugin-data-privatelink-v2.0.0...plugin-data-privatelink-v2.0.1) (2026-08-20)
+
+
+### Dependencies
+
+* bump @oclif/plugin-help from 5.2.20 to 6.2.58 ([#154](https://github.com/heroku/heroku-data-privatelink-cli/issues/154)) ([81726e3](https://github.com/heroku/heroku-data-privatelink-cli/commit/81726e3085f0410b5f7ae6d897abc3bdc9731a08))
+* bump js-yaml from 4.3.0 to 4.3.1 ([#161](https://github.com/heroku/heroku-data-privatelink-cli/issues/161)) ([809f65c](https://github.com/heroku/heroku-data-privatelink-cli/commit/809f65c48261b34e0513894fd01eb55ca2375280))
+
 ## [2.0.0](https://github.com/heroku/heroku-data-privatelink-cli/compare/plugin-data-privatelink-v1.3.4...plugin-data-privatelink-v2.0.0) (2026-07-15)
 
 

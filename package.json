@@ -16,7 +16,7 @@
     "@types/node": "^22",
     "@vitest/coverage-v8": "^4.0.0",
     "ansis": "^3.17.0",
-    "eslint": "^9",
+    "eslint": "^10",
     "eslint-config-oclif": "^6.0.144",
     "nock": "^14.0.1",
     "oclif": "^4.22.81",

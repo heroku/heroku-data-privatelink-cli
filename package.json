@@ -17,7 +17,7 @@
     "@vitest/coverage-v8": "^4.0.0",
     "ansis": "^3.17.0",
     "eslint": "^9",
-    "eslint-config-oclif": "^6.0.144",
+    "eslint-config-oclif": "^7.1.7",
     "nock": "^14.0.1",
     "oclif": "^4.22.81",
     "tsx": "^4.21.0",

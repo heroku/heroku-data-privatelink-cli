@@ -15,7 +15,7 @@
     "@heroku-cli/test-utils": "^1.0.1",
     "@types/node": "^22",
     "@vitest/coverage-v8": "^4.0.0",
-    "ansis": "^3.17.0",
+    "ansis": "^4.3.1",
     "eslint": "^9",
     "eslint-config-oclif": "^6.0.144",
     "nock": "^14.0.1",

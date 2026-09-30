@@ -38,6 +38,7 @@
   ],
   "license": "MIT",
   "oclif": {
+    "repositoryPrefix": "<%- repo %>/blob/plugin-data-privatelink-v<%- version %>/<%- commandPath %>",
     "commands": "./dist/commands",
     "bin": "heroku",
     "plugins": [

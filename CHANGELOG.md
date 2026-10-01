@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.0.2](https://github.com/heroku/heroku-data-privatelink-cli/compare/plugin-data-privatelink-v2.0.1...plugin-data-privatelink-v2.0.2) (2026-10-01)
+
+
+### Bug Fixes
+
+* correct broken source links in generated command docs ([#175](https://github.com/heroku/heroku-data-privatelink-cli/issues/175)) ([68f35f6](https://github.com/heroku/heroku-data-privatelink-cli/commit/68f35f655b8268a6513de9f58a9f428900a5945e))
+
+
+### Dependencies
+
+* bump brace-expansion ([#177](https://github.com/heroku/heroku-data-privatelink-cli/issues/177)) ([ecdffde](https://github.com/heroku/heroku-data-privatelink-cli/commit/ecdffde601f9831829ad83f27dfd146e9bc7b7ba))
+
 ## [2.0.1](https://github.com/heroku/heroku-data-privatelink-cli/compare/plugin-data-privatelink-v2.0.0...plugin-data-privatelink-v2.0.1) (2026-08-20)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.3](https://github.com/heroku/heroku-data-privatelink-cli/compare/plugin-data-privatelink-v2.0.2...plugin-data-privatelink-v2.0.3) (2026-10-29)
+
+
+### Dependencies
+
+* bump @oclif/core from 4.11.14 to 4.14.0 ([#180](https://github.com/heroku/heroku-data-privatelink-cli/issues/180)) ([bf29d9c](https://github.com/heroku/heroku-data-privatelink-cli/commit/bf29d9cb01994c207b650c9535fd1558f69bbda6))
+
 ## [2.0.2](https://github.com/heroku/heroku-data-privatelink-cli/compare/plugin-data-privatelink-v2.0.1...plugin-data-privatelink-v2.0.2) (2026-10-01)
 
 

@@ -14,7 +14,7 @@
   "devDependencies": {
     "@heroku-cli/test-utils": "^1.0.1",
     "@types/node": "^22",
-    "@vitest/coverage-v8": "^4.0.0",
+    "@vitest/coverage-v8": "^5.0.5",
     "ansis": "^4.3.1",
     "eslint": "^9",
     "eslint-config-oclif": "^6.0.144",
